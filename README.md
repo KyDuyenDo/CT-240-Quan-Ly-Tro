@@ -15,6 +15,34 @@
 - Có hỗ trợ Spring Tools 4 hoặc các công cụ hỗ trợ cho dự án Spring boot.
 - Sử dụng hệ quản trị cơ sở dữ liệu MySQL.
 
+# Hướng dẫn sử dụng dự án
+Trong hướng dẫn này sẽ sử dụng Eclipse
+
+## Service
+
+### Clone code từ github
+
+* Mở terminal tại đường dẫn lưu trữ, nhập lệnh:
+```git clone https://github.com/DoKyDuyenB2012188/CT-240-Quan-Ly-Tro.git```
+
+* Mở IDE như Eclipse, Spring Tools...
+- Vào file > Import > Maven > Existing Maven Projects
+![](./Image/import-maven-1.png)
+
+- Chọn đường dẫn lưu trữ Repo được clone về, tick vào phần project maven cần thêm (cụ thể là backend)
+![](./Image/import-maven-2.png)
+
+### Push code lên github
+
+* Chuột phải vào project > Team > Commit... 
+![](./Image/push-code-1.png)
+
+
+
+
+
+
+
 
 
 
