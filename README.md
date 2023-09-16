@@ -41,7 +41,7 @@ Trong hướng dẫn này sẽ sử dụng Eclipse
 
 ### Pull code từ github
 
-* Chuột phải vào project > Team > Pull...
+* Chuột phải vào project > Team > Pull... (Nên pull từ branch main)
 ![](./Image/pull-code-1.png)
 
 
