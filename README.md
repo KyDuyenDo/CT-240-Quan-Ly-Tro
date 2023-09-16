@@ -37,6 +37,13 @@ Trong hướng dẫn này sẽ sử dụng Eclipse
 * Chuột phải vào project > Team > Commit... 
 ![](./Image/push-code-1.png)
 
+* Hộp thoại commit hiện ra > Thêm các thay đổi từ Unstaged Changes xuống Staged Changes > Nhập thông tin thay đổi vào Message > Commit and Push
+
+### Pull code từ github
+
+* Chuột phải vào project > Team > Pull...
+![](./Image/pull-code-1.png)
+
 
 
 
