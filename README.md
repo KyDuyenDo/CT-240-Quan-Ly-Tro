@@ -9,7 +9,7 @@
 
 # Yêu cầu công nghệ
 
-## Service
+## Server
 - Sử dụng trình soạn thảo code Java như Eclipse, NetBean, IntelliJ, Visual Studio Code.
 - Có hỗ trợ công cụ quản lý và thiết lập tự động dự án Maven.
 - Có hỗ trợ Spring Tools 4 hoặc các công cụ hỗ trợ cho dự án Spring boot.
@@ -18,7 +18,7 @@
 # Hướng dẫn sử dụng dự án
 Trong hướng dẫn này sẽ sử dụng Eclipse
 
-## Service
+## Server
 
 ### Clone code từ github
 
