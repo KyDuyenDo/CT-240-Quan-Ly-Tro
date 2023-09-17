@@ -38,5 +38,4 @@ public class Tenant {
 	
 	@Column(name = "work")
 	private String work;
-
 }

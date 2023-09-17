@@ -23,5 +23,4 @@ public class StatusContract {
 	@Id
 	@Column(name = "status_id")
 	private String statusId;
-
 }

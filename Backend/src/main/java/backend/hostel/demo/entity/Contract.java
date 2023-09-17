@@ -40,7 +40,7 @@ public class Contract {
 	@Column(name = "note")
 	private String note;
 
-	
+
 
 
 }

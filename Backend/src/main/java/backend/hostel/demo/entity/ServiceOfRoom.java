@@ -23,5 +23,4 @@ public class ServiceOfRoom {
 	@Id
 	@Column(name = "service_id")
 	private String serviceId;
-
 }

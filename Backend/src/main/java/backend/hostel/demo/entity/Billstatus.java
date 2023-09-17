@@ -23,5 +23,5 @@ public class Billstatus {
 	@Id
 	@Column(name = "bill_id")
 	private String billId;
-
+	
 }

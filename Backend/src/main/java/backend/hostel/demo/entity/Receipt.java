@@ -42,5 +42,4 @@ public class Receipt {
 	
 	@Column(name = "created_date")
 	private Date createdDate;
-
 }

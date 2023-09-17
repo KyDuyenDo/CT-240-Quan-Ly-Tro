@@ -34,4 +34,5 @@ public class Index {
 	@Column(name = "index_of_electricity")
 	private int indexOfElectricity;
 	
+	
 }

@@ -24,5 +24,4 @@ public class Roomstatus {
 	@Column(name = "room_id")
 	private String roomId;
 
-
 }

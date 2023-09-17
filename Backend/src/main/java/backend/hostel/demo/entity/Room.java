@@ -32,4 +32,5 @@ public class Room {
 	@Column(name = "used")
 	private int used;
 
+	
 }
