@@ -16,7 +16,7 @@ import lombok.Setter;
 @Entity
 @Table ( name = "payment_method")
 public class PaymentMethod {
-	@Id
+	@Id 
 	@Column (name = "method_id")
 	private String methodId;
 	@Column (name = "method_name")

@@ -34,7 +34,7 @@ public class Bill {
 	@Column (name = "month")
 	private int month;
 	@Column (name = "year")
-	private int year;
+	private int year; 
 	
 
 }

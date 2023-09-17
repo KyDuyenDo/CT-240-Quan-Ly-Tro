@@ -17,7 +17,7 @@ import lombok.Setter;
 @Table (name = "user")
 
 public class User {
-	@Id
+	@Id 
 	@Column (name = "username")
 	private String username;
 	@Column (name = "fullname")

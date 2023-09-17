@@ -22,7 +22,7 @@ public class BillDetail {
 	@Column (name = "service_id")
 	private String serviceId;
 	@Column (name = "quantity")
-	private int quantity;
+	private int quantity; 
 	@Column (name = "discount")
 	private float discount;
 	@Column (name = "tax")
