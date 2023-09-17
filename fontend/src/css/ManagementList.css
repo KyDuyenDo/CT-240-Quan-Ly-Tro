@@ -1,0 +1,60 @@
+body {
+    background-color: #e4eef5;
+    font-size: 14px;
+}
+.current-block {
+    flex-direction: row;
+    border-radius: 10px;
+    background-color: #fff;
+    width: 100%;
+    padding: 8px 10px;
+    margin-left: 10px;
+    justify-content: space-between;
+    border: solid 0.5px #ccc;
+}
+.icon-blocks {
+    background-color: #15a05c;
+    color: #fff;
+    border-radius: 100%;
+    position: relative;
+    display: flex;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+}
+.feather-size-18 {
+    width: 18px;
+    height: 18px;
+}
+.item-menu {
+    border: 0.5px solid #ccc;
+    border-radius: 10px;
+    padding: 10px 5px;
+    height: 96.5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: #fff;
+    margin-right: 10px;
+    width: 140px;
+    text-align: center;
+    flex: 1 0 auto;
+}
+a.item-menu{
+    text-decoration:none;
+    color: #000000;
+}
+.item-menu .key {
+    font-size: 13px;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+a.item-menu.active, a.item-menu:hover {
+    border: 0.5px solid #15a05c;
+    border-bottom: 3px solid #15a05c;
+    color: #1d6922;
+    text-decoration: underline;
+}
