@@ -1,0 +1,254 @@
+.header-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.title-item {
+    position: relative;
+    padding-left: 15px;
+    margin-top: 20px;
+    display: inline-grid;
+}
+
+.title-item::before, .title-item-small::before {
+    border-left: 4px solid #3c9e47;
+    border-radius: 10px;
+    position: absolute;
+    left: 0px;
+    top: 5px;
+    content: "";
+    bottom: 5px;
+}
+.title-item .des, .title-item-small .des {
+    font-size: 14px;
+    font-weight: normal;
+    color: #444444;
+}
+
+.add-round {
+    background-color: #15a05c;
+    width: 50px;
+    border: 0;
+    height: 50px;
+    border-radius: 25px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .15) !important;
+    cursor: pointer;
+}
+/*filter*/
+.header-table #filter-count {
+    position: absolute;
+    top: -15px;
+    right: -10px;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #8bc34a;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .15) !important;
+}
+.header-table {
+    position: sticky;
+    top: 5px;
+    z-index: 1;
+    padding: 5px 10px;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ebeced;
+    border-radius: 5px;
+    background-color: #f9fafb;
+    margin-top: 10px;
+}
+
+.header-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-table .icon {
+    position: relative;
+    margin-right: 20px;
+    padding: 0px 10px;
+    border-right: 1px solid #ebeced;
+}
+
+.header-table .form-check-inline {
+    display: flex;
+    margin-right: 0.5rem;
+    align-items: center;
+    border-radius: 5px;
+    border: 0.5px solid #ccc;
+    padding: 3px 7px 3px 1.9em;
+    text-overflow: ellipsis;
+    word-break: break-word!important;
+    white-space: nowrap!important;
+    background-color: #fff;
+    font-size: 13px;
+    position: relative;
+}
+.form-check-input {
+    width: 1.3em;
+    height: 1.3em;
+    margin-right: 10px;
+}
+
+.header-table .form-check-inline .form-check-input {
+    margin-right: 5px;
+    margin-top: 0!important;
+}
+
+.form-check-label {
+    display: inherit;
+    flex: 1;
+}
+
+span.count-filter {
+    position: absolute;
+    right: -5px;
+    top: -10px;
+    background-color: #000;
+    border-radius: 5px;
+    color: #fff;
+    padding: 2px 5px;
+    font-size: 11px;
+    line-height: 100%;
+}
+
+.header-table .form-check-inline:has(> .form-check-input:checked) {
+    border: 0.5px solid #0d6efd;
+}
+
+/*Table*/
+
+#myTab {
+    border-radius: 50px;
+    border: 0.5px solid #ccc;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 3%) !important;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: center;
+    display: inline-flex;
+    align-self: center;
+    margin: auto;
+    overflow: hidden;
+    padding: 0;
+}
+
+#myTab .nav-item a {
+    background-color: #fff;
+    border: 0px;
+    padding: 15px 30px;
+    font-weight: bold;
+}
+
+#myTab a.active {
+    background-color: #15a05c !important;
+    color: #fff;
+    height: 100%;
+}
+
+
+.tabulator-row.done-background{
+    background-color: #4caf5029!important
+}
+
+.tabulator-row.cancel-background{
+    background-color: #eeeeee82!important
+}
+.tabulator-row.enable-background{
+    background-color: #ff57220f!important
+}
+
+.tabulator.celled {
+    border: 1px solid rgba(34,36,38,.15);
+}
+.tabulator {
+    width: 100%;
+    margin: 1em 0;
+    border: 1px solid rgba(34,36,38,.15);
+    box-shadow: none;
+    border-radius: 0.28571rem;
+    color: rgba(0,0,0,.87);
+}
+.tabulator {
+    position: relative;
+    background-color: #fff;
+    font-size: 13px;
+    text-align: left;
+    overflow: hidden;
+}
+.tabulator {
+    overflow: visible!important;
+}
+.tabulator .tabulator-header {
+    border-bottom: 1px solid rgba(34,36,38,.1);
+    box-shadow: none;
+    color: rgba(0,0,0,.87);
+    font-style: none;
+    font-weight: 700;
+    text-transform: none;
+}
+.tabulator .tabulator-header {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.tabulator .tabulator-header {
+    font-weight: 600!important;
+}
+
+.tabulator .tabulator-header .tabulator-header-contents {
+    position: relative;
+    overflow: hidden;
+}
+
+.tabulator .tabulator-header .tabulator-header-contents .tabulator-headers {
+    display: inline-block;
+}
+.tabulator.celled .tabulator-header .tabulator-col, .tabulator.celled .tabulator-tableholder .tabulator-table .tabulator-row .tabulator-cell {
+    border-right: 1px solid rgba(34,36,38,.1);
+}
+.tabulator .tabulator-header, .tabulator .tabulator-header .tabulator-col {
+    border-right: none;
+    background-color: #f9fafb;
+}
+.tabulator .tabulator-header .tabulator-col {
+    display: inline-flex;
+    position: relative;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-right: 1px solid #ddd;
+    background: #f9fafb;
+    text-align: left;
+    vertical-align: bottom;
+    overflow: hidden;
+}
+
+.tabulator .tabulator-header .tabulator-col .tabulator-col-content .tabulator-col-title-holder {
+    position: relative;
+}
+.tabulator .tabulator-header .tabulator-col .tabulator-col-content {
+    padding: 10px 0px!important;
+    text-align: center!important;
+}
+.tabulator .tabulator-header .tabulator-col .tabulator-col-content .tabulator-col-title {
+    box-sizing: border-box;
+    width: 100%;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: bottom;
+}

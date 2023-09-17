@@ -9,11 +9,46 @@
 
 # Yêu cầu công nghệ
 
-## Service
+## Server
 - Sử dụng trình soạn thảo code Java như Eclipse, NetBean, IntelliJ, Visual Studio Code.
 - Có hỗ trợ công cụ quản lý và thiết lập tự động dự án Maven.
 - Có hỗ trợ Spring Tools 4 hoặc các công cụ hỗ trợ cho dự án Spring boot.
 - Sử dụng hệ quản trị cơ sở dữ liệu MySQL.
+
+# Hướng dẫn sử dụng dự án
+Trong hướng dẫn này sẽ sử dụng Eclipse
+
+## Server
+
+### Clone code từ github
+
+* Mở terminal tại đường dẫn lưu trữ, nhập lệnh:
+```git clone https://github.com/DoKyDuyenB2012188/CT-240-Quan-Ly-Tro.git```
+
+* Mở IDE như Eclipse, Spring Tools...
+- Vào file > Import > Maven > Existing Maven Projects
+![](./Image/import-maven-1.png)
+
+- Chọn đường dẫn lưu trữ Repo được clone về, tick vào phần project maven cần thêm (cụ thể là backend)
+![](./Image/import-maven-2.png)
+
+### Push code lên github
+
+* Chuột phải vào project > Team > Commit... 
+![](./Image/push-code-1.png)
+
+* Hộp thoại commit hiện ra > Thêm các thay đổi từ Unstaged Changes xuống Staged Changes > Nhập thông tin thay đổi vào Message > Commit and Push
+
+### Pull code từ github
+
+* Chuột phải vào project > Team > Pull... (Nên pull từ branch main)
+![](./Image/pull-code-1.png)
+
+
+
+
+
+
 
 
 
