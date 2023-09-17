@@ -1,0 +1,95 @@
+export const HEADERTABLEROOM = [
+  {
+    text: " ",
+    style: {
+      maxWidth: "40px",
+      width: "40px",
+    },
+    classState: "move",
+    field: "sort",
+  },
+  {
+    text: " ",
+    style: { width: "50px" },
+    classState: "edit_disable",
+    field: "id",
+  },
+  {
+    text: "Tên phòng",
+    style: { width: "101px" },
+    classState: "edit_enable",
+    field: "name",
+  },
+  {
+    text: "Nhóm",
+    style: { width: "101px" },
+    classState: "edit_enable",
+    field: "group_id",
+  },
+  {
+    text: "Giá thuê",
+    style: { width: "101px" },
+    classState: "edit_enable",
+    field: "room_amount",
+  },
+  {
+    text: "Mức giá tiền cọc",
+    style: { width: "101px" },
+    classState: "edit_enable",
+    field: "deposit_contract_amount",
+  },
+  {
+    text: "Khách thuê",
+    style: { width: "101px" },
+    classState: "edit_enable",
+    field: "customers",
+  },
+  {
+    text: "Ngày lập hoá đơn",
+    style: { width: "70px" },
+    classState: "edit_enable",
+    field: "circle_day",
+  },
+  {
+    text: "Chu kỳ thu tiền",
+    style: { width: "70px" },
+    classState: "edit_enable",
+    field: "circle_month",
+  },
+  {
+    text: "Ngày vào ở",
+    style: { width: "101px" },
+    classState: "edit_enable",
+    field: "date_join",
+  },
+  {
+    text: "Thời hạn hợp đồng",
+    style: { width: "101px" },
+    classState: "edit_enable",
+    field: "date_terminate",
+  },
+  {
+    text: "Tình trạng",
+    style: { width: "101px" },
+    classState: "edit_enable",
+    field: "status",
+  },
+  {
+    text: "Tài chính",
+    style: { width: "101px" },
+    classState: "edit_enable",
+    field: "active_status",
+  },
+  {
+    text: "Ghi chú",
+    style: { width: "110px" },
+    classState: "edit_enable",
+    field: "note",
+  },
+  {
+    text: " ",
+    style: { width: "50px" },
+    classState: "pointer",
+    field: "action",
+  },
+];
