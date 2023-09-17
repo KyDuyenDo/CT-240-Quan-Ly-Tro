@@ -21,7 +21,7 @@ public class Payment {
 	@Column (name = "payment_id")
 	private String paymentId;
 	
-	@Column (name = "method_id") 
+	@Column (name = "method_id")  
 	private String methodId;
 	
 	@Column (name = "payment_date")
