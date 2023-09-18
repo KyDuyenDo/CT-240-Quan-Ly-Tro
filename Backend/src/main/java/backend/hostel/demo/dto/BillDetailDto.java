@@ -1,6 +1,4 @@
-package backend.hostel.demo.dto;
-
-import jakarta.persistence.Column;
+package backend.hostel.demo.dto; 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
