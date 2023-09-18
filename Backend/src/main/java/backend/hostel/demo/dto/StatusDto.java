@@ -16,4 +16,3 @@ public class StatusDto {
 	
 	private String statusNote;
 }
-
