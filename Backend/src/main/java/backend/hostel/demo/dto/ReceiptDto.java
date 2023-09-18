@@ -6,18 +6,25 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-@Getter
+
 @Setter
+@Getter
 @NoArgsConstructor
-@AllArgsConstructor 
-
-
-public class PaymentDto {
-private String paymentId;
+@AllArgsConstructor
+public class ReceiptDto {
+private String receiptId;
+	
+	private String tenantId;
+	
 	private String methodId;
-	private String paymentDate;
-	private String username;
-	private String amount;
+	
+	private String userName;
+	
+	private Date receiptDate;
+	
 	private String description;
+	
+	private String amount;
+	
 	private Date createdDate;
 }

@@ -8,10 +8,16 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor 
+@AllArgsConstructor
+public class IndexDto {
+private String roomId;
 
-public class PaymentMethodDto {
-	private String methodId;
-	private String methodName;
-
+	private int month;
+	
+	private int year;
+	
+	private int indexOfWater;
+	
+	private int indexOfElectricity;
+	
 }
