@@ -27,5 +27,4 @@ private String receiptId;
 	private String amount;
 	
 	private Date createdDate;
-
 }

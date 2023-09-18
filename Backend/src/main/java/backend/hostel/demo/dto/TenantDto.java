@@ -25,5 +25,4 @@ public class TenantDto {
 	private Date dateOfBirth;
 	
 	private String work;
-
 }

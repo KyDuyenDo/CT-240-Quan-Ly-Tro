@@ -20,5 +20,4 @@ public class RoomDto {
 	
 	private int used;
 
-
 }

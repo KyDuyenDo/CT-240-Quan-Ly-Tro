@@ -14,5 +14,4 @@ public class ServiceOfRoomDto {
 	
 	private String serviceId;
 
-
 }

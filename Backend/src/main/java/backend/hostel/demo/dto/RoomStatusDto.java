@@ -13,5 +13,4 @@ public class RoomStatusDto {
 	private String statusId;
 	
 	private String roomId;
-
 }

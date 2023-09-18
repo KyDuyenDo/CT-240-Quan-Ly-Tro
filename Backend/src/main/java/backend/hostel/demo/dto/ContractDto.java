@@ -27,4 +27,5 @@ public class ContractDto {
 	
 	private String note;
 
+	
 }

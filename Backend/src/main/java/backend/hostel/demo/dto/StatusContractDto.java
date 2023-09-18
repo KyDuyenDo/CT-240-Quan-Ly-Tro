@@ -13,5 +13,4 @@ public class StatusContractDto {
 	private String contractId;
 
 	private String statusId;
-
 }
