@@ -17,5 +17,4 @@ public class ServiceDto {
 	private float price;
 	
 	private String unit;
-
 }

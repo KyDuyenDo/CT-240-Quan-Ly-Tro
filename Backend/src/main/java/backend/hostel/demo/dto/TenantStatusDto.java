@@ -13,5 +13,4 @@ public class TenantStatusDto {
 	private String statusId;
 
 	private String tenantId;
-
 }

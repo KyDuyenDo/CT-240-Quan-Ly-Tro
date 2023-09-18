@@ -13,5 +13,4 @@ public class BillStatusDto {
 	private String statusId;
 	
 	private String billId;
-
 }

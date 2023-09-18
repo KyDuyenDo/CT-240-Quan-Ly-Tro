@@ -20,5 +20,4 @@ private String roomId;
 	
 	private int indexOfElectricity;
 	
-
 }
