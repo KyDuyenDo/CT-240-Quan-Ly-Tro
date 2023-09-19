@@ -1,5 +1,7 @@
 package backend.hostel.demo.service.implement;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import backend.hostel.demo.dto.ServiceDto;
@@ -52,6 +54,12 @@ public class ServiceImpl implements ServiceService {
 
 	@Override
 	public ServiceDto deleteService(String serviceId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Iterable<ServiceDto> orderServiceByRoom(String roomId, List<String> servicesId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
