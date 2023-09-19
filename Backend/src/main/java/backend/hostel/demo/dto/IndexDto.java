@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class IndexDto {
-private String roomId;
+	private String roomId;
 
 	private int month;
 	
