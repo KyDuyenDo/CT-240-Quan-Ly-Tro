@@ -109,7 +109,7 @@ public class RoomController {
 	public ResponseEntity<?> createIndexWE(@PathVariable(value = "id") String roomId, IndexDto index) {
 		return ResponseEntity.ok(indexService.createIndex(index));
 	}
-	   
+	    
 	@PutMapping(value = "/{id}/index/", consumes = "application/x-www-form-urlencoded")
 	public ResponseEntity<?> updateIndexWE(String roomId, IndexDto index) {
 		return ResponseEntity.ok(indexService.updateIndex(index));
