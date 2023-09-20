@@ -1,5 +1,7 @@
 package backend.hostel.demo.dto;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,15 +11,23 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class IndexDto {
+public class BillDto {
+	
+	private String billId;
+	
 	private String roomId;
-
+	
+	private String username;
+	
+	private Date createdDate;
+	
+	private Date paidDate;
+	
+	private float totalAmount;
+	
 	private int month;
 	
-	private int year;
+	private int year;  
 	
-	private int indexOfWater;
-	
-	private int indexOfElectricity;
-	
+
 }
