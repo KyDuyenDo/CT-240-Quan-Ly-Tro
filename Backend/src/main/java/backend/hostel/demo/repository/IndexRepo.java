@@ -6,4 +6,5 @@ import backend.hostel.demo.entity.Index;
 
 public interface IndexRepo extends CrudRepository<Index, String> {
 
+	
 }

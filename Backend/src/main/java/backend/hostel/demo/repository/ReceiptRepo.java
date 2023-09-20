@@ -6,4 +6,5 @@ import backend.hostel.demo.entity.Receipt;
 
 public interface ReceiptRepo extends CrudRepository<Receipt, String> {
 
+	
 }

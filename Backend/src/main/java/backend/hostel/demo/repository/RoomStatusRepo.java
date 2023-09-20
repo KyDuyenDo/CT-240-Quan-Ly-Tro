@@ -6,4 +6,5 @@ import backend.hostel.demo.entity.Roomstatus;
 
 public interface RoomStatusRepo extends CrudRepository<Roomstatus, String> {
 
+	
 }

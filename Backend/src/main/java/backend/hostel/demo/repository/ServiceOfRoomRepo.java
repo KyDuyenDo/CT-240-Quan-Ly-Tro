@@ -6,4 +6,5 @@ import backend.hostel.demo.entity.ServiceOfRoom;
 
 public interface ServiceOfRoomRepo extends CrudRepository<ServiceOfRoom, String> {
 
+	
 }

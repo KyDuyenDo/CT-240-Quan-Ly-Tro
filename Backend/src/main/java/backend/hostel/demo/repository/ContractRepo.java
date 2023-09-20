@@ -6,4 +6,6 @@ import backend.hostel.demo.entity.Contract;
 
 public interface ContractRepo extends CrudRepository<Contract, String> {
 
+	
 }
+

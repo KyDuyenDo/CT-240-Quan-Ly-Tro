@@ -6,4 +6,5 @@ import backend.hostel.demo.entity.Tenant;
 
 public interface TenantRepo extends CrudRepository<Tenant, String> {
 
+	
 }

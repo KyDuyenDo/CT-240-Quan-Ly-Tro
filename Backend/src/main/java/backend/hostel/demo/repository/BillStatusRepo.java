@@ -6,4 +6,5 @@ import backend.hostel.demo.entity.Billstatus;
 
 public interface BillStatusRepo extends CrudRepository<Billstatus, String> {
 
+	
 }
