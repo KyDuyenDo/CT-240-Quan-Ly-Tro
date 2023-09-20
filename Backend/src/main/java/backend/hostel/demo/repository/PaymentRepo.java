@@ -6,4 +6,5 @@ import backend.hostel.demo.entity.Payment;
 
 public interface PaymentRepo extends CrudRepository<Payment, String> {
 
+	
 }

@@ -6,4 +6,5 @@ import backend.hostel.demo.entity.User;
 
 public interface UserRepo extends CrudRepository<User, String> {
 
+	
 }
