@@ -20,7 +20,7 @@ public class ServiceOfRoom {
 	@Column(name = "room_id")
 	private String roomId;
 	
-	@Id
+
 	@Column(name = "service_id")
 	private String serviceId;
 }

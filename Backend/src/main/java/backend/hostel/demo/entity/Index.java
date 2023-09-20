@@ -20,11 +20,11 @@ public class Index {
 	@Column(name = "room_id")
 	private String roomId;
 	
-	@Id
+
 	@Column(name = "month")
 	private int month;
 	
-	@Id
+
 	@Column(name = "year")
 	private int year;
 	

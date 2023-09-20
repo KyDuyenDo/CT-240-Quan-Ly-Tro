@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import backend.hostel.demo.dto.RoomDto;
+import backend.hostel.demo.mapper.RoomMapper;
 import backend.hostel.demo.repository.RoomRepo;
 import backend.hostel.demo.service.RoomService;
 
@@ -11,11 +12,11 @@ import backend.hostel.demo.service.RoomService;
 public class RoomImpl implements RoomService {
 	@Autowired
 	private RoomRepo roomRepo;
+	private RoomMapper roomMapper;
 
 	@Override
 	public Iterable<RoomDto> getRooms() {
-		// TODO Auto-generated method stub
-		return null;
+		return roomMapper.toDtoList(roomRepo.findAll());
 	}
 
 	@Override

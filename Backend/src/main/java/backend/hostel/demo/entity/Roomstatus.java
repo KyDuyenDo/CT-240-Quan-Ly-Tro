@@ -16,7 +16,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "room_status")
 public class Roomstatus {
-	@Id
+
 	@Column(name = "status_id")
 	private String statusId;
 	

@@ -20,7 +20,6 @@ public class StatusContract {
 	@Column(name = "contract_id")
 	private String contractId;
 	
-	@Id
 	@Column(name = "status_id")
 	private String statusId;
 }
