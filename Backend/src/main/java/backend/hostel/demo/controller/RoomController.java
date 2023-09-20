@@ -1,8 +1,13 @@
 package backend.hostel.demo.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
+import backend.hostel.demo.dto.ContractDto;
+import backend.hostel.demo.dto.IndexDto;
+import backend.hostel.demo.dto.TenantDto;
 import backend.hostel.demo.service.BillService;
 import backend.hostel.demo.service.ContractService;
 import backend.hostel.demo.service.IndexService;
