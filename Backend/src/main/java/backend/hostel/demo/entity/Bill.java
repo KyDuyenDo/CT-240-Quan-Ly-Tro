@@ -16,6 +16,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @AllArgsConstructor
+@Table (name = "bill")
 public class Bill {
 	@Id
 	@Column (name = "bill_id")
