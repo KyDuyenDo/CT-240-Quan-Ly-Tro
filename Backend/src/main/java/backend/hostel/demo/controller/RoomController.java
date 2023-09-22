@@ -61,7 +61,6 @@ public class RoomController {
 
 	@PostMapping(value = "", consumes = "application/x-www-form-urlencoded")
 	public ResponseEntity<?> createRoom(RoomDto roomDto) {
-
 		return ResponseEntity.ok(roomService.createRoom(roomDto));
 	}
 
@@ -69,7 +68,7 @@ public class RoomController {
 	public ResponseEntity<?> updateRoom(@PathVariable(value = "id") String roomId, RoomDto roomDto) {
 		
 	
-	
+
 		return ResponseEntity.ok(roomService.updateRoom(roomDto));
 	}
 

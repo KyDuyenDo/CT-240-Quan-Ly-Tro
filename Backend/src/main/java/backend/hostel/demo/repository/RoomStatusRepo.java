@@ -8,8 +8,8 @@ import backend.hostel.demo.entity.Roomstatus;
 
 public interface RoomStatusRepo extends CrudRepository<Roomstatus, String> {
 	
-	@Query(value ="SELECT r.ROOM_ID, r.AREA, r.RENTAL_PRICE, r.MAX, r.USED FROM ROOM r\r\n"
-			+ "INNER JOIN ROOM_STATUS rs ON r.room_id = rs.room_id\r\n"
+	@Query(value ="SELECT r.ROOM_ID, r.AREA, r.RENTAL_PRICE, r.MAX, r.USED FROM ROOM "
+			+ "INNER JOIN ROOM_STATUS rs ON r.room_id = rs.room_id"
 			+ "WHERE rs.status_id = ?1", nativeQuery = true)
 	Iterable<Room> findRoomsByStatus(String status);
 }
