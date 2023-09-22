@@ -1,5 +1,7 @@
 package backend.hostel.demo.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -16,6 +18,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "room")
 public class Room {
+
 	@Id
 	@Column(name = "room_id")
 	private String roomId;

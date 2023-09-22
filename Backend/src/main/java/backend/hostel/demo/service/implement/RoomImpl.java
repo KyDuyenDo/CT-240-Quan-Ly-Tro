@@ -4,67 +4,85 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import backend.hostel.demo.dto.RoomDto;
+import backend.hostel.demo.entity.Room;
 import backend.hostel.demo.mapper.RoomMapper;
 import backend.hostel.demo.repository.RoomRepo;
+import backend.hostel.demo.repository.RoomStatusRepo;
 import backend.hostel.demo.service.RoomService;
 
 @Component
 public class RoomImpl implements RoomService {
 	@Autowired
 	private RoomRepo roomRepo;
-	private RoomMapper roomMapper;
+	@Autowired
+	private RoomStatusRepo roomStatusRepo ;
+	
+	
 
 	@Override
 	public Iterable<RoomDto> getRooms() {
-		return roomMapper.toDtoList(roomRepo.findAll());
+		return RoomMapper.toDtoList(roomRepo.findAll());
 	}
 
 	@Override
 	public Iterable<RoomDto> getRoomsByArea(float area) {
-		// TODO Auto-generated method stub
-		return null;
+		return RoomMapper.toDtoList(roomRepo.findAllByArea(area));
+
 	}
 
 	@Override
 	public Iterable<RoomDto> getRoomsByPrice(float price) {
-		// TODO Auto-generated method stub
-		return null;
+		return RoomMapper.toDtoList(roomRepo.findAllByPrice(price));	
+
 	}
 
 	@Override
 	public Iterable<RoomDto> getRoomsByUsed(int used) {
-		// TODO Auto-generated method stub
-		return null;
+		return RoomMapper.toDtoList(roomRepo.findAllByUsedNumber(used));
 	}
 
 	@Override
 	public Iterable<RoomDto> getRoomsByStatus(String statusId) {
-		// TODO Auto-generated method stub
-		return null;
+		return RoomMapper.toDtoList(roomStatusRepo.findRoomsByStatus(statusId));
 	}
 
 	@Override
-	public Iterable<RoomDto> getRoomsById(String roomId) {
-		// TODO Auto-generated method stub
-		return null;
+	public RoomDto getRoomsById(String roomId) {
+		return RoomMapper.toDto(roomRepo.findRoomById(roomId));
 	}
 
 	@Override
 	public RoomDto createRoom(RoomDto newRoom) {
-		// TODO Auto-generated method stub
-		return null;
+		Room room = new Room();
+		
+		room.setRoomId(newRoom.getRoomId());
+		
+		room.setArea(newRoom.getArea());
+		room.setMax(newRoom.getMax());
+		room.setRentalPrice(newRoom.getRentalPrice());
+		room.setUsed(newRoom.getUsed());
+
+		return RoomMapper.toDto(roomRepo.save(room));
 	}
 
 	@Override
 	public RoomDto updateRoom(RoomDto room) {
-		// TODO Auto-generated method stub
-		return null;
+		Room old_room = roomRepo.findRoomById(room.getRoomId());
+		
+		if(old_room == null)
+			return null;
+		else {
+			old_room = RoomMapper.toEntity(room);
+			
+			return RoomMapper.toDto(roomRepo.save(old_room));
+		}
 	}
 
 	@Override
 	public RoomDto deleteRoom(String roomId) {
-		// TODO Auto-generated method stub
-		return null;
+		roomRepo.deleteById(roomId);
+		
+		return RoomMapper.toDto(roomRepo.findRoomById(roomId));
 	}
 
 }

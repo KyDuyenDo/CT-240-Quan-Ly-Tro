@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import backend.hostel.demo.dto.BillDto;
 import backend.hostel.demo.dto.IndexDto;
@@ -36,7 +37,6 @@ public class RoomController {
 	@Autowired
 	private ServiceService serviceService;
 
-
 	@Autowired
 	private TenantService tenantService;
 
@@ -48,25 +48,28 @@ public class RoomController {
 	private ContractService contractService;
 
 
-
-	@GetMapping("/")
+	@GetMapping("")
 	public ResponseEntity<?> getRooms() {
 		return ResponseEntity.ok(roomService.getRooms());
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("{id}")
 	public ResponseEntity<?> getRoomById(@PathVariable(value = "id") String roomId) {
 		return ResponseEntity.ok(roomService.getRoomsById(roomId));
 	}
 
 
-	@PostMapping(value = "/", consumes = "application/x-www-form-urlencoded")
+	@PostMapping(value = "", consumes = "application/x-www-form-urlencoded")
 	public ResponseEntity<?> createRoom(RoomDto roomDto) {
-		return null;
+
+		return ResponseEntity.ok(roomService.createRoom(roomDto));
 	}
 
 	@PutMapping(value = "/{id}", consumes = "application/x-www-form-urlencoded")
 	public ResponseEntity<?> updateRoom(@PathVariable(value = "id") String roomId, RoomDto roomDto) {
+		
+	
+	
 		return ResponseEntity.ok(roomService.updateRoom(roomDto));
 	}
 

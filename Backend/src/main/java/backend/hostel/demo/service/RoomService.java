@@ -16,7 +16,7 @@ public interface RoomService {
 
 	Iterable<RoomDto> getRoomsByStatus(String statusId);
 
-	Iterable<RoomDto> getRoomsById(String roomId);
+	RoomDto getRoomsById(String roomId);
 
 	RoomDto createRoom(RoomDto newRoom);
 
