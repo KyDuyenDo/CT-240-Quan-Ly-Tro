@@ -25,11 +25,11 @@ public class Bill {
 	private String roomId;
 	@Column (name = "username")
 	private String username;
-	@Column (name = "createddate")
+	@Column (name = "created_date")
 	private Date createdDate;
-	@Column (name = "paiddate")
+	@Column (name = "paid_date")
 	private Date paidDate;
-	@Column (name = "totalamount")
+	@Column (name = "total_amount")
 	private float totalAmount;
 	@Column (name = "month")
 	private int month;

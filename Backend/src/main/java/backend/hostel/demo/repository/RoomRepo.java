@@ -17,4 +17,5 @@ public interface RoomRepo extends CrudRepository<Room, String> {
 	
 	@Query(value = "SELECT * FROM ROOM WHERE USED = ?1", nativeQuery = true)
 	Iterable<Room> findAllByUsedNumber(int used);
+
 }

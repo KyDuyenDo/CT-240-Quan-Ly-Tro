@@ -16,7 +16,7 @@ public interface BillService {
 
 	Iterable<BillDto> getBillByStatus(String statusId);
 
-	BillDto getRoomById(String billId);
+	BillDto getBillById(String billId);
 
 	BillDto createBill(BillDto newBill);
 
