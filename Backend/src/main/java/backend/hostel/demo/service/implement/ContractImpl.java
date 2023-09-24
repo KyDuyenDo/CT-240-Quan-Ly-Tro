@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import backend.hostel.demo.dto.ContractDto;
+import backend.hostel.demo.entity.Contract;
+import backend.hostel.demo.mapper.ContractMapper;
 import backend.hostel.demo.repository.ContractRepo;
+import backend.hostel.demo.repository.StatusContractRepo;
 import backend.hostel.demo.service.ContractService;
 
 @Component
@@ -12,53 +15,61 @@ public class ContractImpl implements ContractService {
 	
 	@Autowired
 	private ContractRepo contractRepo;
+	
+	@Autowired
+	private StatusContractRepo statusContractRepo;
 
 	@Override
 	public Iterable<ContractDto> getContracts() {
-		// TODO Auto-generated method stub
-		return null;
+		return ContractMapper.toDtoList(contractRepo.findAll());
 	}
 
 	@Override
 	public Iterable<ContractDto> getContracstByTenant(String tenantId) {
-		// TODO Auto-generated method stub
-		return null;
+		return ContractMapper.toDtoList(contractRepo.findAllByTenant(tenantId));
 	}
 
 	@Override
 	public Iterable<ContractDto> getContractsByUser(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		return ContractMapper.toDtoList(contractRepo.findAllByUsername(username));
 	}
 
 	@Override
 	public Iterable<ContractDto> getContractsByStatus(String statusId) {
-		// TODO Auto-generated method stub
-		return null;
+		return ContractMapper.toDtoList(statusContractRepo.findAllByStatus(statusId));
 	}
 
 	@Override
 	public ContractDto getContractsById(String contractId) {
-		// TODO Auto-generated method stub
-		return null;
+		return ContractMapper.toDto(contractRepo.findByID(contractId));
 	}
 
 	@Override
 	public ContractDto createContract(ContractDto contractDto) {
-		// TODO Auto-generated method stub
-		return null;
+		Contract contract = new Contract(contractDto.getContractId(), contractDto.getTenantId(), contractDto.getUserName(), contractDto.getStartDate()
+				, contractDto.getEndDate(), contractDto.getCreateDate(), contractDto.getNote());
+		
+		return ContractMapper.toDto(contractRepo.save(contract));
 	}
 
 	@Override
 	public ContractDto updateContract(ContractDto contractDto) {
-		// TODO Auto-generated method stub
-		return null;
+		Contract old_contract = contractRepo.findByID(contractDto.getContractId());
+		
+		if(old_contract == null)
+			return null;
+		else {
+			old_contract = ContractMapper.toEntity(contractDto);
+			
+			return ContractMapper.toDto(contractRepo.save(old_contract));
+		}
 	}
 
 	@Override
 	public ContractDto deleteConstract(String contractId) {
-		// TODO Auto-generated method stub
-		return null;
+		contractRepo.deleteById(contractId);
+		return ContractMapper.toDto(contractRepo.findByID(contractId));
+		
 	}
 
 }

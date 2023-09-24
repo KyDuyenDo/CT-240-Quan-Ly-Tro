@@ -5,10 +5,7 @@ import org.springframework.stereotype.Component;
 
 import backend.hostel.demo.dto.BillDto;
 import backend.hostel.demo.entity.Bill;
-import backend.hostel.demo.entity.Billstatus;
-import backend.hostel.demo.entity.Room;
 import backend.hostel.demo.mapper.BillMapper;
-import backend.hostel.demo.mapper.RoomMapper;
 import backend.hostel.demo.repository.BillRepo;
 import backend.hostel.demo.repository.BillStatusRepo;
 import backend.hostel.demo.service.BillService;
