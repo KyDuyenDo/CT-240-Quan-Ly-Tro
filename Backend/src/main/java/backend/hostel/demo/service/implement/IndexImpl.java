@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import backend.hostel.demo.dto.IndexDto;
+import backend.hostel.demo.entity.Index;
+import backend.hostel.demo.mapper.IndexMapper;
 import backend.hostel.demo.repository.IndexRepo;
 import backend.hostel.demo.service.IndexService;
 
@@ -14,38 +16,45 @@ public class IndexImpl implements IndexService {
 
 	@Override
 	public Iterable<IndexDto> getIndexes() {
-		// TODO Auto-generated method stub
-		return null;
+		return IndexMapper.toDtoList(indexRepo.findAll());
 	}
 
 	@Override
-	public Iterable<IndexDto> getIndexesByMonth() {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterable<IndexDto> getIndexesByMonth(int month, int year) {
+		return IndexMapper.toDtoList(indexRepo.findAllByMonth(month, year));
 	}
 
 	@Override
-	public IndexDto getIndexesByRoom(String roomId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterable<IndexDto> getIndexesByRoom(String roomId) {
+		return IndexMapper.toDtoList(indexRepo.findAllByRoom(roomId));
 	}
 
 	@Override
 	public IndexDto createIndex(IndexDto indexDto) {
-		// TODO Auto-generated method stub
-		return null;
+		Index index = new Index(indexDto.getRoomId(), indexDto.getMonth(), 
+				indexDto.getYear(), indexDto.getIndexOfWater(), indexDto.getIndexOfElectricity());
+		
+		return IndexMapper.toDto(indexRepo.save(index));
 	}
 
 	@Override
-	public IndexDto updateIndex(IndexDto index) {
-		// TODO Auto-generated method stub
-		return null;
+	public IndexDto updateIndex(IndexDto indexDto) {
+		Index old_index = indexRepo.findByPrimaryKey(indexDto.getRoomId(), indexDto.getMonth(), indexDto.getYear());
+		
+		if(old_index == null)
+			return null;
+		else {
+			old_index = IndexMapper.toEntity(indexDto);
+			
+			return IndexMapper.toDto(indexRepo.save(old_index));
+		}
 	}
 
 	@Override
-	public IndexDto deleteIndex(String roomId, int mouth, int year) {
-		// TODO Auto-generated method stub
-		return null;
+	public IndexDto deleteIndex(String roomId, int month, int year) {
+		Index index = indexRepo.findByPrimaryKey(roomId, month, year);
+		indexRepo.delete(index);
+		return IndexMapper.toDto(indexRepo.findByPrimaryKey(roomId, month, year));
 	}
 
 }

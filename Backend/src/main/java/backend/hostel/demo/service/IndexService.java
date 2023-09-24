@@ -8,13 +8,13 @@ import backend.hostel.demo.dto.IndexDto;
 public interface IndexService {
 	Iterable<IndexDto> getIndexes();
 
-	Iterable<IndexDto> getIndexesByMonth();
+	Iterable<IndexDto> getIndexesByMonth(int month, int year);
 
-	IndexDto getIndexesByRoom(String roomId);
+	Iterable<IndexDto> getIndexesByRoom(String roomId);
 
 	IndexDto createIndex(IndexDto indexDto);
 
 	IndexDto updateIndex(IndexDto index);
 
-	IndexDto deleteIndex(String roomId, int mouth, int year);
+	IndexDto deleteIndex(String roomId, int month, int year);
 }
