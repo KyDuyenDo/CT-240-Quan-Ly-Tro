@@ -1,11 +1,16 @@
 package backend.hostel.demo.service.implement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import backend.hostel.demo.dto.ServiceDto;
+import backend.hostel.demo.entity.Service;
+import backend.hostel.demo.entity.ServiceOfRoom;
+import backend.hostel.demo.mapper.ServiceMapper;
+import backend.hostel.demo.repository.ServiceOfRoomRepo;
 import backend.hostel.demo.repository.ServiceRepo;
 import backend.hostel.demo.service.ServiceService;
 
@@ -13,41 +18,58 @@ import backend.hostel.demo.service.ServiceService;
 public class ServiceImpl implements ServiceService {
 	@Autowired
 	private ServiceRepo serviceRepo; 
+	
+	@Autowired
+	private ServiceOfRoomRepo serviceOfRoomRepo;
 
 	@Override
 	public Iterable<ServiceDto> getServicesByRoom(String roomId) {
-		// TODO Auto-generated method stub
-		return null;
+		return ServiceMapper.toDtoList(serviceOfRoomRepo.findServiceByRoom(roomId));
 	}
 
 	@Override
 	public Iterable<ServiceDto> orderServiceByRoom(String roomId, List<String> servicesId) {
-		// TODO Auto-generated method stub
-		return null;
+		for(String item : servicesId) {
+			ServiceOfRoom temp = new ServiceOfRoom(roomId, item);
+			
+			serviceOfRoomRepo.save(temp);
+		}
+		
+		return ServiceMapper.toDtoList(serviceOfRoomRepo.findServiceByRoom(roomId));
 	}
 
 	@Override
 	public ServiceDto getServiceById(String serviceId) {
-		// TODO Auto-generated method stub
-		return null;
+		return ServiceMapper.toDto(serviceRepo.findById(serviceId).get());
 	}
 
 	@Override
 	public ServiceDto createService(ServiceDto serviceDto) {
-		// TODO Auto-generated method stub
-		return null;
+		Service service = new Service(serviceDto.getServiceId(), serviceDto.getServiceName(), serviceDto.getPrice(), serviceDto.getUnit());
+		return ServiceMapper.toDto(serviceRepo.save(service));
 	}
 
 	@Override
 	public ServiceDto updateService(ServiceDto serviceDto) {
-		// TODO Auto-generated method stub
-		return null;
+		Service service = serviceRepo.findById(serviceDto.getServiceId()).orElse(null);
+		
+		if(service == null)
+			return null;
+		else {
+			service = ServiceMapper.toEntity(serviceDto);
+			return ServiceMapper.toDto(serviceRepo.save(service));
+		}
 	}
 
 	@Override
 	public ServiceDto deleteService(String serviceId) {
-		// TODO Auto-generated method stub
-		return null;
+		serviceRepo.deleteById(serviceId);
+		return ServiceMapper.toDto(serviceRepo.findById(serviceId).get());
+	}
+
+	@Override
+	public Iterable<ServiceDto> getService() {
+		return ServiceMapper.toDtoList(serviceRepo.findAll());
 	}
 
 }
