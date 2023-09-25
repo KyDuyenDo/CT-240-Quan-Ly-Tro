@@ -8,6 +8,7 @@ import backend.hostel.demo.dto.ServiceDto;
 
 @Service
 public interface ServiceService {
+	Iterable<ServiceDto> getService();
 
 	Iterable<ServiceDto> getServicesByRoom(String roomId);
 
