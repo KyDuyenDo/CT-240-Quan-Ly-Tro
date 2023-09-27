@@ -12,7 +12,7 @@ public interface IndexRepo extends CrudRepository<Index, String> {
 	@Query(value = "SELECT * FROM INDEX_OF_WE WHERE ROOM_ID = ?1", nativeQuery = true)
 	public Iterable<Index> findAllByRoom(String roomId);
 	
-	@Query(value = "SELECT * FROM INDEX_OF_WE WHERE ROOM_ID = ?1, MONTH = ?1, YEAR = ?3")
+	@Query(value = "SELECT * FROM INDEX_OF_WE WHERE ROOM_ID = ?1, MONTH = ?1, YEAR = ?3", nativeQuery = true)
 	public Index findByPrimaryKey(String roomId, int month, int year);
 	
 }
