@@ -11,14 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import backend.hostel.demo.dto.BillDto;
 import backend.hostel.demo.dto.IndexDto;
 import backend.hostel.demo.dto.RoomDto;
 import backend.hostel.demo.dto.TenantDto;
 import backend.hostel.demo.service.BillService;
-import backend.hostel.demo.service.ContractService;
 import backend.hostel.demo.service.IndexService;
 import backend.hostel.demo.service.RoomService;
 import backend.hostel.demo.service.ServiceService;
@@ -43,11 +41,6 @@ public class RoomController {
 	@Autowired
 	private IndexService indexService;
 
-
-	@Autowired
-	private ContractService contractService;
-
-
 	@GetMapping("")
 	public ResponseEntity<?> getRooms() {
 		return ResponseEntity.ok(roomService.getRooms());
@@ -66,9 +59,6 @@ public class RoomController {
 
 	@PutMapping(value = "/{id}", consumes = "application/x-www-form-urlencoded")
 	public ResponseEntity<?> updateRoom(@PathVariable(value = "id") String roomId, RoomDto roomDto) {
-		
-	
-
 		return ResponseEntity.ok(roomService.updateRoom(roomDto));
 	}
 
@@ -119,5 +109,6 @@ public class RoomController {
 	public ResponseEntity<?> updateIndexWE(String roomId, IndexDto index) {
 		return ResponseEntity.ok(indexService.updateIndex(index));
 	}
+	
 
 }

@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import backend.hostel.demo.entity.Service;
 
 public interface ServiceRepo extends CrudRepository<Service, String> {
-	@Query
+	
 	
 }
