@@ -14,15 +14,25 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "status")
-public class Status {
+@Table(name = "index_of_we")
+public class Index {
 	@Id
-	@Column(name="status_id")
-	private String statusId;
-	  
-	@Column(name = "status_name")
-	private String statusName;
+	@Column(name = "room_id")
+	private String roomId;
 	
-	@Column(name = "status_note")
-	private String statusNote;
+
+	@Column(name = "month")
+	private int month;
+	
+
+	@Column(name = "year")
+	private int year;
+	
+	@Column(name = "index_of_water")
+	private int indexOfWater;
+	
+	@Column(name = "index_of_electricity")
+	private int indexOfElectricity;
+	
+	
 }

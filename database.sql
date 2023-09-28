@@ -6,8 +6,6 @@ drop table if exists BILL;
 
 drop table if exists BILL_DETAIL;
 
-drop table if exists BILL_STATUS;
-
 drop table if exists CONTRACT;
 
 drop table if exists INDEX_OF_WE;
@@ -20,19 +18,13 @@ drop table if exists RECEIPT;
 
 drop table if exists ROOM;
 
-drop table if exists ROOM_STATUS;
-
 drop table if exists SERVICE;
 
 drop table if exists SERVICE_OF_ROOM;
 
 drop table if exists STATUS;
 
-drop table if exists STATUS_CONTRACT;
-
 drop table if exists TENANT;
-
-drop table if exists TENANT_STATUS;
 
 drop table if exists USER;
 
@@ -46,6 +38,7 @@ create table BILL
    MONTH                int not null,
    YEAR                 int not null,
    USERNAME             nvarchar(20) not null,
+   STATUS_ID            nvarchar(10) not null,
    CREATED_DATE         datetime,
    TOTAL_AMOUNT         float,
    PAID_DATE            datetime,
@@ -67,16 +60,6 @@ create table BILL_DETAIL
 );
 
 /*==============================================================*/
-/* Table: BILL_STATUS                                           */
-/*==============================================================*/
-create table BILL_STATUS
-(
-   STATUS_ID            nvarchar(10) not null,
-   BILL_ID              nvarchar(10) not null,
-   primary key (STATUS_ID, BILL_ID)
-);
-
-/*==============================================================*/
 /* Table: CONTRACT                                              */
 /*==============================================================*/
 create table CONTRACT
@@ -84,6 +67,7 @@ create table CONTRACT
    CONTRACT_ID          nvarchar(8) not null,
    TENANT_ID            nvarchar(8) not null,
    USERNAME             nvarchar(20) not null,
+   STATUS_ID            nvarchar(10) not null,
    START_DATE           datetime,
    END_DATE             datetime,
    CREATE_DATE          datetime,
@@ -151,21 +135,12 @@ create table RECEIPT
 create table ROOM
 (
    ROOM_ID              nvarchar(8) not null,
-   AREA                 real,
+   STATUS_ID            nvarchar(10) not null,
+   AREA                 float,
    RENTAL_PRICE         float,
    MAX                  int,
    USED                 int,
    primary key (ROOM_ID)
-);
-
-/*==============================================================*/
-/* Table: ROOM_STATUS                                           */
-/*==============================================================*/
-create table ROOM_STATUS
-(
-   STATUS_ID            nvarchar(10) not null,
-   ROOM_ID              nvarchar(8) not null,
-   primary key (STATUS_ID, ROOM_ID)
 );
 
 /*==============================================================*/
@@ -202,21 +177,12 @@ create table STATUS
 );
 
 /*==============================================================*/
-/* Table: STATUS_CONTRACT                                       */
-/*==============================================================*/
-create table STATUS_CONTRACT
-(
-   CONTRACT_ID          nvarchar(8) not null,
-   STATUS_ID            nvarchar(10) not null,
-   primary key (CONTRACT_ID, STATUS_ID)
-);
-
-/*==============================================================*/
 /* Table: TENANT                                                */
 /*==============================================================*/
 create table TENANT
 (
    TENANT_ID            nvarchar(8) not null,
+   STATUS_ID            nvarchar(10) not null,
    ROOM_ID              nvarchar(8) not null,
    TENANT_NAME          nvarchar(225),
    PHONE_NUMBER         int,
@@ -224,16 +190,6 @@ create table TENANT
    DATE_OF_BIRTH        date,
    WORK                 nvarchar(120),
    primary key (TENANT_ID)
-);
-
-/*==============================================================*/
-/* Table: TENANT_STATUS                                         */
-/*==============================================================*/
-create table TENANT_STATUS
-(
-   STATUS_ID            nvarchar(10) not null,
-   TENANT_ID            nvarchar(8) not null,
-   primary key (STATUS_ID, TENANT_ID)
 );
 
 /*==============================================================*/
@@ -249,6 +205,9 @@ create table USER
    primary key (USERNAME)
 );
 
+alter table BILL add constraint FK_BILL_STATUS foreign key (STATUS_ID)
+      references STATUS (STATUS_ID) on delete restrict on update restrict;
+
 alter table BILL add constraint FK_CREATE_BILL foreign key (USERNAME)
       references USER (USERNAME) on delete restrict on update restrict;
 
@@ -261,17 +220,14 @@ alter table BILL_DETAIL add constraint FK_BILL_DETAIL foreign key (BILL_ID)
 alter table BILL_DETAIL add constraint FK_SERVICE_IN_BILL foreign key (SERVICE_ID)
       references SERVICE (SERVICE_ID) on delete restrict on update restrict;
 
-alter table BILL_STATUS add constraint FK_BILL_STATUS foreign key (STATUS_ID)
-      references STATUS (STATUS_ID) on delete restrict on update restrict;
-
-alter table BILL_STATUS add constraint FK_BILL_STATUS2 foreign key (BILL_ID)
-      references BILL (BILL_ID) on delete restrict on update restrict;
-
 alter table CONTRACT add constraint FK_CONTRACT_OF_TENANT foreign key (TENANT_ID)
       references TENANT (TENANT_ID) on delete restrict on update restrict;
 
 alter table CONTRACT add constraint FK_CREATE_CONTRACT foreign key (USERNAME)
       references USER (USERNAME) on delete restrict on update restrict;
+
+alter table CONTRACT add constraint FK_STATUS_CONTRACT foreign key (STATUS_ID)
+      references STATUS (STATUS_ID) on delete restrict on update restrict;
 
 alter table INDEX_OF_WE add constraint FK_INDEX_AT_ROOM foreign key (ROOM_ID)
       references ROOM (ROOM_ID) on delete restrict on update restrict;
@@ -291,11 +247,8 @@ alter table RECEIPT add constraint FK_RECEIPT_METHOD foreign key (METHOD_ID)
 alter table RECEIPT add constraint FK_TENANT_IN_RECEIPT foreign key (TENANT_ID)
       references TENANT (TENANT_ID) on delete restrict on update restrict;
 
-alter table ROOM_STATUS add constraint FK_ROOM_STATUS foreign key (STATUS_ID)
+alter table ROOM add constraint FK_ROOM_STATUS foreign key (STATUS_ID)
       references STATUS (STATUS_ID) on delete restrict on update restrict;
-
-alter table ROOM_STATUS add constraint FK_ROOM_STATUS2 foreign key (ROOM_ID)
-      references ROOM (ROOM_ID) on delete restrict on update restrict;
 
 alter table SERVICE_OF_ROOM add constraint FK_SERVICE_OF_ROOM foreign key (ROOM_ID)
       references ROOM (ROOM_ID) on delete restrict on update restrict;
@@ -303,18 +256,9 @@ alter table SERVICE_OF_ROOM add constraint FK_SERVICE_OF_ROOM foreign key (ROOM_
 alter table SERVICE_OF_ROOM add constraint FK_SERVICE_OF_ROOM2 foreign key (SERVICE_ID)
       references SERVICE (SERVICE_ID) on delete restrict on update restrict;
 
-alter table STATUS_CONTRACT add constraint FK_STATUS_CONTRACT foreign key (CONTRACT_ID)
-      references CONTRACT (CONTRACT_ID) on delete restrict on update restrict;
-
-alter table STATUS_CONTRACT add constraint FK_STATUS_CONTRACT2 foreign key (STATUS_ID)
-      references STATUS (STATUS_ID) on delete restrict on update restrict;
-
 alter table TENANT add constraint FK_TENANT_AT_ROOM foreign key (ROOM_ID)
       references ROOM (ROOM_ID) on delete restrict on update restrict;
 
-alter table TENANT_STATUS add constraint FK_TENANT_STATUS foreign key (STATUS_ID)
+alter table TENANT add constraint FK_TENANT_STATUS foreign key (STATUS_ID)
       references STATUS (STATUS_ID) on delete restrict on update restrict;
-
-alter table TENANT_STATUS add constraint FK_TENANT_STATUS2 foreign key (TENANT_ID)
-      references TENANT (TENANT_ID) on delete restrict on update restrict;
 
