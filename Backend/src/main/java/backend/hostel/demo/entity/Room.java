@@ -1,5 +1,7 @@
 package backend.hostel.demo.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -14,15 +16,24 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "status")
-public class Status {
+@Table(name = "room")
+public class Room {
+
 	@Id
-	@Column(name="status_id")
-	private String statusId;
-	  
-	@Column(name = "status_name")
-	private String statusName;
+	@Column(name = "room_id")
+	private String roomId;
 	
-	@Column(name = "status_note")
-	private String statusNote;
+	@Column(name = "area")
+	private float area;
+	
+	@Column(name = "rental_price")
+	private float rentalPrice;
+	
+	@Column(name = "max")
+	private int max;
+	
+	@Column(name = "used")
+	private int used;
+
+	
 }

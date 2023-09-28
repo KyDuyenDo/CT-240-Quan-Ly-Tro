@@ -9,20 +9,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter
-@Getter
-@NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "status")
-public class Status {
-	@Id
-	@Column(name="status_id")
-	private String statusId;
-	  
-	@Column(name = "status_name")
-	private String statusName;
+@NoArgsConstructor
+@Getter
+@Setter
+@Entity  
+@Table ( name = "payment_method")
+public class PaymentMethod {
+	@Id 
+	@Column (name = "method_id")
+	private String methodId;
+	@Column (name = "method_name")
+	private String methodName;
 	
-	@Column(name = "status_note")
-	private String statusNote;
+	
+
 }

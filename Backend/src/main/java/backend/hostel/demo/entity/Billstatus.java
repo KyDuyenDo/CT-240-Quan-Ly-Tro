@@ -14,15 +14,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "status")
-public class Status {
-	@Id
-	@Column(name="status_id")
-	private String statusId;
-	  
-	@Column(name = "status_name")
-	private String statusName;
+@Table(name = "bill_status")
+public class Billstatus {
 	
-	@Column(name = "status_note")
-	private String statusNote;
+	@Column(name = "status_id")
+	private String statusId;
+	
+	@Id
+	@Column(name = "bill_id")
+	private String billId;
+	
 }
