@@ -252,3 +252,181 @@ span.count-filter {
     text-overflow: ellipsis;
     vertical-align: bottom;
 }
+
+/*cell*/
+
+.tabulator-row.tabulator-group {
+    background: #fafafa;
+}
+.tabulator-row.tabulator-group {
+    box-sizing: border-box;
+    border-bottom: 1px solid #999;
+    border-right: 1px solid #ddd;
+    border-top: 1px solid #999;
+    padding: 5px 5px 5px 10px;
+    background: #ccc;
+    font-weight: 700;
+    min-width: 100%;
+}
+.tabulator-row.tabulator-group {
+    box-sizing: border-box;
+    border: 0 !important;
+    padding: 10px !important;
+    background: #dfecf5 !important;
+    font-weight: 700;
+    min-width: 100%;
+}
+.tabulator-row {
+    border-bottom: 1px solid rgba(34,36,38,.1);
+}
+.tabulator-row {
+    position: relative;
+    box-sizing: border-box;
+    min-height: 22px;
+    background-color: #fff;
+}
+
+.tabulator-row.tabulator-row-even {
+    background-color: #fff;
+}
+.tabulator-row.tabulator-row-even {
+    background-color: #efefef;
+}
+.tabulator-row.enable-background {
+    background-color: #ff57220f!important;
+}
+.tabulator-row {
+    border-bottom: 1px solid rgba(34,36,38,.1);
+}
+.tabulator-row {
+    position: relative;
+    box-sizing: border-box;
+    min-height: 22px;
+    background-color: #fff;
+}
+
+.tabulator.celled .tabulator-header .tabulator-col, .tabulator.celled .tabulator-tableholder .tabulator-table .tabulator-row .tabulator-cell {
+    border-right: 1px solid rgba(34,36,38,.1);
+}
+.tabulator-row .tabulator-cell.tabulator-row-handle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.tabulator .tabulator-cell.move {
+    cursor: move !important;
+}
+.tabulator-row .tabulator-cell {
+    padding: 0.78571em 3px;
+    vertical-align: middle;
+}
+.tabulator-row .tabulator-cell {
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    padding: 4px;
+    border-right: 1px solid #ddd;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.tabulator-cell.move {
+    cursor: move;
+}
+.tabulator-row .tabulator-cell {
+    white-space: initial!important;
+    word-break: break-word!important;
+}
+
+.icon-menu-action {
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 100%;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tabulator-row .tabulator-cell.tabulator-row-handle .tabulator-row-handle-box {
+    width: 80%;
+}
+.tabulator-row .tabulator-cell.tabulator-row-handle .tabulator-row-handle-box {
+    width: 20px;
+    display: inline-block;
+}
+.tabulator-row .tabulator-cell.tabulator-row-handle .tabulator-row-handle-box .tabulator-row-handle-bar {
+    width: 100%;
+    height: 3px;
+    margin-top: 2px;
+    background: #666;
+}
+
+.icon-first {
+    background-color: #7dc242;
+    border-radius: 100%;
+    padding: 3px;
+    text-align: center;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    margin: auto;
+    position: relative;
+}
+
+/* button select */
+.tabulator-row .tabulator-cell.tabulator-editing {
+    border: 1px solid #1d68cd !important;
+    outline: none;
+    padding: 0;
+    background-color: #E8ECDD;
+}
+.edit_enable:hover{
+    background-color: #E8ECDD;
+}
+.edit_disable:hover{
+    background-color: #FFF4E4;
+}
+.tabulator-row .tabulator-cell.tabulator-validation-fail {
+    border: 1px solid #db2828;
+}
+
+.edit_enable {
+    cursor: url(../../public/edit_icon.svg) 20 20, auto;
+}
+.edit_disable{
+    cursor: url(../../public/ban_icon.svg) 20 20, auto;
+}
+.bg_hover:hover{
+    background-color: #e8ecdd;
+}
+/*dropdown*/
+.dropdown-menu {
+    height: 150px;
+    overflow-y: scroll;
+    border-radius: 0px !important;
+    min-width:4rem !important;
+}
+.dropdown-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 4px !important;
+  }
+  
+.jRadioDropdown {
+    visibility: hidden;
+    position: absolute;
+    left: 30px;
+  }
+
+.active_btn {
+    border: 1px solid #007bff !important;
+    background-color: #E8ECDD;
+  }
+  /* .dropdown-toggle.active {
+    border: 1px solid blue;
+  } */
+  

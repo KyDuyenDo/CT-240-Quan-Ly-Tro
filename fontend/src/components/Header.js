@@ -8,7 +8,7 @@ const Header = () => {
           <nav className="navbar navbar-expand-lg navbar-light">
             <div className="container-fluid">
               <button
-                class="navbar-toggler"
+                className="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#lozido-main-menu"
@@ -16,7 +16,7 @@ const Header = () => {
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >
-                <span class="navbar-toggler-icon"> </span>
+                <span className="navbar-toggler-icon"> </span>
               </button>
               <nav className="collapse navbar-collapse lozido-main-menu">
                 <ul className="navbar-nav main-menu-left  me-auto mb-2 mb-lg-0">
@@ -32,9 +32,9 @@ const Header = () => {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         className="feather feather-home"
                       >
                         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -54,9 +54,9 @@ const Header = () => {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         className="feather feather-pie-chart"
                       >
                         <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
@@ -76,9 +76,9 @@ const Header = () => {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         className="feather feather-settings"
                       >
                         <circle cx="12" cy="12" r="3"></circle>
@@ -96,7 +96,7 @@ const Header = () => {
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
-                      {/* <span class="count-notification badge">0</span> */}
+                      {/* <span className="count-notification badge">0</span> */}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -104,9 +104,9 @@ const Header = () => {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         className="feather feather-bell"
                       >
                         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
@@ -150,9 +150,9 @@ const Header = () => {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         className="feather feather-user"
                       >
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -172,9 +172,9 @@ const Header = () => {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         className="feather feather-log-out"
                       >
                         <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>

@@ -30,10 +30,10 @@ const ManagementList = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-home feather-size-18"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="feather feather-home feather-size-18"
               >
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
@@ -65,7 +65,7 @@ const ManagementList = () => {
         style={{alignItems: "center", justifyContent: "space-between", display: "flex", position: "relative"}}
       >
         <div style={{display: "flex", flexWrap: "nowrap", overflowX: "auto", position: "relative"}}>
-          <a href="/quan-ly" className="item-menu">
+          <a href="/quan-ly" className="item-menu active">
             <div className="icon text-center">
               <img width="55px" src="/icons/menus/thu_tien.png" alt="quan-ly-phong" />
             </div>
@@ -85,7 +85,7 @@ const ManagementList = () => {
               </span>
             </div>
           </a>
-          <a href="/quan-ly/3215/tat-ca-hop-dong" className="item-menu active">
+          <a href="/quan-ly/3215/tat-ca-hop-dong" className="item-menu">
             <div className="icon text-center">
               <img
                 width="55px"

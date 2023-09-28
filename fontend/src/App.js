@@ -1,9 +1,9 @@
 import './App.css';
-import ManagerRoomPage from './pages/ManagerRoomPage';
+import ManagerPage from './pages/ManagerPage';
 function App() {
   return (
     <div>
-      <ManagerRoomPage/>
+      <ManagerPage/>
     </div>
   );
 }

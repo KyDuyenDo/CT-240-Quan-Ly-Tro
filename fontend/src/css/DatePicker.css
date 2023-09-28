@@ -1,0 +1,9 @@
+.input-group-calender {
+    max-width: 225px;
+    padding-left: 15px;
+  }
+
+  .form-control:focus {
+    box-shadow: none !important;
+    outline: none !important;
+  }

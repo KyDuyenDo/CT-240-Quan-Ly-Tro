@@ -4,19 +4,19 @@ const HeaderTable = ({text, style, classState, field}) => {
   return (
     <>
       <div
-        class={"tabulator-col justify-content-center " + classState}
+        className={"tabulator-col justify-content-center " + classState}
         role="columnheader"
         aria-sort="none"
         tabulator-field={field}
         style={{...style, minWidth: "40px", height:"59px"}}
       >
-        <div class="tabulator-col-content">
-          <div class="tabulator-col-title-holder">
-            <div class="tabulator-col-title">{text}</div>
+        <div className="tabulator-col-content">
+          <div className="tabulator-col-title-holder">
+            <div className="tabulator-col-title">{text}</div>
           </div>
         </div>
       </div>
-      <span class="tabulator-col-resize-handle" style={{height: "59px"}}></span>
+      <span className="tabulator-col-resize-handle" style={{height: "59px"}}></span>
     </>
   );
 };
