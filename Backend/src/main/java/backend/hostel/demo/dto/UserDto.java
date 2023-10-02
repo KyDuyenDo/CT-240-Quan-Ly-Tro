@@ -9,7 +9,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor 
-
 public class UserDto {
 	private String username;
 	private String fullname;

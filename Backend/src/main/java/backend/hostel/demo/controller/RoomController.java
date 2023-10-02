@@ -2,11 +2,24 @@ package backend.hostel.demo.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import backend.hostel.demo.dto.ContractDto;
 import backend.hostel.demo.dto.IndexDto;
+
+import backend.hostel.demo.dto.BillDto;
+import backend.hostel.demo.dto.ContractDto;
+import backend.hostel.demo.dto.IndexDto;
+import backend.hostel.demo.dto.RoomDto;
+
 import backend.hostel.demo.dto.TenantDto;
 import backend.hostel.demo.service.BillService;
 import backend.hostel.demo.service.ContractService;
@@ -16,79 +29,94 @@ import backend.hostel.demo.service.ServiceService;
 import backend.hostel.demo.service.TenantService;
 
 @Controller
+@RequestMapping("/room")
 public class RoomController {
+	
+	@Autowired
 	private RoomService roomService;
-	   
+	
+	@Autowired
 	private BillService billService;
 	
+	@Autowired
 	private ServiceService serviceService;
-	   
+	
+	@Autowired
 	private TenantService tenantService;
 	   
+	@Autowired
 	private IndexService indexService;
-	  
+	
+	@Autowired
 	private ContractService contractService;
-	   
+	
+	
+	@GetMapping("/")
 	public ResponseEntity<?> getRooms() {
-		return null;
-	}
-	   
-	  
-	public ResponseEntity<?> getRoomById(String roomId) {
-		return null;
+		return ResponseEntity.ok(roomService.getRooms());
 	}
 	   
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<?> getRoomById(@PathVariable(value = "id") String roomId) {
+		return ResponseEntity.ok(roomService.getRoomsById(roomId));
+	}
+	   
+	
+	@PostMapping(value = "/", consumes = "application/x-www-form-urlencoded")
 	public ResponseEntity<?> createRoom(RoomDto roomDto) {
-		return null;
+		return ResponseEntity.ok(roomService.createRoom(roomDto));
+	}
+	
+	@PutMapping(value = "/{id}", consumes = "application/x-www-form-urlencoded")
+	public ResponseEntity<?> updateRoom(@PathVariable(value = "id") String roomId, RoomDto roomDto) {
+		return ResponseEntity.ok(roomService.updateRoom(roomDto));
+	}
+	
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<?> deleteRoom(@PathVariable(value = "id") String roomId) {
+		return ResponseEntity.ok(roomService.deleteRoom(roomId));
+	}
+	
+	@PostMapping(value = "/{id}/bill", consumes = "application/x-www-form-urlencoded")
+	public ResponseEntity<?> createBill(@PathVariable(value = "id") String roomId, BillDto billDto) {
+		return ResponseEntity.ok((billService.createBill(billDto)));
+	}
+	
+	@GetMapping(value = "/{id}/bill")
+	public ResponseEntity<?> getPaymentHistoryByRooom(@PathVariable(value = "id") String roomId) {
+		return ResponseEntity.ok(billService.getBillsByRoom(roomId));
 	}
 
-	public ResponseEntity<?> updateRoom(String roomId, RoomDto roomDto) {
-		return null;
-	}
-	   
-	public ResponseEntity<?> deleteRoom(String roomId) {
-		return null;
-	}
-		   
-	public ResponseEntity<?> createBill(String roomId, BillDto billDto) {
-		return null;
-	}
-
-	public ResponseEntity<?> getPaymentHistoryByRooom(String roomId) {
-		return null;
-	}
-	   
-	public ResponseEntity<?> getConstracts(String roomId) {
-		return null;
-	}
-	   
-    public ResponseEntity<?> createContract(String roomId, ContractDto contract) {
-       return null;
+	
+	@GetMapping(value = "/{id}/tenant")
+    public ResponseEntity<?> getTenants(@PathVariable(value = "id") String roomId) {
+    	return ResponseEntity.ok(tenantService.getTenantByRoom(roomId));
     }
-	   
-    public ResponseEntity<?> getTenants(String roomId) {
-    	return null;
-    }
-	   
-	public ResponseEntity<?> createTenant(String roomId, TenantDto tenant) {
-		return null;
+	
+	@PostMapping(value = "/{id}/tenant", consumes = "application/x-www-form-urlencoded")
+	public ResponseEntity<?> createTenant(@PathVariable(value = "id") String roomId, TenantDto tenant) {
+		return ResponseEntity.ok(tenantService.createTenant(tenant));
+	}
+	
+	@DeleteMapping(value = "/{id}/tenant/{tenant-id}")
+	public ResponseEntity<?> deleteTenant(@PathVariable(value = "id") String roomId ,@PathVariable(value = "tenant-id") String tenantId) {
+		return ResponseEntity.ok(tenantService.deleteTenant(tenantId));
 	}
 	   
-	public ResponseEntity<?> deleteTenant(String tenantId) {
-		return null;
+	@PutMapping(value = "/{id}/service/order", consumes = "application/x-www-form-urlencoded")
+	public ResponseEntity<?> orderServices(@PathVariable(value = "id") String roomId, List<String> servicesId) {
+		return ResponseEntity.ok(serviceService.orderServiceByRoom(roomId, servicesId));
 	}
-	   
-	public ResponseEntity<?> orderServices(String roomId, List<String> servicesId) {
-		return null;
+	
+	@PostMapping(value = "/{id}/index/", consumes = "application/x-www-form-urlencoded")
+	public ResponseEntity<?> createIndexWE(@PathVariable(value = "id") String roomId, IndexDto index) {
+		return ResponseEntity.ok(indexService.createIndex(index));
 	}
-	   
-	public ResponseEntity<?> createIndexWE(String roomId, IndexDto index) {
-		return null;
-	}
-	   
+	    
+	@PutMapping(value = "/{id}/index/", consumes = "application/x-www-form-urlencoded")
 	public ResponseEntity<?> updateIndexWE(String roomId, IndexDto index) {
-		return null;
+		return ResponseEntity.ok(indexService.updateIndex(index));
 	}
 		
 }
