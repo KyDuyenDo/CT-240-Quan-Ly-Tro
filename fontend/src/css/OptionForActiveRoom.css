@@ -1,5 +1,7 @@
 .custom_menu_2{
-    left: -105% !important;
+    left: -150% !important;
+    /* margin-right: 100px !important; */
+    transform: translate(-150%, auto) !important;
 }
 .custom_item_2{
     border-top: 1px solid gray !important;

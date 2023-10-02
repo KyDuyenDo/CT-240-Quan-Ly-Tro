@@ -3,7 +3,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import InputMask from "react-input-mask";
 import "../css/DatePicker.css";
 import { useRef } from "react";
-import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAttrRoomById, startEditing } from "../redux/slices/roomSlice";
@@ -33,12 +32,12 @@ const DatePickerCustom = (props) => {
 
   const [date, setDate] = useState(formatStringToDate(props.selected));
 
-  const formatDateToString = (dateSelected) =>{
+  const formatDateToString = (dateSelected) => {
     const day = dateSelected.getDate().toString().padStart(2, "0");
     const month = (dateSelected.getMonth() + 1).toString().padStart(2, "0");
     const year = dateSelected.getFullYear().toString();
     return `${day}/${month}/${year}`;
-  }
+  };
   const handleChange = (dateSelected) => {
     setDate(dateSelected);
     if (isChange === false) {
@@ -51,9 +50,13 @@ const DatePickerCustom = (props) => {
         value: formatDateToString(dateSelected),
       })
     );
+    setFocusing(false);
   };
-  const handleBlur = () =>{
-    if(isChange === true){
+  const handleFocus = () => {
+    setFocusing(true);
+  };
+  const handleBlur = () => {
+    if (isChange === true) {
       dispatch(
         updateAttrRoomById({
           id: props.room_id,
@@ -62,27 +65,8 @@ const DatePickerCustom = (props) => {
         })
       );
     }
-  }
-  useEffect(() => {
-    function handleClickOutside(event) {
-      const className = event.target.className;
-      if (className === "") {
-        setFocusing(false);
-      } else if (className) {
-        const classesList = className.split(" ");
-        if (classesList.includes(props.type)) {
-          setFocusing(true);
-        } else {
-          setFocusing(false);
-        }
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+    setFocusing(false);
+  };
   return (
     <>
       <DatePicker
@@ -180,6 +164,7 @@ const DatePickerCustom = (props) => {
         selected={formatStringToDate(props.selected)}
         onChange={(dateSelected) => handleChange(dateSelected)}
         onBlur={handleBlur}
+        onFocus={handleFocus}
       />
     </>
   );

@@ -3,6 +3,7 @@ import EditableCell from "./EditableCell";
 import QuanityInput from "./QuanityInput";
 import Datepicker from "./Datepicker";
 import { useEffect } from "react";
+import OptionForActiveRoom from "./OptionForActiveRoom";
 const RoomObject = ({
   id,
   status,
@@ -353,7 +354,7 @@ const RoomObject = ({
         style={{ minHeight: "50px" }}
       ></span>
       <div
-        className="tabulator-cell pointer"
+        className="pointer"
         role="gridcell"
         tabulator-field="action"
         style={{
@@ -366,24 +367,7 @@ const RoomObject = ({
           borderRightWidth: "0px",
         }}
       >
-        <div className="icon-menu-action">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="22"
-            height="22"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="feather feather-more-vertical"
-          >
-            <circle cx="12" cy="12" r="1"></circle>
-            <circle cx="12" cy="5" r="1"></circle>
-            <circle cx="12" cy="19" r="1"></circle>
-          </svg>
-        </div>
+       <OptionForActiveRoom room_id={id} />
       </div>
       <span
         className="tabulator-col-resize-handle"

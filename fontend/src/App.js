@@ -1,5 +1,5 @@
-import './App.css';
-import ManagerPage from './pages/ManagerPage';
+import "./App.css";
+import ManagerPage from "./pages/ManagerPage";
 function App() {
   return (
     <div>
