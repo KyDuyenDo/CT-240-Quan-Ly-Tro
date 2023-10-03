@@ -67,11 +67,6 @@ const FormMakeAnInvoice = ({room_id}) => {
         </Modal.Header>
         <Modal.Body>
           <form>
-            <input
-              type="hidden"
-              name="_token"
-              value="H4pBn2DMgR5J8oWquBbg6DR53WrB6DpVy3vkaERW"
-            />
             <div className="row g-2">
               <div className="col-12">
                 <div className="input-group">
@@ -85,9 +80,9 @@ const FormMakeAnInvoice = ({room_id}) => {
                       pattern="\d{1,2}\/\d{4}"
                       required=""
                     />
-                    <label for="month">Tháng lập phiếu</label>
+                    <label htmlFor="month">Tháng lập phiếu</label>
                   </div>
-                  <label className="input-group-text" for="month">
+                  <label className="input-group-text" htmlFor="month">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -95,9 +90,9 @@ const FormMakeAnInvoice = ({room_id}) => {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       className="feather feather-calendar"
                     >
                       <rect
@@ -129,9 +124,9 @@ const FormMakeAnInvoice = ({room_id}) => {
                       pattern="\d{1,2}\/\d{1,2}\/\d{4}"
                       required=""
                     />
-                    <label for="date-add-bill">Ngày lập hóa đơn</label>
+                    <label htmlFor="date-add-bill">Ngày lập hóa đơn</label>
                   </div>
-                  <label className="input-group-text" for="date-add-bill">
+                  <label className="input-group-text" htmlFor="date-add-bill">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -139,9 +134,9 @@ const FormMakeAnInvoice = ({room_id}) => {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       className="feather feather-calendar"
                     >
                       <rect
@@ -175,9 +170,9 @@ const FormMakeAnInvoice = ({room_id}) => {
                       pattern="\d{1,2}\/\d{1,2}\/\d{4}"
                       required=""
                     />
-                    <label for="deadline_bill_date">Hạn đóng tiền</label>
+                    <label htmlFor="deadline_bill_date">Hạn đóng tiền</label>
                   </div>
-                  <label className="input-group-text" for="deadline_bill_date">
+                  <label className="input-group-text" htmlFor="deadline_bill_date">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -185,9 +180,9 @@ const FormMakeAnInvoice = ({room_id}) => {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       className="feather feather-calendar"
                     >
                       <rect
@@ -229,7 +224,7 @@ const FormMakeAnInvoice = ({room_id}) => {
                         id="month_amount"
                         placeholder="Nhập số tháng"
                       />
-                      <label for="month_amount">Số tháng</label>
+                      <label htmlFor="month_amount">Số tháng</label>
                       <div className="invalid-feedback">
                         Vui lòng nhập số tháng tính tiền
                       </div>
@@ -248,7 +243,7 @@ const FormMakeAnInvoice = ({room_id}) => {
                         id="day_amount"
                         placeholder="Nhập số tháng"
                       />
-                      <label for="day_amount">Số ngày lẻ</label>
+                      <label htmlFor="day_amount">Số ngày lẻ</label>
                       <div className="invalid-feedback">
                         Vui lòng nhập số ngày lẻ
                       </div>
@@ -301,7 +296,7 @@ const FormMakeAnInvoice = ({room_id}) => {
                       checked=""
                       value="1"
                     />
-                    <label className="form-check-label" for="deposit_add">
+                    <label className="form-check-label" htmlFor="deposit_add">
                       Thu tiền cọc
                     </label>
                   </div>
@@ -314,7 +309,7 @@ const FormMakeAnInvoice = ({room_id}) => {
                       id="deposit_renturn"
                       value="-1"
                     />
-                    <label className="form-check-label" for="deposit_renturn">
+                    <label className="form-check-label" htmlFor="deposit_renturn">
                       Trả tiền cọc
                     </label>
                   </div>
@@ -331,7 +326,7 @@ const FormMakeAnInvoice = ({room_id}) => {
                       id="deposit_contract_amount"
                       placeholder="Số tiền cọc thu hoặc trả lại"
                     />
-                    <label for="deposit_contract_amount">Số tiền cọc(đ)</label>
+                    <label htmlFor="deposit_contract_amount">Số tiền cọc(đ)</label>
                     <input
                       style={{ display: "none" }}
                       data-format="numeric"
@@ -367,7 +362,7 @@ const FormMakeAnInvoice = ({room_id}) => {
                         value="10499"
                         name="price_items[10499][id]"
                       />
-                      <label for="bill_check_price_item_10499">
+                      <label htmlFor="bill_check_price_item_10499">
                         <b>Tiền điện</b>{" "}
                         <p>
                           Giá: <b>1.700&nbsp;₫</b> / KWh
@@ -387,7 +382,7 @@ const FormMakeAnInvoice = ({room_id}) => {
                         ></div>
                         <label
                           className="input-group-text"
-                          for="bill_price_item_10499_0"
+                          htmlFor="bill_price_item_10499_0"
                         >
                           Tổng
                         </label>
@@ -402,7 +397,7 @@ const FormMakeAnInvoice = ({room_id}) => {
                         value="10500"
                         name="price_items[10500][id]"
                       />
-                      <label for="bill_check_price_item_10500">
+                      <label htmlFor="bill_check_price_item_10500">
                         <b>Tiền nước</b>{" "}
                         <p>
                           Giá: <b>18.000&nbsp;₫</b> / Khối
@@ -422,7 +417,7 @@ const FormMakeAnInvoice = ({room_id}) => {
                         ></div>
                         <label
                           className="input-group-text"
-                          for="bill_price_item_10500_0"
+                          htmlFor="bill_price_item_10500_0"
                         >
                           Tổng
                         </label>
@@ -472,7 +467,7 @@ const FormMakeAnInvoice = ({room_id}) => {
                     checked=""
                     value="1"
                   />
-                  <label className="form-check-label" for="addition_a_bill">
+                  <label className="form-check-label" htmlFor="addition_a_bill">
                     Cộng thêm
                   </label>
                 </div>
@@ -485,7 +480,7 @@ const FormMakeAnInvoice = ({room_id}) => {
                     id="addition_b_bill"
                     value="-1"
                   />
-                  <label className="form-check-label" for="addition_b_bill">
+                  <label className="form-check-label" htmlFor="addition_b_bill">
                     Giảm trừ
                   </label>
                 </div>
@@ -501,7 +496,7 @@ const FormMakeAnInvoice = ({room_id}) => {
                     id="addition_value"
                     placeholder="Số tiền cộng thêm hoặc giảm trừ"
                   />
-                  <label for="addition_value">Số tiền (đ)</label>
+                  <label htmlFor="addition_value">Số tiền (đ)</label>
                 </div>
               </div>
               <div className="col-12 mt-2">
@@ -515,7 +510,7 @@ const FormMakeAnInvoice = ({room_id}) => {
                     id="addition_reason"
                     placeholder="Nhập lý do"
                   ></textarea>
-                  <label for="addition_reason">Lý do</label>
+                  <label htmlFor="addition_reason">Lý do</label>
                 </div>
               </div>
               <div className="col-12">

@@ -10,7 +10,7 @@ const FormAddRoom = () => {
   const handleShow = () => setShow(true);
   return (
     <>
-      <Button className="add-round" variant="primary" onClick={handleShow}>
+      <Button className="add-round custom_btn" variant="primary" onClick={handleShow}>
         <span
           data-bs-toggle="tooltip"
           data-bs-placement="left"
