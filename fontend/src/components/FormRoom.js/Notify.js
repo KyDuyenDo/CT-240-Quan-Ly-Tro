@@ -1,5 +1,5 @@
 import React from "react";
-import "../../css/Service.css";
+import "../../css/Notify.css";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,6 +22,7 @@ const Notify = () => {
         onHide={show}
         animation={false}
         centered
+        className="custom"
       >
         <Modal.Body>
           <div
