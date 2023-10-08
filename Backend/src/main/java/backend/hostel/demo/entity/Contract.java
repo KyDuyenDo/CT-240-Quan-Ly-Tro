@@ -28,6 +28,9 @@ public class Contract {
 	@Column(name = "username")
 	private String userName;
 	
+	@Column (name = "status_id")
+	private String statusId;
+	
 	@Column(name = "start_date")
 	private Date startDate;
 	
