@@ -79,7 +79,7 @@ const ManagementList = () => {
               position: "relative",
             }}
           >
-            <Link to="/quan-ly" className="item-menu active">
+            <Link to="/" className="item-menu active">
               <div className="icon text-center">
                 <img
                   width="55px"

@@ -7,12 +7,12 @@ import SettingPage from "./pages/SettingPage";
 import AccountPage from "./pages/AccountPage";
 import ManagementList from "./components/ManagementList";
 import TableRoom from "./components/TableRoom";
-import ReceiptsTable from "./components/ReceiptsTable";
 import ContractTable from "./components/ContractTable";
 import ServiceTable from "./components/ServiceTable";
 import CustomerTable from "./components/CustomerTable";
 import TotalTable from "./components/TotalTable";
 import SettingForm from "./components/SettingForm";
+import TableInvoice from "./components/TableInvoice";
 
 function App() {
   return (
@@ -20,10 +20,10 @@ function App() {
       <Header />
       <Router>
         <Routes>
-          <Route path="/quan-ly" element={<ManagementList />}>
+          <Route path="/" element={<ManagementList />}>
             <Route index element={<TableRoom />} />
-            <Route path="/quan-ly" element={<TableRoom />} />
-            <Route path="/quan-ly/lap-phieu-thu" element={<ReceiptsTable />} />
+            <Route path="/" element={<TableRoom />} />
+            <Route path="/quan-ly/lap-phieu-thu" element={<TableInvoice />} />
             <Route path="/quan-ly/tat-ca-hop-dong" element={<ContractTable />} />
             <Route path="/quan-ly/quan-ly-dich-vu" element={<ServiceTable />} />
             <Route path="/quan-ly/tat-ca-khach-thue" element={<CustomerTable />} />
@@ -37,7 +37,7 @@ function App() {
       </Router>
       <div
         className="text-center pt-5"
-        style={{ backgroundColor: "#DFECF5", height: "85px" }}
+        style={{ backgroundColor: "#E4EEF5", height: "85px" }}
       ></div>
     </>
   );

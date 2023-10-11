@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "../../css/DeleteRoom.css";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import Notify from "./Notify";
 import { useDispatch } from "react-redux";
 import { successfully, unsuccessful } from "../../redux/slices/notifySlice";
 
@@ -127,7 +126,6 @@ const DeleteRoom = () => {
           </div>
         </Modal.Body>
       </Modal>
-      <Notify/>
     </>
   );
 };

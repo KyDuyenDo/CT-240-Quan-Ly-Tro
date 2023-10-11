@@ -542,19 +542,19 @@ const FormMakeAnInvoice = ({room_id}) => {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <div class="row g-0" style={{ width: "100%" }}>
-            <div class="col-6">
+          <div className="row g-0" style={{ width: "100%" }}>
+            <div className="col-6">
               <div>
                 <span>Tổng cộng hóa đơn: </span>
               </div>
               <b
-                class="show-total total-price bill-total"
+                className="show-total total-price bill-total"
                 style={{ color: "#3c9e47" }}
               >
                 6.002.000&nbsp;₫
               </b>
             </div>
-            <div class="col-6 text-end">
+            <div className="col-6 text-end">
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>

@@ -20,11 +20,10 @@ const Header = () => {
               </button>
               <nav className="collapse navbar-collapse lozido-main-menu">
                 <ul className="navbar-nav main-menu-left  me-auto mb-2 mb-lg-0">
-                  {/* <img src="/logo.png" alt="logo" /> */}
                 </ul>
                 <ul className="topbar-items main-menu-right navbar-nav" style={{height: "85.500px"}}>
                   <li className="nav-item menu-item ">
-                    <a href="/quan-ly" className="nav-link ">
+                    <a href="/" className="nav-link ">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -96,7 +95,6 @@ const Header = () => {
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
-                      {/* <span className="count-notification badge">0</span> */}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -118,12 +116,6 @@ const Header = () => {
                     </a>
                     <ul className="dropdown-menu notication-dropdown dropdown-menu-lg-end">
                       <div className="text-center" style={{ padding: "20px" }}>
-                        {/* <img
-                          style={{ margin: "auto" }}
-                          src="/Spin-1s-200px.svg"
-                          alt="Đang tải..."
-                          width="50px"
-                        /> */}
                         <img
                           style={{ margin: "auto" }}
                           src="/Ripple-1s-200px.svg"

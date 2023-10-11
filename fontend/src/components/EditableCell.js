@@ -1,46 +1,68 @@
 import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAttrRoomById, startEditing } from "../redux/slices/roomSlice";
-function EditableCell({room_id, value, style, field, type, unit }) {
-  const dispatch = useDispatch()
-  const isChange = useSelector((state) => state.rooms.isChange);
+import { updateAttrInvoiceById, startEditingInvoice } from "../redux/slices/invoiceSlice";
+function EditableCell({
+  room_id,
+  value,
+  style,
+  field,
+  type,
+  unit,
+  style_cell,
+}) {
+  const dispatch = useDispatch();
+  const isChangeRoom = useSelector((state) => state.rooms.isChange);
+  const isChnageInvoice = useSelector((state) => state.invoices.isChange)
   const [editing, setEditing] = useState(false);
   const [localValue, setLocalValue] = useState(value);
   const inputReference = useRef(null);
   useEffect(() => {
     inputReference.current.focus();
-    if(editing === false){
-
+    if (editing === false) {
     }
   }, [editing]);
   const handleClick = () => {
-    setLocalValue(value)
+    // setLocalValue(value)
     setEditing(true);
   };
-
   const handleInputChange = (event) => {
     setLocalValue(event.target.value);
-    if(isChange === false){
-      dispatch(startEditing())
+    if (isChangeRoom === false && style_cell === "rooms") {
+      dispatch(startEditing());
+    }
+    else if(isChnageInvoice === false && style_cell === "invoices"){
+      dispatch(startEditingInvoice())
     }
   };
 
   const handleInputBlur = () => {
     setEditing(false);
-    if(isChange === true){
+    if (isChangeRoom === true && style_cell==="rooms") {
       if (localValue !== value) {
-        dispatch(updateAttrRoomById({id: room_id, attr: field, value: localValue}))
+        dispatch(
+          updateAttrRoomById({ id: room_id, attr: field, value: localValue })
+        );
+      }
+    }
+    else if(isChnageInvoice === true && style_cell==="invoices") {
+      if (localValue !== value) {
+        dispatch(
+          updateAttrInvoiceById({ id: room_id, attr: field, value: localValue })
+        );
       }
     }
   };
 
   return (
     <div
-      className={"tabulator-cell edit_enable tabulator-editable" + (editing ===true ? " tabulator-editing": "")}
+      className={
+        "tabulator-cell edit_enable tabulator-editable" +
+        (editing === true ? " tabulator-editing" : "")
+      }
       role="gridcell"
       tabulator-field={field}
       tabIndex="0"
-      
       style={{
         width: style.width,
         textAlign: "left",
@@ -53,9 +75,19 @@ function EditableCell({room_id, value, style, field, type, unit }) {
     >
       <div
         className={editing === true ? "d-none" : " "}
-        style={{display: "flex", alignItems: "center", height: "100%", width: "100%", backgroundColor:"inherit" }}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          height: "100%",
+          width: "100%",
+          backgroundColor: "inherit",
+        }}
       >
-        <p className={"m-0 " + style.fontWeight}>{type === "text" ? value + unit : (new Intl.NumberFormat("de-DE").format(value)) + " " + unit}</p>
+        <p className={"m-0 " + style.fontWeight}>
+          {type === "text"
+            ? value + unit
+            : new Intl.NumberFormat("de-DE").format(value) + " " + unit}
+        </p>
         <div></div>
       </div>
       <input
@@ -63,13 +95,13 @@ function EditableCell({room_id, value, style, field, type, unit }) {
         className={editing === true ? " " : "d-none"}
         type={type}
         style={{
-          backgroundColor:"inherit",
+          backgroundColor: "inherit",
           outline: "none",
           border: "none",
           padding: "4px",
           height: "100%",
           width: "100%",
-          boxSizing: "border-box"
+          boxSizing: "border-box",
         }}
         value={localValue}
         onChange={handleInputChange}

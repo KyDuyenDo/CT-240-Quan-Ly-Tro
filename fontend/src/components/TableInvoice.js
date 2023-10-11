@@ -1,25 +1,27 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ListFilterCard from "../components/ListFilterCard";
-import HeaderTable from "../components/HeaderTable";
-import { ROOM } from "../shared/filters";
-import { HEADERTABLEROOM } from "../shared/headerTable.css";
-import RoomObject from "../components/RoomObject";
+import { INVOICE } from "../shared/filters";
 import Confirmation from "../components/Confirmation";
-import { cancelChanges, confirmChanges } from "../redux/slices/roomSlice";
+import {
+  cancelChangesInvoice,
+  confirmChangesInvoice,
+} from "../redux/slices/invoiceSlice";
 import FormAddRoom from "./FormRoom.js/FormAddRoom";
 import Notify from "./FormRoom.js/Notify";
+import HeaderTableInvoice from "./HeaderTableInvoice";
+import InvoiceObject from "./InvoiceObject";
 
-const TableRoom = () => {
-  const rooms = useSelector((state) => state.rooms.data);
+const TableInvoice = () => {
+  const invoices = useSelector((state) => state.invoices.data);
   const dispatch = useDispatch();
-  const isChange = useSelector((state) => state.rooms.isChange);
-  const [filterState, setFilterState] = useState("")
+  const isChange = useSelector((state) => state.invoices.isChange);
+  const [filterState, setFilterState] = useState("");
   const handleConfirmClick = () => {
-    dispatch(confirmChanges());
+    dispatch(confirmChangesInvoice());
   };
   const handleCancelClick = () => {
-    dispatch(cancelChanges());
+    dispatch(cancelChangesInvoice());
   };
   return (
     <div
@@ -41,16 +43,19 @@ const TableRoom = () => {
             <div row="true">
               <div className="header-item">
                 <h4 className="title-item">
-                  Quản lý danh sách phòng
-                  <i className="des">Tất cả danh sách phòng trong Nhà trọ</i>
+                  Tất cả phiếu thu tiền nhà(hóa đơn) - 10/2023
+                  <i className="des">
+                    Bạn sẽ thấy các hóa đơn hàng tháng được lập hoặc tạo hóa đơn
+                    hàng tháng nếu chưa được lập
+                  </i>
                 </h4>
                 <FormAddRoom />
               </div>
               <ListFilterCard
-                    filters={ROOM}
-                    filterState={filterState}
-                    setFilterState={setFilterState}
-                  />
+                filters={INVOICE}
+                filterState={filterState}
+                setFilterState={setFilterState}
+              />
             </div>
           </div>
         </div>
@@ -70,17 +75,7 @@ const TableRoom = () => {
               role="row"
               style={{ height: "59px" }}
             >
-              {HEADERTABLEROOM.map((square) => {
-                return (
-                  <HeaderTable
-                    key={square.field}
-                    classState={square.classState}
-                    style={square.style}
-                    field={square.field}
-                    text={square.text}
-                  />
-                );
-              })}
+              <HeaderTableInvoice />
             </div>
             {isChange === true ? (
               <Confirmation
@@ -110,42 +105,24 @@ const TableRoom = () => {
             role="rowgroup"
             style={{ paddingTop: "0px", paddingBottom: "0px" }}
           >
-            <div
-              className="tabulator-row tabulator-group tabulator-group-level-0 tabulator-group-visible tabulator-row-odd"
-              role="rowgroup"
-            >
-              <div
-                className="tabulator-group-toggle"
-                style={{ marginLeft: "0px" }}
-              >
-                <div className="tabulator-arrow"></div>
-              </div>
-            </div>
-            {rooms.map((room) => {
+            {invoices.map((invoice) => {
               return (
-                <RoomObject
-                  key={room.id}
-                  id={room.id}
-                  status={room.status}
-                  active_status={room.active_status}
-                  area={room.area}
-                  room_amount={room.room_amount}
-                  deposit_contract_amount={room.deposit_contract_amount}
-                  customers={room.customers}
-                  circle_day={room.circle_day}
-                  circle_month={room.circle_month}
-                  date_join={room.date_join}
-                  date_terminate={room.date_terminate}
-                  maximun_member={room.maximun_member}
+                <InvoiceObject
+                  key={invoice.id}
+                  id={invoice.id}
+                  amount_room={invoice.amount_room}
+                  electricity_bill={invoice.electricity_bill}
+                  water_bill={invoice.water_bill}
+                  service_bill={invoice.service_bill}
                 />
               );
             })}
           </div>
         </div>
       </div>
-      <Notify/>
+      <Notify />
     </div>
   );
 };
 
-export default TableRoom;
+export default TableInvoice;

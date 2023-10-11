@@ -33,8 +33,11 @@ const roomSlice = createSlice({
       state.data = [...state.temporaryData];
       state.isChange = false;
     },
+    addRoom: (state, action) => {
+      state.data.push(action.payload.room)
+    }
   },
 });
 
-export const { updateAttrRoomById, updateAllRoom, startEditing, confirmChanges, cancelChanges } = roomSlice.actions;
+export const { updateAttrRoomById, updateAllRoom, startEditing, confirmChanges, cancelChanges, addRoom } = roomSlice.actions;
 export default roomSlice.reducer;
