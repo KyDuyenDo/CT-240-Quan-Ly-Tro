@@ -23,6 +23,9 @@ public class Room {
 	@Column(name = "room_id")
 	private String roomId;
 	
+	@Column (name = "status_id")
+	private String statusId;
+	
 	@Column(name = "area")
 	private float area;
 	

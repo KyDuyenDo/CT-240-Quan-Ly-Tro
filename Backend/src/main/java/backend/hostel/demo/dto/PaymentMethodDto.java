@@ -11,23 +11,11 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-
-public class BillDto {
-
-	private String billId;
-
-	private String roomId;
-
-	private String username;
-
-	private Date createdDate;
-
-	private Date paidDate;
-
-	private float totalAmount;
-
-	private int month;
-
-	private int year;  
+public class ReceiptDto {
+private String receiptId;
+	
+	private String methodId;
+	
+	private String methodName;
 	
 }

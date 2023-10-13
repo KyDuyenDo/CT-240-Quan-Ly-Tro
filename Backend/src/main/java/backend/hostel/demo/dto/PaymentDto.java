@@ -12,22 +12,20 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class BillDto {
+public class PaymentDto {
 
-	private String billId;
+	private String paymentId;
 
-	private String roomId;
-
+	private String methodId;
+	
 	private String username;
 
-	private Date createdDate;
+	private Date paymentDate;
+	
+	private String description;
+	
+	private String amount;
 
-	private Date paidDate;
-
-	private float totalAmount;
-
-	private int month;
-
-	private int year;  
+	private Date createDate;
 	
 }
