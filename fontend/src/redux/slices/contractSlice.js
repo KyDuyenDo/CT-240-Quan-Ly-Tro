@@ -11,7 +11,7 @@ const contractSlice = createSlice({
     updateAttrContractById: (state, action) => {
       // action có id, gia tri thay doi , cho thay doi
       const index = state.data.findIndex((obj) => {
-        return obj.id === action.payload.id;
+        return obj.id === action.payload.id && obj.id_contract === action.payload.id_contract;
       });
       state.data[index][action.payload.attr] = action.payload.value;
     },

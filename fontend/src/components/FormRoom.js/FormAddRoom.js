@@ -140,8 +140,8 @@ const FormAddRoom = () => {
               <div className="col-md-6">
                 <div className="form-floating">
                   <input
-                    type="text"
-                    className="form-control"
+                    type="number"
+                    className="form-control none-spin"
                     name="name"
                     id="name"
                     required=""
@@ -149,7 +149,7 @@ const FormAddRoom = () => {
                     {...register("name")}
                   />
                   <label htmlFor="name">
-                    Tên phòng<b style={{ color: "red" }}>*</b>
+                    Số phòng<b style={{ color: "red" }}>*</b>
                   </label>
                   <div className="invalid-feedback">
                     Vui lòng nhập tên phòng

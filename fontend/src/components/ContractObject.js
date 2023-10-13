@@ -4,6 +4,7 @@ import Datepicker from "./Datepicker";
 import OptionForActiveRoom from "./OptionForActiveRoom";
 const ContractObject = ({
   id,
+  id_contract,
   customer_id,
   customer_count,
   room_amount,
@@ -74,6 +75,7 @@ const ContractObject = ({
         style_cell="contracts"
         value={customer_id}
         room_id={id}
+        id_contract={id_contract}
         style={{ width: "108px", minHeight: "50px", fontWeight: "" }}
         field="customer_id"
         type="text"
@@ -87,6 +89,7 @@ const ContractObject = ({
         style_cell="contracts"
         value={customer_count}
         room_id={id}
+        id_contract={id_contract}
         style={{ width: "108px", minHeight: "50px", fontWeight: "" }}
         field="customer_count"
         type="number"
@@ -100,6 +103,7 @@ const ContractObject = ({
         style_cell="contracts"
         value={room_amount.replace(/\./g, "")}
         room_id={id}
+        id_contract={id_contract}
         style={{ width: "108px", minHeight: "50px", fontWeight: "fw-bold" }}
         field="room_amount"
         type="number"
@@ -113,6 +117,7 @@ const ContractObject = ({
         style_cell="contracts"
         value={deposit_contract_amount.replace(/\./g, "")}
         room_id={id}
+        id_contract={id_contract}
         style={{ width: "108px", minHeight: "50px", fontWeight: "fw-bold" }}
         field="deposit_contract_amount"
         type="number"
@@ -126,6 +131,7 @@ const ContractObject = ({
         style_cell="contracts"
         value={circle_month}
         room_id={id}
+        id_contract={id_contract}
         style={{ width: "108px", minHeight: "50px", fontWeight: "" }}
         field="circle_month"
         type="number"
@@ -135,7 +141,7 @@ const ContractObject = ({
         className="tabulator-col-resize-handle"
         style={{ minHeight: "50px" }}
       ></span>
-      <div 
+      <div
         className="tabulator-cell edit_disable tabulator-editable"
         role="gridcell"
         tabulator-field="name"
@@ -173,6 +179,7 @@ const ContractObject = ({
         <Datepicker
           style_cell="contracts"
           room_id={id}
+          id_contract={id_contract}
           field="date_contract"
           type={"date_contract_" + id}
           value={date_contract}
@@ -200,8 +207,9 @@ const ContractObject = ({
         <Datepicker
           style_cell="contracts"
           room_id={id}
+          id_contract={id_contract}
           field="date_join"
-          type={"date_join_" + id}
+          type={"date_join_" + id + "_" + id_contract}
           value={date_join}
         />
       </div>
@@ -227,8 +235,9 @@ const ContractObject = ({
         <Datepicker
           style_cell="contracts"
           room_id={id}
+          id_contract={id_contract}
           field="date_terminate"
-          type={"date_terminate_" + id}
+          type={"date_terminate_" + id + "_" + id_contract}
           value={date_terminate}
         />
       </div>
@@ -274,7 +283,7 @@ const ContractObject = ({
           borderRightWidth: "0px",
         }}
       >
-        <OptionForActiveRoom room_id={id} />
+        <OptionForActiveRoom room_id={id} id_contract={id_contract} />
       </div>
       <span
         className="tabulator-col-resize-handle"

@@ -118,6 +118,7 @@ const ContractTable = () => {
                 <ContractObject
                   key={contract.id}
                   id={contract.id}
+                  id_contract={contract.id_contract}
                   customer_id={contract.customer_id}
                   customer_count={contract.customer_count}
                   room_amount={contract.room_amount}

@@ -6,6 +6,7 @@ import ListCustomer from "./FormRoom.js/ListCustomer";
 import FormSetService from "./FormRoom.js/FormSetService";
 import FormSetPower from "./FormRoom.js/FormSetPower";
 import DeleteRoom from "./FormRoom.js/DeleteRoom";
+import { Link } from "react-router-dom";
 const OptionForActiveRoom = ({ room_id }) => {
   return (
     <div className="btn-group dropstart">
@@ -14,7 +15,14 @@ const OptionForActiveRoom = ({ room_id }) => {
         className="btn"
         data-bs-toggle="dropdown"
         aria-expanded="false"
-        style={{ width: "30px", height: "30px", borderRadius: "50%", backgroundColor:"#fff", border:"1px solid black", padding:"0px" }}
+        style={{
+          width: "30px",
+          height: "30px",
+          borderRadius: "50%",
+          backgroundColor: "#fff",
+          border: "1px solid black",
+          padding: "0px",
+        }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -40,23 +48,25 @@ const OptionForActiveRoom = ({ room_id }) => {
           </h6>
         </li>
         <li className="dropdown-item custom_item_2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="feather feather-arrow-right-circle"
-          >
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 16 16 12 12 8"></polyline>
-            <line x1="8" y1="12" x2="16" y2="12"></line>
-          </svg>
-          &nbsp;Chi tiết phòng
+          <Link to={`/quan-ly/chi-tiet-phong/${room_id}`} style={{textDecoration: "none", color: "inherit"}}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="feather feather-arrow-right-circle"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 16 16 12 12 8"></polyline>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+            &nbsp;Chi tiết phòng
+          </Link>
         </li>
         <li className="dropdown-item custom_item_2">
           <FormMakeAnInvoice room_id={room_id} />

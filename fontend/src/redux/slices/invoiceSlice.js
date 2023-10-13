@@ -11,7 +11,7 @@ const invoiceSlice = createSlice({
     updateAttrInvoiceById: (state, action) => {
       // action có id, gia tri thay doi , cho thay doi
       const index = state.data.findIndex((obj) => {
-        return obj.id === action.payload.id;
+        return obj.id === action.payload.id && obj.id_invoice === action.payload.id_invoice;
       }); // tìm vị trí object có id đã chọn
       const atrr_0 = action.payload.attr.split(".")[0]
       const atrr_1 = action.payload.attr.split(".")[1]

@@ -108,8 +108,11 @@ const TableInvoice = () => {
             {invoices.map((invoice) => {
               return (
                 <InvoiceObject
-                  key={invoice.id}
+                  key={invoice.id_invoice}
                   id={invoice.id}
+                  status={invoice.status}
+                  created_date={invoice.created_date}
+                  id_invoice = {invoice.id_invoice}
                   amount_room={invoice.amount_room}
                   electricity_bill={invoice.electricity_bill}
                   water_bill={invoice.water_bill}
