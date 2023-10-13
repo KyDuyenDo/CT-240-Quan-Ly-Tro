@@ -21,6 +21,9 @@ public class Tenant {
 	@Column(name = "tenant_id")
 	private String tenantId;
 	
+	@Column (name = "status_id")
+	private String statusId;
+	
 	@Column(name = "room_id")
 	private String roomId;
 	
