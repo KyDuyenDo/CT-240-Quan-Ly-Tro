@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAttrRoomById, startEditing } from "../redux/slices/roomSlice";
 
@@ -8,7 +8,6 @@ const QuanityInput = ({ value, style, styleBtn, type, room_id, field }) => {
   let len = type === "day" ? 31 : 12;
   const [selectedValue, setSelectedValue] = useState(value);
   const [btnState, setBtnState] = useState(false);
-  const btnRef = useRef(null);
   const handleRadioChange = (event) => {
     const newValue = event.target.value;
     setSelectedValue(newValue);
@@ -17,23 +16,12 @@ const QuanityInput = ({ value, style, styleBtn, type, room_id, field }) => {
     }
     dispatch(updateAttrRoomById({id: room_id, attr:field, value: newValue}))
   };
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (event.target.className === type) {
-        document.getElementById(type).classList.add("active_btn");
-      } else {
-        document.getElementById(type).classList.remove("active_btn");
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [btnRef]);
-
+  const handleBlur = () => {
+    document.getElementById(type).classList.remove("active_btn");
+  }
   const handleDropdownToggle = () => {
     setBtnState(!btnState);
+    document.getElementById(type).classList.add("active_btn");
   };
   return (
     <div className="dropdown" style={{ width: style.width }}>
@@ -44,13 +32,13 @@ const QuanityInput = ({ value, style, styleBtn, type, room_id, field }) => {
         aria-expanded="false"
         style={styleBtn}
         onClick={handleDropdownToggle}
-        ref={btnRef}
+        onBlur={handleBlur}
         id={type}
         value={type === "day" ? "Ngày " + value : value + " tháng"}
       />
-      <div className="dropdown-menu">
+      <div className="dropdown-menu custom_menu">
         {Array.from({ length: len }, (_, index) => (
-          <label className="dropdown-item" key={index}>
+          <label className="dropdown-item custom_item" key={index}>
             <input
               className="jRadioDropdown"
               type="radio"

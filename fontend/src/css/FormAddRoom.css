@@ -1,0 +1,30 @@
+.modal-content {
+    border: 0;
+}
+
+.title-item-small {
+    position: relative;
+    padding-left: 8px;
+    margin-top: 10px;
+    display: inline-grid;
+}
+
+body {
+    background-color: #e4eef5;
+    font-size: 14px;
+}
+
+.form-floating>label {
+    color: #71767a;
+}
+
+.required::after {
+    position: absolute !important;
+    content: "*" !important;
+    color: red;
+    right: 3px !important;
+    font-weight: bold !important;
+}
+.add-round{
+    padding: 0px !important;
+}

@@ -31,7 +31,7 @@ const Confirmation = ({handleCancelClick, handleConfirmClick}) => {
           </svg>{" "}
           Xóa tất cả thay đổi
         </button>
-        <button id="save-change" className="btn btn-primary" onClick={handleConfirmClick}>
+        <button id="save-change" className="btn btn-primary custom_btn" onClick={handleConfirmClick}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

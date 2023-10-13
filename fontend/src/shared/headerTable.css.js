@@ -93,3 +93,88 @@ export const HEADERTABLEROOM = [
     field: "action",
   },
 ];
+
+export const HEADERTABLECONTRACT = [
+  {
+    text: "",
+    style: {
+      maxWidth: "50px",
+      width: "50px",
+    },
+    classState: "",
+    field: "",
+  },
+  {
+    text: "Tên phòng",
+    style: { width: "108px" },
+    classState: "",
+    field: "room.name",
+  },
+  {
+    text: "Đại diện hợp đồng",
+    style: { width: "108px" },
+    classState: "",
+    field: "customer_id",
+  },
+  {
+    text: "Tổng thành viên",
+    style: { width: "108px" },
+    classState: "",
+    field: "customer_count",
+  },
+  {
+    text: "Giá thuê",
+    style: { width: "108px" },
+    classState: "",
+    field: "room_amount",
+  },
+  {
+    text: "Mức giá cọc",
+    style: { width: "108px" },
+    classState: "",
+    field: "deposit_contract_amount",
+  },
+  {
+    text: "Chu kỳ thu",
+    style: { width: "108px" },
+    classState: "",
+    field: "room.circle_month",
+  },
+  {
+    text: "Mẫu hợp đồng",
+    style: { width: "108px" },
+    classState: "",
+    field: "room_contract_template_id",
+  },
+  {
+    text: "Ngày lập",
+    style: { width: "108px" },
+    classState: "",
+    field: "date_contract",
+  },
+  {
+    text: "Ngày vào ở",
+    style: { width: "108px" },
+    classState: "",
+    field: "date_join",
+  },
+  {
+    text: "Thời hạn hợp đồng",
+    style: { width: "108px" },
+    classState: "",
+    field: "date_terminate",
+  },
+  {
+    text: "Tình trạng",
+    style: { width: "118px" },
+    classState: "",
+    field: "status",
+  },
+  {
+    text: " ",
+    style: { width: "50px" },
+    classState: "",
+    field: "action",
+  },
+
+];

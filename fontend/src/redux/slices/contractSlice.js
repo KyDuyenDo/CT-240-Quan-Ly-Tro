@@ -1,43 +1,43 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ROOMOBJECT } from "../../shared/roomObject";
-const roomSlice = createSlice({
-  name: "rooms",
+import { CONTRACT } from "../../shared/contractObject";
+const contractSlice = createSlice({
+  name: "contracts",
   initialState: {
-    data: ROOMOBJECT,
+    data: CONTRACT,
     temporaryData: null,
     isChange: false,
   },
   reducers: {
-    updateAttrRoomById: (state, action) => {
+    updateAttrContractById: (state, action) => {
       // action có id, gia tri thay doi , cho thay doi
       const index = state.data.findIndex((obj) => {
         return obj.id === action.payload.id;
       });
       state.data[index][action.payload.attr] = action.payload.value;
     },
-    updateAllRoom: (state, action) => {
-      state.data = action.payload.rooms;
+    updateAllContract: (state, action) => {
+      state.data = action.payload.contracts;
     },
-    startEditing: (state) => {
+    startEditingContract: (state) => {
       // Lưu trạng thái ban đầu
       state.temporaryData = [...state.data]; // copy
       state.isChange = true;
     },
-    confirmChanges: (state) => {
+    confirmChangesContract: (state) => {
       // Cập nhật dữ liệu
       state.temporaryData = null;
       state.isChange = false;
     },
-    cancelChanges: (state) => {
+    cancelChangesContract: (state) => {
       // Hoàn nguyên trạng thái ban đầu
       state.data = [...state.temporaryData];
       state.isChange = false;
     },
-    addRoom: (state, action) => {
+    addContract: (state, action) => {
       state.data.push(action.payload.room)
     }
   },
 });
 
-export const { updateAttrRoomById, updateAllRoom, startEditing, confirmChanges, cancelChanges, addRoom } = roomSlice.actions;
-export default roomSlice.reducer;
+export const { updateAttrContractById, updateAllContract, startEditingContract, confirmChangesContract, cancelChangesContract, addContract } = contractSlice.actions;
+export default contractSlice.reducer;

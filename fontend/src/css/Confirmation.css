@@ -23,7 +23,7 @@
 #buttom-save-container .btn {
     margin-top: 10px;
 }
-.btn.btn-primary {
+.btn.btn-primary.custom_btn {
     border: 0px solid #3c9e47;
     padding: 7px 20px;
     font-weight: bold;

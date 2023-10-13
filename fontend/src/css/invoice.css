@@ -1,0 +1,10 @@
+.tabulator .tabulator-header .tabulator-col.tabulator-col-group .tabulator-col-group-cols {
+    position: relative;
+    display: flex;
+    border-top: 1px solid #ddd;
+    overflow: hidden;
+    margin-right: -1px;
+}
+.tabulator.celled .tabulator-header .tabulator-col, .tabulator.celled .tabulator-tableholder .tabulator-table .tabulator-row .tabulator-cell {
+    border-right: 1px solid rgba(34,36,38,.1);
+}

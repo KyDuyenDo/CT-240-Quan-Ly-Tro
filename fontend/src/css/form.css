@@ -1,0 +1,22 @@
+.modal-footer--sticky {
+    position: sticky;
+    bottom: 0;
+    background-color: inherit;
+    z-index: 1055;
+    border-bottom-right-radius: calc(0.3rem - 1px);
+    border-bottom-left-radius: calc(0.3rem - 1px);
+}
+.btn.btn-primary.custom_btn {
+    border: 0px solid #3c9e47;
+    padding: 7px 20px;
+    font-weight: bold;
+    background-color: #3c9e47;
+    color: white;
+    background-image: linear-gradient(to right, #7dc242, #3b9d46);
+    position: relative;
+}
+.none-spin::-webkit-outer-spin-button,
+.none-spin::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -1,25 +1,28 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ListFilterCard from "../components/ListFilterCard";
 import HeaderTable from "../components/HeaderTable";
-import { ROOM } from "../shared/filters";
-import { HEADERTABLEROOM } from "../shared/headerTable.css";
-import RoomObject from "../components/RoomObject";
+import { CONTRACT } from "../shared/filters";
+import { HEADERTABLECONTRACT } from "../shared/headerTable.css";
 import Confirmation from "../components/Confirmation";
-import { cancelChanges, confirmChanges } from "../redux/slices/roomSlice";
+import {
+  cancelChangesContract,
+  confirmChangesContract,
+} from "../redux/slices/contractSlice";
 import FormAddRoom from "./FormRoom.js/FormAddRoom";
 import Notify from "./FormRoom.js/Notify";
+import ContractObject from "./ContractObject";
 
-const TableRoom = () => {
-  const rooms = useSelector((state) => state.rooms.data);
+const ContractTable = () => {
+  const contracts = useSelector((state) => state.contracts.data);
   const dispatch = useDispatch();
-  const isChange = useSelector((state) => state.rooms.isChange);
-  const [filterState, setFilterState] = useState("")
+  const isChange = useSelector((state) => state.contracts.isChange);
+  const [filterState, setFilterState] = useState("");
   const handleConfirmClick = () => {
-    dispatch(confirmChanges());
+    dispatch(confirmChangesContract());
   };
   const handleCancelClick = () => {
-    dispatch(cancelChanges());
+    dispatch(cancelChangesContract());
   };
   return (
     <div
@@ -41,16 +44,16 @@ const TableRoom = () => {
             <div row="true">
               <div className="header-item">
                 <h4 className="title-item">
-                  Quản lý danh sách phòng
-                  <i className="des">Tất cả danh sách phòng trong Nhà trọ</i>
+                  Tất cả hợp đồng
+                  <i className="des">Danh sách hợp đồng được tạo khi thêm phiên ở mới</i>
                 </h4>
                 <FormAddRoom />
               </div>
               <ListFilterCard
-                    filters={ROOM}
-                    filterState={filterState}
-                    setFilterState={setFilterState}
-                  />
+                filters={CONTRACT}
+                filterState={filterState}
+                setFilterState={setFilterState}
+              />
             </div>
           </div>
         </div>
@@ -70,7 +73,7 @@ const TableRoom = () => {
               role="row"
               style={{ height: "59px" }}
             >
-              {HEADERTABLEROOM.map((square) => {
+              {HEADERTABLECONTRACT.map((square) => {
                 return (
                   <HeaderTable
                     key={square.field}
@@ -110,42 +113,29 @@ const TableRoom = () => {
             role="rowgroup"
             style={{ paddingTop: "0px", paddingBottom: "0px" }}
           >
-            <div
-              className="tabulator-row tabulator-group tabulator-group-level-0 tabulator-group-visible tabulator-row-odd"
-              role="rowgroup"
-            >
-              <div
-                className="tabulator-group-toggle"
-                style={{ marginLeft: "0px" }}
-              >
-                <div className="tabulator-arrow"></div>
-              </div>
-            </div>
-            {rooms.map((room) => {
+            {contracts.map((contract) => {
               return (
-                <RoomObject
-                  key={room.id}
-                  id={room.id}
-                  status={room.status}
-                  active_status={room.active_status}
-                  area={room.area}
-                  room_amount={room.room_amount}
-                  deposit_contract_amount={room.deposit_contract_amount}
-                  customers={room.customers}
-                  circle_day={room.circle_day}
-                  circle_month={room.circle_month}
-                  date_join={room.date_join}
-                  date_terminate={room.date_terminate}
-                  maximun_member={room.maximun_member}
+                <ContractObject
+                  key={contract.id}
+                  id={contract.id}
+                  customer_id={contract.customer_id}
+                  customer_count={contract.customer_count}
+                  room_amount={contract.room_amount}
+                  deposit_contract_amount={contract.deposit_contract_amount}
+                  circle_month={contract.circle_month}
+                  date_contract={contract.date_contract}
+                  date_join={contract.date_join}
+                  date_terminate={contract.date_terminate}
+                  status={contract.status}
                 />
               );
             })}
           </div>
         </div>
       </div>
-      <Notify/>
+      <Notify />
     </div>
   );
 };
 
-export default TableRoom;
+export default ContractTable;

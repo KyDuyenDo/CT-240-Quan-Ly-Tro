@@ -1,0 +1,28 @@
+.btn-delete {
+    background-color: #ee3a4e !important;
+    color: #fff !important;
+}
+.btn-round {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 100%;
+    background-color: #eee;
+    align-items: center;
+    display: inherit;
+    text-align: center;
+    justify-content: center;
+    margin-right: 10px;
+    color: #000;
+    align-items: center;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+.item-feature {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(34,36,38,.15);
+}
+

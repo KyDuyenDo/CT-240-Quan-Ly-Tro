@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import DatePickerCustom from "./DatePickerCustom";
-const Datepicker = ({ value, type, room_id, field }) => {
+const Datepicker = ({ value, type, room_id, field, style_cell }) => {
   return (
     <div>
       <DatePickerCustom
@@ -13,6 +13,7 @@ const Datepicker = ({ value, type, room_id, field }) => {
         room_id={room_id}
         field={field}
         type={type}
+        style_cell={style_cell}
       />
     </div>
   );

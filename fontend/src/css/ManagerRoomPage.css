@@ -30,7 +30,7 @@
     width: 50px;
     border: 0;
     height: 50px;
-    border-radius: 25px;
+    border-radius: 25px !important;
     display: flex;
     text-align: center;
     align-items: center;
@@ -403,13 +403,13 @@ span.count-filter {
     background-color: #e8ecdd;
 }
 /*dropdown*/
-.dropdown-menu {
+.custom_menu {
     height: 150px;
     overflow-y: scroll;
     border-radius: 0px !important;
     min-width:4rem !important;
 }
-.dropdown-item {
+.custom_item {
     position: relative;
     overflow: hidden;
     cursor: pointer;
@@ -426,7 +426,4 @@ span.count-filter {
     border: 1px solid #007bff !important;
     background-color: #E8ECDD;
   }
-  /* .dropdown-toggle.active {
-    border: 1px solid blue;
-  } */
   

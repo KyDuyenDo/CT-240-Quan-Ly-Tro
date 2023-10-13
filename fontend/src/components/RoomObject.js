@@ -3,6 +3,7 @@ import EditableCell from "./EditableCell";
 import QuanityInput from "./QuanityInput";
 import Datepicker from "./Datepicker";
 import { useEffect } from "react";
+import OptionForActiveRoom from "./OptionForActiveRoom";
 const RoomObject = ({
   id,
   status,
@@ -85,6 +86,7 @@ const RoomObject = ({
         style={{ minHeight: "50px" }}
       ></span>
       <EditableCell
+        style_cell="rooms"
         value={area}
         room_id={id}
         // onChange={(value) => handleCellChange("area", value)}
@@ -98,6 +100,7 @@ const RoomObject = ({
         style={{ minHeight: "50px" }}
       ></span>
       <EditableCell
+        style_cell="rooms"
         value={room_amount.replace(/\./g, "")}
         room_id={id}
         // onChange={(value) => handleCellChange("room_amount", value)}
@@ -111,6 +114,7 @@ const RoomObject = ({
         style={{ minHeight: "50px" }}
       ></span>
       <EditableCell
+        style_cell="rooms"
         value={deposit_contract_amount.replace(/\./g, "")}
         room_id={id}
         // onChange={(value) => handleCellChange("deposit_contract_amount", value)}
@@ -173,6 +177,7 @@ const RoomObject = ({
       </div>
 
       <EditableCell
+        style_cell="rooms"
         value={maximun_member}
         room_id={id}
         // onChange={(value) => handleCellChange("maximun_member", value)}
@@ -206,6 +211,7 @@ const RoomObject = ({
         }}
       >
         <QuanityInput
+          style_cell="rooms"
           value={circle_day}
           styleBtn={{
             width: "69px",
@@ -240,6 +246,7 @@ const RoomObject = ({
         }}
       >
         <QuanityInput
+          style_cell="rooms"
           value={circle_month}
           styleBtn={{
             width: "69px",
@@ -259,7 +266,10 @@ const RoomObject = ({
         style={{ minHeight: "50px" }}
       ></span>
       <div
-        className={"tabulator-editable" + (date_join === "" ? " tabulator-cell edit_disable" : " bg_hover")}
+        className={
+          "tabulator-editable" +
+          (date_join === "" ? " tabulator-cell edit_disable" : " bg_hover")
+        }
         role="gridcell"
         tabulator-field="date_join"
         tabIndex="0"
@@ -273,16 +283,27 @@ const RoomObject = ({
           borderRight: "1px solid rgba(34,36,38,.1)",
         }}
       >
-        {
-          date_join === "" ? <span>Không xác định</span> : <Datepicker room_id={id} field="date_join" type={"date_join_" + id} value={date_join}/>
-        }
+        {date_join === "" ? (
+          <span>Không xác định</span>
+        ) : (
+          <Datepicker
+            style_cell="rooms"
+            room_id={id}
+            field="date_join"
+            type={"date_join_" + id}
+            value={date_join}
+          />
+        )}
       </div>
       <span
         className="tabulator-col-resize-handle"
         style={{ minHeight: "50px" }}
       ></span>
       <div
-        className={"tabulator-editable" + (date_terminate === "" ? " tabulator-cell edit_disable" : " bg_hover")}
+        className={
+          "tabulator-editable" +
+          (date_terminate === "" ? " tabulator-cell edit_disable" : " bg_hover")
+        }
         role="gridcell"
         tabulator-field="date_terminate"
         tabIndex="0"
@@ -296,9 +317,17 @@ const RoomObject = ({
           borderRight: "1px solid rgba(34,36,38,.1)",
         }}
       >
-        {
-          date_terminate === "" ? <span>Không xác định</span> : <Datepicker room_id={id} field="date_terminate" type={"date_terminate_" +  id} value={date_terminate}/>
-        }
+        {date_terminate === "" ? (
+          <span>Không xác định</span>
+        ) : (
+          <Datepicker
+            style_cell="rooms"
+            room_id={id}
+            field="date_terminate"
+            type={"date_terminate_" + id}
+            value={date_terminate}
+          />
+        )}
       </div>
       <span
         className="tabulator-col-resize-handle"
@@ -353,7 +382,7 @@ const RoomObject = ({
         style={{ minHeight: "50px" }}
       ></span>
       <div
-        className="tabulator-cell pointer"
+        className="pointer"
         role="gridcell"
         tabulator-field="action"
         style={{
@@ -366,24 +395,7 @@ const RoomObject = ({
           borderRightWidth: "0px",
         }}
       >
-        <div className="icon-menu-action">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="22"
-            height="22"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="feather feather-more-vertical"
-          >
-            <circle cx="12" cy="12" r="1"></circle>
-            <circle cx="12" cy="5" r="1"></circle>
-            <circle cx="12" cy="19" r="1"></circle>
-          </svg>
-        </div>
+        <OptionForActiveRoom room_id={id} />
       </div>
       <span
         className="tabulator-col-resize-handle"
