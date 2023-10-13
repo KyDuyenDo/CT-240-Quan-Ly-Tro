@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAttrRoomById, startEditing } from "../redux/slices/roomSlice";
 import { updateAttrInvoiceById, startEditingInvoice } from "../redux/slices/invoiceSlice";
+import { updateAttrContractById, startEditingContract } from "../redux/slices/contractSlice";
 function EditableCell({
   room_id,
   value,
@@ -13,7 +14,8 @@ function EditableCell({
 }) {
   const dispatch = useDispatch();
   const isChangeRoom = useSelector((state) => state.rooms.isChange);
-  const isChnageInvoice = useSelector((state) => state.invoices.isChange)
+  const isChangeInvoice = useSelector((state) => state.invoices.isChange)
+  const isChangeContract = useSelector((state) => state.contracts.isChange)
   const [editing, setEditing] = useState(false);
   const [localValue, setLocalValue] = useState(value);
   const inputReference = useRef(null);
@@ -31,8 +33,10 @@ function EditableCell({
     if (isChangeRoom === false && style_cell === "rooms") {
       dispatch(startEditing());
     }
-    else if(isChnageInvoice === false && style_cell === "invoices"){
+    else if(isChangeInvoice === false && style_cell === "invoices"){
       dispatch(startEditingInvoice())
+    }else if(isChangeContract === false && style_cell === "contracts"){
+      dispatch(startEditingContract())
     }
   };
 
@@ -45,11 +49,15 @@ function EditableCell({
         );
       }
     }
-    else if(isChnageInvoice === true && style_cell==="invoices") {
+    else if(isChangeInvoice === true && style_cell==="invoices") {
       if (localValue !== value) {
         dispatch(
           updateAttrInvoiceById({ id: room_id, attr: field, value: localValue })
         );
+      }
+    }else if(isChangeContract === true && style_cell === "contracts"){
+      if(localValue != value){
+        dispatch(updateAttrContractById({ id: room_id, attr: field, value: localValue }))
       }
     }
   };

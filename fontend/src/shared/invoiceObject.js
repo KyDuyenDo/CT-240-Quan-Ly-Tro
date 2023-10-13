@@ -1,6 +1,7 @@
 export let INVOICE = [
   {
     id: "1",
+    id_invoice:"1",
     amount_room: {
       number_of_months: "1",
       odd_number_of_days: "0",
@@ -23,6 +24,7 @@ export let INVOICE = [
   },
   {
     id: "2",
+    id_invoice:"2",
     amount_room: {
       number_of_months: "1",
       odd_number_of_days: "0",
@@ -43,4 +45,5 @@ export let INVOICE = [
       month:"0"
     },
   },
+  
 ];

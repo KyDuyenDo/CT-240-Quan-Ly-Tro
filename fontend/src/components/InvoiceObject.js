@@ -18,7 +18,13 @@ const InvoiceObject = ({
         className="tabulator-cell"
         role="gridcell"
         tabulator-field="sort"
-        style={{ width: "40px", minHeight: "66px", display:"flex", alignItems:"center", justifyContent:"center" }}
+        style={{
+          width: "40px",
+          minHeight: "66px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
       >
         <div className="icon-first" style={{ backgroundColor: "#ED6004" }}>
           <svg
@@ -287,7 +293,12 @@ const InvoiceObject = ({
           minHeight: "66px",
         }}
       >
-        <b>chưa thu</b>
+        <span
+          className="badge "
+          style={{ backgroundColor: "#ED6004", whiteSpace: "break-spaces" }}
+        >
+          chưa thu
+        </span>
       </div>
       <span
         className="tabulator-col-resize-handle"

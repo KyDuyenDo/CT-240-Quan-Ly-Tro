@@ -45,3 +45,31 @@ export const INVOICE = [
     text: "Phiếu chưa thu",
   },
 ];
+export const CONTRACT = [
+  {
+    value: "is_active",
+    info: "is_active",
+    color: "bg-success",
+    text: "Trong thời hạn hợp đồng",
+  },
+  {
+    value: "is_tick_terminate",
+    info: "is_tick_terminate",
+    color: "bg-warning",
+    text: "Đang báo kết thúc",
+  },
+
+  {
+    value: "is_will_terminate",
+    info: "is_will_terminate",
+    color: "bg-danger",
+    text: "Sắp đến hạn",
+  },
+
+  {
+    value: "is_expire",
+    info: "is_expire",
+    color: "disable",
+    text: "Đã quá hạn",
+  },
+];

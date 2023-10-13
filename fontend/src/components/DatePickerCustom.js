@@ -6,6 +6,10 @@ import { useRef } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAttrRoomById, startEditing } from "../redux/slices/roomSlice";
+import {
+  updateAttrContractById,
+  startEditingContract,
+} from "../redux/slices/contractSlice";
 const DatePickerCustom = (props) => {
   const months = [
     "Januari",
@@ -24,7 +28,8 @@ const DatePickerCustom = (props) => {
   const inputRef = useRef(null);
   const [focusing, setFocusing] = useState(false);
   const dispatch = useDispatch();
-  const isChange = useSelector((state) => state.rooms.isChange);
+  const isChangeRoom = useSelector((state) => state.rooms.isChange);
+  const isChangeContract = useSelector((state) => state.contracts.isChange);
   const formatStringToDate = (dateString) => {
     const dateParts = dateString.split("/");
     return new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
@@ -40,30 +45,56 @@ const DatePickerCustom = (props) => {
   };
   const handleChange = (dateSelected) => {
     setDate(dateSelected);
-    if (isChange === false) {
-      dispatch(startEditing());
+    if (props.style_cell === "rooms") {
+      if (isChangeRoom === false) {
+        dispatch(startEditing());
+      }
+      dispatch(
+        updateAttrRoomById({
+          id: props.room_id,
+          attr: props.field,
+          value: formatDateToString(dateSelected),
+        })
+      );
     }
-    dispatch(
-      updateAttrRoomById({
-        id: props.room_id,
-        attr: props.field,
-        value: formatDateToString(dateSelected),
-      })
-    );
+    else if(props.style_cell === "contracts"){
+      if (isChangeContract === false) {
+        dispatch(startEditingContract());
+      }
+      dispatch(
+        updateAttrContractById({
+          id: props.room_id,
+          attr: props.field,
+          value: formatDateToString(dateSelected),
+        })
+      );
+    }
     setFocusing(false);
   };
   const handleFocus = () => {
     setFocusing(true);
   };
   const handleBlur = () => {
-    if (isChange === true) {
-      dispatch(
-        updateAttrRoomById({
-          id: props.room_id,
-          attr: props.field,
-          value: formatDateToString(date),
-        })
-      );
+    if(props.style_cell === "rooms"){
+      if (isChangeRoom === true) {
+        dispatch(
+          updateAttrRoomById({
+            id: props.room_id,
+            attr: props.field,
+            value: formatDateToString(date),
+          })
+        );
+      }
+    }else if(props.style_cell === "contracts"){
+      if (isChangeContract === true) {
+        dispatch(
+          updateAttrContractById({
+            id: props.room_id,
+            attr: props.field,
+            value: formatDateToString(date),
+          })
+        );
+      }
     }
     setFocusing(false);
   };
