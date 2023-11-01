@@ -10,7 +10,7 @@ export let CONTRACT = [
     date_contract: "1/9/2023",
     date_join: "1/9/2023",
     date_terminate: "31/12/2025",
-    status: "",
+    status: "is_active",
   },
   {
     id: "2",
@@ -23,6 +23,6 @@ export let CONTRACT = [
     date_contract: "8/9/2023",
     date_join: "8/9/2023",
     date_terminate: "31/12/2025",
-    status: "",
+    status: "is_active",
   },
 ];

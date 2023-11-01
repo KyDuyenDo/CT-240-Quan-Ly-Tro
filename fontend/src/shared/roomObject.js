@@ -1,7 +1,7 @@
 export let ROOMOBJECT = [
   {
     id: "1",
-    status: ["active"],
+    status: ["is_active"],
     active_status: ["chờ kỳ thới thu"],
     area: "15",
     room_amount: "3000000",
@@ -10,12 +10,12 @@ export let ROOMOBJECT = [
     circle_day: "20",
     circle_month: "1",
     date_join: "10/9/2023",
-    date_terminate: "",
+    date_terminate: "10/9/2033",
     maximun_member: "3",
   },
   {
     id: "2",
-    status: ["empty"],
+    status: ["is_empty"],
     active_status: ["chưa thể thu tiền"],
     area: "15",
     room_amount: "3000000",
@@ -29,7 +29,7 @@ export let ROOMOBJECT = [
   },
   {
     id: "3",
-    status: [""],
+    status: ["is_active", "is_expire"],
     active_status: ["cần thu"],
     area: "15",
     room_amount: "3000000",
@@ -38,7 +38,7 @@ export let ROOMOBJECT = [
     circle_day: "20",
     circle_month: "1",
     date_join: "20/12/2023",
-    date_terminate: "",
+    date_terminate: "20/12/2033",
     maximun_member: "3",
   },
 ];

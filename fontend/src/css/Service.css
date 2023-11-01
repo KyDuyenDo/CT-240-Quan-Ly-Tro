@@ -12,3 +12,24 @@
     height: 1.3em;
     margin-right: 10px;
 }
+
+.header-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.item-feature {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(34,36,38,.15);
+}
+.tabulator .tabulator-header .tabulator-header-contents .tabulator-headers {
+    display: inline-block;
+}
+.tabulator .tabulator-header .tabulator-calcs-holder {
+    box-sizing: border-box;
+    background: #fff!important;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import EditableCell from "./EditableCell";
 import Datepicker from "./Datepicker";
 import OptionForActiveRoom from "./OptionForActiveRoom";
+import { CONTRACT } from "../shared/filters";
 const ContractObject = ({
   id,
   id_contract,
@@ -259,10 +260,10 @@ const ContractObject = ({
         }}
       >
         <span
-          className="badge "
+          className={"badge " + CONTRACT.find((object) => object.info === status).color}
           style={{ backgroundColor: "#dc3545", whiteSpace: "break-spaces" }}
         >
-          Trong thời hạn hợp đồng
+          {(CONTRACT.find((obj) => obj.value === status)).text}
         </span>
       </div>
       <span

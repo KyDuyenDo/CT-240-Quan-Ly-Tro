@@ -5,6 +5,7 @@ import invoiceReducer from "./slices/invoiceSlice";
 import contractReducer from "./slices/contractSlice";
 import serviceReducer from "./slices/serviceSlice";
 import indexReducer from "./slices/indexSlice";
+import customerReducer from "./slices/customerSlice";
 export const store = configureStore({
   reducer: {
     rooms: roomReducer,
@@ -12,6 +13,7 @@ export const store = configureStore({
     invoices: invoiceReducer,
     contracts: contractReducer,
     services: serviceReducer,
-    index: indexReducer
+    index: indexReducer,
+    customers: customerReducer
   },
 });

@@ -178,3 +178,104 @@ export const HEADERTABLECONTRACT = [
   },
 
 ];
+
+export const HEADERTABLECUSTOMER = [
+  {
+    text: "",
+    style: {
+      maxWidth: "50px",
+      width: "50px",
+    },
+    classState: "",
+    field: "",
+  },{
+    text: "Tên khách hàng",
+    style: {
+      maxWidth: "130px",
+      width: "130px",
+    },
+    classState: "",
+    field: "",
+  },{
+    text: "Số điện thoại",
+    style: {
+      maxWidth: "110px",
+      width: "110px",
+    },
+    classState: "",
+    field: "",
+  },{
+    text: "Ngày sinh",
+    style: {
+      maxWidth: "110px",
+      width: "110px",
+    },
+    classState: "",
+    field: "",
+  },{
+    text: "Giới tính",
+    style: {
+      maxWidth: "90px",
+      width: "90px",
+    },
+    classState: "",
+    field: "",
+  },{
+    text: "Địa chỉ",
+    style: {
+      maxWidth: "230px",
+      width: "230px",
+    },
+    classState: "",
+    field: "",
+  },{
+    text: "nghề nghiệp",
+    style: {
+      maxWidth: "130px",
+      width: "130px",
+    },
+    classState: "",
+    field: "",
+  },{
+    text: "CCCD/CMMD",
+    style: {
+      maxWidth: "100px",
+      width: "100px",
+    },
+    classState: "",
+    field: "",
+  },{
+    text: "Loại người thuê",
+    style: {
+      maxWidth: "100px",
+      width: "100px",
+    },
+    classState: "",
+    field: "",
+  },{
+    text: "Trạng thái giấy tờ",
+    style: {
+      maxWidth: "100px",
+      width: "100px",
+    },
+    classState: "",
+    field: "",
+  },{
+    text: "Trạng thái cư trú",
+    style: {
+      maxWidth: "100px",
+      width: "100px",
+    },
+    classState: "",
+    field: "",
+  },
+  {
+    text: "",
+    style: {
+      maxWidth: "50px",
+      width: "50px",
+    },
+    classState: "",
+    field: "",
+  }
+]

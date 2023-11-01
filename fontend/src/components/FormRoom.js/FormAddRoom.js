@@ -38,13 +38,16 @@ const FormAddRoom = () => {
       circle_day: "",
     });
   };
-  // const getDateNow = () => {
-  //   const today = new Date();
-  //   const day = String(today.getDate()).padStart(2, "0");
-  //   const month = String(today.getMonth() + 1).padStart(2, "0");
-  //   const year = String(today.getFullYear()).slice(-2);
-  //   return `${day}/${month}/${year}`;
-  // };
+  const getDateNow = () => {
+    const today = new Date();
+    const day = today.getDate().toString().padStart(2, "0");
+    const month = (today.getMonth() + 1).toString().padStart(2, "0");
+    const year = today.getFullYear().toString();
+    return [
+      `${day}/${month}/${year}`,
+      `${day}/${month}/${parseInt(year) + 10}`,
+    ];
+  };
   const handleShow = () => setShow(true);
   return (
     <>
@@ -110,7 +113,7 @@ const FormAddRoom = () => {
             onSubmit={handleSubmit((data) => {
               const newRoom = {
                 id: data.name,
-                status: ["empty"],
+                status: ["is_empty"],
                 active_status: ["chưa thể thu"],
                 area: data.area,
                 room_amount: data.room_amount,
@@ -122,11 +125,11 @@ const FormAddRoom = () => {
                 date_terminate: "",
                 maximun_member: "3",
               };
-              dispatch(addRoom({room: newRoom}))
+              dispatch(addRoom({ room: newRoom }));
               setShow(false);
               resetForm();
               dispatch(successfully({ message: "Thêm phòng thành công!" }));
-              console.log(data);
+              console.log(newRoom);
             })}
             id="addroom-form"
           >
@@ -190,12 +193,12 @@ const FormAddRoom = () => {
                   <input
                     data-format="numeric"
                     type="number"
-                    value="15"
                     className="form-control none-spin"
                     min="0"
                     name="area"
                     id="area"
                     required=""
+                    defaultValue="15"
                     placeholder="Nhập diện tích"
                     {...register("area")}
                   />
@@ -325,7 +328,7 @@ const FormAddRoom = () => {
               <line x1="12" y1="5" x2="12" y2="19"></line>
               <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
-            Thêm phòng
+            Thêm mới
           </button>
         </Modal.Footer>
       </Modal>

@@ -1,13 +1,61 @@
 import React, { useState } from "react";
 import "../../css/FormAddRoom.css";
-import Button from "react-bootstrap/Button";
+import "../../css/FormAddRoom.css";
+import "../../css/form.css";
 import Modal from "react-bootstrap/Modal";
-
-const FormMakeAnInvoice = ({room_id}) => {
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+const schema = yup.object().shape({
+  date: yup
+    .string()
+    .required("Ngày lập hoá đơn trống")
+    .matches(
+      /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/,
+      "Định dạng ngày không đúng."
+    ),
+  deadline_bill_date: yup
+    .string()
+    .required("Hạn đóng tiền trống")
+    .matches(
+      /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/,
+      "Định dạng ngày không đúng."
+    ),
+  month_amount: yup.string().default("1"),
+  day_amount: yup.string().default("0"),
+  deposit_contract_amount: yup.string(),
+  contract_deposit_contract_amount: yup.string(),
+  addition_bill: yup.string(),
+  addition_value: yup.string(),
+  addition_reason: yup.string()
+});
+const FormMakeAnInvoice = ({ room_id }) => {
   const [show, setShow] = useState(false);
-
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    getValues,
+    watch
+  } = useForm({ resolver: yupResolver(schema) });
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const watch_month_amount = watch("month_amount")
+  const watch_day_amount = watch("day_amount")
+  const resetForm = () => {
+    reset({
+      date: "",
+      deadline_bill_date: "",
+      month_amount: "",
+      day_amount: "",
+      deposit_contract_amount: "",
+      contract_deposit_contract_amount:"",
+      addition_bill:"",
+      addition_value:"",
+      addition_reason:""
+    });
+  };
   return (
     <>
       <div className="" variant="primary" onClick={handleShow}>
@@ -62,54 +110,24 @@ const FormMakeAnInvoice = ({room_id}) => {
             <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
           </svg>
           <Modal.Title style={{ fontSize: "1.25rem" }}>
-            {"Lập hoá đơn cho phòng "+ room_id} 
+            {"Lập hoá đơn cho phòng " + room_id}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form>
+          <form
+            id="addinvoice-form"
+            onSubmit={handleSubmit((data) => {
+              // dispatch(addRoom({ room: newRoom }));
+              // setShow(false);
+              resetForm();
+              // dispatch(successfully({ message: "Thêm phòng thành công!" }));
+              console.log(data);
+            })}
+          >
             <div className="row g-2">
-              <div className="col-12">
-                <div className="input-group">
-                  <div className="form-floating">
-                    <input
-                      type="text"
-                      className="form-control month-flat-picker flatpickr-input"
-                      name="month"
-                      id="month"
-                      placeholder="Nhập tháng"
-                      pattern="\d{1,2}\/\d{4}"
-                      required=""
-                    />
-                    <label htmlFor="month">Tháng lập phiếu</label>
-                  </div>
-                  <label className="input-group-text" htmlFor="month">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="feather feather-calendar"
-                    >
-                      <rect
-                        x="3"
-                        y="4"
-                        width="18"
-                        height="18"
-                        rx="2"
-                        ry="2"
-                      ></rect>
-                      <line x1="16" y1="2" x2="16" y2="6"></line>
-                      <line x1="8" y1="2" x2="8" y2="6"></line>
-                      <line x1="3" y1="10" x2="21" y2="10"></line>
-                    </svg>
-                  </label>
-                </div>
-                <div className="invalid-feedback">Vui lòng nhập tháng</div>
+              <div className="title-item-small">
+                <b>Thời gian</b>
+                <i className="des">Nhập theo định dạng dd/mm/yyyy.</i>
               </div>
               <div className="col-6">
                 <div className="input-group">
@@ -123,6 +141,7 @@ const FormMakeAnInvoice = ({room_id}) => {
                       placeholder="Ngày lập hóa đơn"
                       pattern="\d{1,2}\/\d{1,2}\/\d{4}"
                       required=""
+                      {...register("date")}
                     />
                     <label htmlFor="date-add-bill">Ngày lập hóa đơn</label>
                   </div>
@@ -156,6 +175,11 @@ const FormMakeAnInvoice = ({room_id}) => {
                 <div className="invalid-feedback">
                   Vui lòng nhập Ngày lập hóa đơn
                 </div>
+                {errors.date && (
+                  <small className="text-danger m-1 p-0">
+                    {errors.date.message}
+                  </small>
+                )}
               </div>
               <div className="col-6">
                 <div className="input-group">
@@ -169,10 +193,14 @@ const FormMakeAnInvoice = ({room_id}) => {
                       placeholder="Nhập hạn đóng tiền cho phiếu thu(hóa đơn)"
                       pattern="\d{1,2}\/\d{1,2}\/\d{4}"
                       required=""
+                      {...register("deadline_bill_date")}
                     />
                     <label htmlFor="deadline_bill_date">Hạn đóng tiền</label>
                   </div>
-                  <label className="input-group-text" htmlFor="deadline_bill_date">
+                  <label
+                    className="input-group-text"
+                    htmlFor="deadline_bill_date"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -213,16 +241,17 @@ const FormMakeAnInvoice = ({room_id}) => {
                 </div>
                 <div className="row g-2">
                   <div className="col-6 mt-2">
-                    <div className="form-floating">
+                    <div className="form-floating none-spin">
                       <input
                         data-format="numeric"
-                        type="text"
+                        type="number"
                         min="0"
                         className="form-control"
-                        value="1"
                         name="month_amount"
                         id="month_amount"
                         placeholder="Nhập số tháng"
+                        defaultValue="1"
+                        {...register("month_amount")}
                       />
                       <label htmlFor="month_amount">Số tháng</label>
                       <div className="invalid-feedback">
@@ -232,16 +261,17 @@ const FormMakeAnInvoice = ({room_id}) => {
                   </div>
 
                   <div className="col-6 mt-2">
-                    <div className="form-floating">
+                    <div className="form-floating none-spin">
                       <input
                         data-format="numeric"
-                        type="text"
+                        type="number"
                         min="0"
                         className="form-control"
-                        value="0"
                         name="day_amount"
                         id="day_amount"
+                        defaultValue="0"
                         placeholder="Nhập số tháng"
+                        {...register("day_amount")}
                       />
                       <label htmlFor="day_amount">Số ngày lẻ</label>
                       <div className="invalid-feedback">
@@ -258,8 +288,8 @@ const FormMakeAnInvoice = ({room_id}) => {
                         <div>
                           <span>Tính tiền phòng</span>
                         </div>
-                        <b className="bill-month-amount-text">1 tháng</b>,{" "}
-                        <b className="bill-day-amount-text">0 ngày</b>x{" "}
+                        <b className="bill-month-amount-text">{watch_month_amount === undefined? 1: watch_month_amount} tháng</b>,{" "}
+                        <b className="bill-day-amount-text">{watch_day_amount === undefined? 0: watch_day_amount} ngày</b>&nbsp;x{" "}
                         <b className="bill-room-amount">3.000.000&nbsp;₫</b>
                       </div>
                       <div className="col-6 text-end">
@@ -267,7 +297,7 @@ const FormMakeAnInvoice = ({room_id}) => {
                           <span>Thành tiền</span>
                         </div>
                         <b className="total-price bill-total-room">
-                          3.000.000&nbsp;₫
+                          {watch_month_amount === undefined ? new Intl.NumberFormat("de-DE").format(3000000):new Intl.NumberFormat("de-DE").format(parseInt(watch_month_amount)*3000000 + (3000000/30)*parseInt(watch_day_amount))}&nbsp;₫
                         </b>
                       </div>
                     </div>
@@ -284,37 +314,6 @@ const FormMakeAnInvoice = ({room_id}) => {
                     Thu tiền cọc nếu có phát sinh
                   </i>
                 </div>
-
-                <div className="col-12" style={{ display: "none" }}>
-                  <div className="form-check form-check-inline">
-                    <input
-                      data-format="numeric"
-                      className="form-check-input"
-                      type="radio"
-                      name="deposit"
-                      id="deposit_add"
-                      checked=""
-                      value="1"
-                    />
-                    <label className="form-check-label" htmlFor="deposit_add">
-                      Thu tiền cọc
-                    </label>
-                  </div>
-                  <div className="form-check form-check-inline">
-                    <input
-                      data-format="numeric"
-                      className="form-check-input"
-                      type="radio"
-                      name="deposit"
-                      id="deposit_renturn"
-                      value="-1"
-                    />
-                    <label className="form-check-label" htmlFor="deposit_renturn">
-                      Trả tiền cọc
-                    </label>
-                  </div>
-                </div>
-
                 <div className="col-12 mt-2">
                   <div className="form-floating">
                     <input
@@ -325,22 +324,11 @@ const FormMakeAnInvoice = ({room_id}) => {
                       name="deposit_contract_amount"
                       id="deposit_contract_amount"
                       placeholder="Số tiền cọc thu hoặc trả lại"
+                      {...register("deposit_contract_amount")}
                     />
-                    <label htmlFor="deposit_contract_amount">Số tiền cọc(đ)</label>
-                    <input
-                      style={{ display: "none" }}
-                      data-format="numeric"
-                      type="text"
-                      min="0"
-                      name="real_deposit_contract_amount"
-                    />
-                    <input
-                      style={{ display: "none" }}
-                      data-format="numeric"
-                      type="text"
-                      min="0"
-                      name="contract_deposit_contract_amount"
-                    />
+                    <label htmlFor="deposit_contract_amount">
+                      Số tiền cọc(đ)
+                    </label>
                   </div>
                 </div>
               </div>
@@ -356,12 +344,6 @@ const FormMakeAnInvoice = ({room_id}) => {
                 <div className="room-price-item price-items-checkout-layout">
                   <div className="item">
                     <div className="item-check-name">
-                      <input
-                        className="form-check-input"
-                        type="hidden"
-                        value="10499"
-                        name="price_items[10499][id]"
-                      />
                       <label htmlFor="bill_check_price_item_10499">
                         <b>Tiền điện</b>{" "}
                         <p>
@@ -391,12 +373,6 @@ const FormMakeAnInvoice = ({room_id}) => {
                   </div>
                   <div className="item">
                     <div className="item-check-name">
-                      <input
-                        className="form-check-input"
-                        type="hidden"
-                        value="10500"
-                        name="price_items[10500][id]"
-                      />
                       <label htmlFor="bill_check_price_item_10500">
                         <b>Tiền nước</b>{" "}
                         <p>
@@ -457,15 +433,28 @@ const FormMakeAnInvoice = ({room_id}) => {
                 </div>
               </div>
               <div className="col-12">
+                <div className="d-none">
+                  <input
+                    data-format="numeric"
+                    className="form-check-input"
+                    type="radio"
+                    name="addition_a_bill"
+                    id="addition_bill"
+                    value="0"
+                    {...register("addition_bill")}
+                    checked={true}
+                  />
+                  <label className="form-check-label">Cộng thêm</label>
+                </div>
                 <div className="form-check form-check-inline">
                   <input
                     data-format="numeric"
                     className="form-check-input"
                     type="radio"
-                    name="addition"
-                    id="addition_a_bill"
-                    checked=""
+                    name="addition_a_bill"
+                    id="addition_bill"
                     value="1"
+                    {...register("addition_bill")}
                   />
                   <label className="form-check-label" htmlFor="addition_a_bill">
                     Cộng thêm
@@ -476,9 +465,10 @@ const FormMakeAnInvoice = ({room_id}) => {
                     data-format="numeric"
                     className="form-check-input"
                     type="radio"
-                    name="addition"
-                    id="addition_b_bill"
+                    name="addition_b_bill"
+                    id="addition_bill"
                     value="-1"
+                    {...register("addition_bill")}
                   />
                   <label className="form-check-label" htmlFor="addition_b_bill">
                     Giảm trừ
@@ -495,6 +485,7 @@ const FormMakeAnInvoice = ({room_id}) => {
                     name="addition_value"
                     id="addition_value"
                     placeholder="Số tiền cộng thêm hoặc giảm trừ"
+                    {...register("addition_value")}
                   />
                   <label htmlFor="addition_value">Số tiền (đ)</label>
                 </div>
@@ -509,6 +500,7 @@ const FormMakeAnInvoice = ({room_id}) => {
                     name="addition_reason"
                     id="addition_reason"
                     placeholder="Nhập lý do"
+                    {...register("addition_reason")}
                   ></textarea>
                   <label htmlFor="addition_reason">Lý do</label>
                 </div>
@@ -542,27 +534,48 @@ const FormMakeAnInvoice = ({room_id}) => {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <div className="row g-0" style={{ width: "100%" }}>
-            <div className="col-6">
-              <div>
-                <span>Tổng cộng hóa đơn: </span>
-              </div>
-              <b
-                className="show-total total-price bill-total"
-                style={{ color: "#3c9e47" }}
-              >
-                6.002.000&nbsp;₫
-              </b>
+          <div className="col-6">
+            <div>
+              <span>Tổng cộng hóa đơn: </span>
             </div>
-            <div className="col-6 text-end">
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-              <Button style={{marginLeft:"5px"}} variant="primary" onClick={handleClose}>
-                Save Changes
-              </Button>
-            </div>
+            <b
+              className="show-total total-price bill-total"
+              style={{ color: "#3c9e47" }}
+            >
+              6.002.000&nbsp;₫
+            </b>
           </div>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            data-bs-dismiss="modal"
+            onClick={handleClose}
+          >
+            Đóng
+          </button>
+          <button
+            type="submit"
+            form="addinvoice-form"
+            id="submit-room"
+            className="btn btn-success"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="feather feather-plus"
+            >
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            Thêm mới
+          </button>
         </Modal.Footer>
       </Modal>
     </>
