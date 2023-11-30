@@ -1,12 +1,15 @@
 import React from "react";
 import EditableCell from "./EditableCell";
-import OptionForActiveRoom from "./OptionForActiveRoom";
+import OptionforInvoice from "./OptionforInvoice";
 const InvoiceObject = ({
   id,
+  id_invoice,
   amount_room,
   electricity_bill,
   water_bill,
   service_bill,
+  created_date,
+  status,
 }) => {
   return (
     <div
@@ -24,6 +27,7 @@ const InvoiceObject = ({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          backgroundColor: "#EBEEEB",
         }}
       >
         <div className="icon-first" style={{ backgroundColor: "#ED6004" }}>
@@ -56,40 +60,78 @@ const InvoiceObject = ({
         style={{
           width: "155px",
           textAlign: "left",
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "flex-start",
+          display: "flex",
+          justifyContent: "center",
           minHeight: "66px",
+          flexDirection: "column",
+          backgroundColor: "#EBEEEB",
         }}
       >
         <b>{"Phòng " + id}</b>
+        <span style={{ fontSize: "11px", color: "green" }}>{created_date}</span>
       </div>
       <span
         className="tabulator-col-resize-handle"
         style={{ minHeight: "66px" }}
       ></span>
-      <EditableCell
+      {/* <EditableCell
         style_cell="invoices"
         value={amount_room.number_of_months}
         room_id={id}
+        id_invoice={id_invoice}
         style={{ width: "50px", minHeight: "66px", fontWeight: "" }}
         field="amount_room.number_of_months"
         type="number"
         unit=""
-      />
+      /> */}
+      <div
+        className="tabulator-cell edit_disable tabulator-editable"
+        role="gridcell"
+        tabulator-field="number_of_months"
+        tabIndex="0"
+        style={{
+          width: "50px",
+          textAlign: "left",
+          display: "flex",
+          justifyContent: "center",
+          minHeight: "66px",
+          flexDirection: "column",
+          backgroundColor: "#FFF5F2",
+        }}
+      >
+        <span>{amount_room.number_of_months}</span>
+      </div>
       <span
         className="tabulator-col-resize-handle"
         style={{ minHeight: "66px" }}
       ></span>
-      <EditableCell
+      {/* <EditableCell
         style_cell="invoices"
         value={amount_room.odd_number_of_days}
         room_id={id}
+        id_invoice={id_invoice}
         style={{ width: "50px", minHeight: "66px", fontWeight: "" }}
         field="amount_room.odd_number_of_days"
         type="number"
         unit=""
-      />
+      /> */}
+      <div
+        className="tabulator-cell edit_disable tabulator-editable"
+        role="gridcell"
+        tabulator-field="odd_number_of_days"
+        tabIndex="0"
+        style={{
+          width: "50px",
+          textAlign: "left",
+          display: "flex",
+          justifyContent: "center",
+          minHeight: "66px",
+          flexDirection: "column",
+          backgroundColor: "#FFF5F2",
+        }}
+      >
+        <span>{amount_room.odd_number_of_days}</span>
+      </div>
       <span
         className="tabulator-col-resize-handle"
         style={{ minHeight: "66px" }}
@@ -108,34 +150,70 @@ const InvoiceObject = ({
           minHeight: "66px",
         }}
       >
-        <b>{amount_room.total + " đ"}</b>
+        <b>{new Intl.NumberFormat("de-DE").format(amount_room.total) + " ₫"}</b>
       </div>
       <span
         className="tabulator-col-resize-handle"
         style={{ minHeight: "66px" }}
       ></span>
-      <EditableCell
+      {/* <EditableCell
         style_cell="invoices"
         value={electricity_bill.old_unit}
         room_id={id}
+        id_invoice={id_invoice}
         style={{ width: "60px", minHeight: "66px", fontWeight: "" }}
         field="electricity_bill.old_unit"
         type="number"
         unit=""
-      />
+      /> */}
+      <div
+        className="tabulator-cell edit_disable tabulator-editable"
+        role="gridcell"
+        tabulator-field="electricity_bill.old_unit"
+        tabIndex="0"
+        style={{
+          width: "60px",
+          textAlign: "left",
+          display: "flex",
+          justifyContent: "center",
+          minHeight: "66px",
+          flexDirection: "column",
+          backgroundColor: "#FFF5F2",
+        }}
+      >
+        <span>{electricity_bill.old_unit}</span>
+      </div>
       <span
         className="tabulator-col-resize-handle"
         style={{ minHeight: "66px" }}
       ></span>
-      <EditableCell
+      {/* <EditableCell
         style_cell="invoices"
         value={electricity_bill.new_unit}
         room_id={id}
+        id_invoice={id_invoice}
         style={{ width: "60px", minHeight: "66px", fontWeight: "" }}
         field="electricity_bill.new_unit"
         type="number"
         unit=""
-      />
+      /> */}
+      <div
+        className="tabulator-cell edit_disable tabulator-editable"
+        role="gridcell"
+        tabulator-field="electricity_bill.new_unit"
+        tabIndex="0"
+        style={{
+          width: "60px",
+          textAlign: "left",
+          display: "flex",
+          justifyContent: "center",
+          minHeight: "66px",
+          flexDirection: "column",
+          backgroundColor: "#FFF5F2",
+        }}
+      >
+        <span>{electricity_bill.new_unit}</span>
+      </div>
       <span
         className="tabulator-col-resize-handle"
         style={{ minHeight: "66px" }}
@@ -154,34 +232,72 @@ const InvoiceObject = ({
           minHeight: "66px",
         }}
       >
-        <b>{electricity_bill.total + " đ"}</b>
+        <b>
+          {new Intl.NumberFormat("de-DE").format(electricity_bill.total) + " ₫"}
+        </b>
       </div>
       <span
         className="tabulator-col-resize-handle"
         style={{ minHeight: "66px" }}
       ></span>
-      <EditableCell
+      {/* <EditableCell
         style_cell="invoices"
         value={water_bill.old_unit}
         room_id={id}
+        id_invoice={id_invoice}
         style={{ width: "60px", minHeight: "66px", fontWeight: "" }}
         field="water_bill.old_unit"
         type="number"
         unit=""
-      />
+      /> */}
+      <div
+        className="tabulator-cell edit_disable tabulator-editable"
+        role="gridcell"
+        tabulator-field="water_bill.old_unit"
+        tabIndex="0"
+        style={{
+          width: "60px",
+          textAlign: "left",
+          display: "flex",
+          justifyContent: "center",
+          minHeight: "66px",
+          flexDirection: "column",
+          backgroundColor: "#FFF5F2",
+        }}
+      >
+        <span>{water_bill.old_unit}</span>
+      </div>
       <span
         className="tabulator-col-resize-handle"
         style={{ minHeight: "66px" }}
       ></span>
-      <EditableCell
+      {/* <EditableCell
         style_cell="invoices"
         value={water_bill.new_unit}
         room_id={id}
+        id_invoice={id_invoice}
         style={{ width: "60px", minHeight: "66px", fontWeight: "" }}
         field="water_bill.new_unit"
         type="number"
         unit=""
-      />
+      /> */}
+      <div
+        className="tabulator-cell edit_disable tabulator-editable"
+        role="gridcell"
+        tabulator-field="water_bill.new_unit"
+        tabIndex="0"
+        style={{
+          width: "60px",
+          textAlign: "left",
+          display: "flex",
+          justifyContent: "center",
+          minHeight: "66px",
+          flexDirection: "column",
+          backgroundColor: "#FFF5F2",
+        }}
+      >
+        <span>{water_bill.new_unit}</span>
+      </div>
       <span
         className="tabulator-col-resize-handle"
         style={{ minHeight: "66px" }}
@@ -200,21 +316,39 @@ const InvoiceObject = ({
           minHeight: "66px",
         }}
       >
-        <b>{water_bill.total + " đ"}</b>
+        <b>{new Intl.NumberFormat("de-DE").format(water_bill.total) + " ₫"}</b>
       </div>
       <span
         className="tabulator-col-resize-handle"
         style={{ minHeight: "66px" }}
       ></span>
-      <EditableCell
+      {/* <EditableCell
         style_cell="invoices"
         value={service_bill.month}
         room_id={id}
+        id_invoice={id_invoice}
         style={{ width: "50px", minHeight: "66px", fontWeight: "" }}
         field="service_bill.month"
         type="number"
         unit=""
-      />
+      /> */}
+      <div
+        className="tabulator-cell edit_disable tabulator-editable"
+        role="gridcell"
+        tabulator-field="service_bill.month"
+        tabIndex="0"
+        style={{
+          width: "50px",
+          textAlign: "left",
+          display: "flex",
+          justifyContent: "center",
+          minHeight: "66px",
+          flexDirection: "column",
+          backgroundColor: "#FFF5F2",
+        }}
+      >
+        <span>{service_bill.month}</span>
+      </div>
       <span
         className="tabulator-col-resize-handle"
         style={{ minHeight: "66px" }}
@@ -233,7 +367,9 @@ const InvoiceObject = ({
           minHeight: "66px",
         }}
       >
-        <b>{service_bill.total + " đ"}</b>
+        <b>
+          {new Intl.NumberFormat("de-DE").format(service_bill.total) + " ₫"}
+        </b>
       </div>
       <span
         className="tabulator-col-resize-handle"
@@ -253,7 +389,15 @@ const InvoiceObject = ({
           minHeight: "66px",
         }}
       >
-        <b>{3000000}</b>
+        <b>
+          {new Intl.NumberFormat("de-DE").format(
+            parseInt(amount_room.total) +
+              parseInt(electricity_bill.total) +
+              parseInt(water_bill.total) +
+              parseInt(service_bill.total)
+          )}
+          &nbsp;₫
+        </b>
       </div>
       <span
         className="tabulator-col-resize-handle"
@@ -271,9 +415,18 @@ const InvoiceObject = ({
           alignItems: "center",
           justifyContent: "flex-start",
           minHeight: "66px",
+          backgroundColor: "#FFF4E4",
         }}
       >
-        <b>{3000000}</b>
+        <b style={{ color: "red" }}>
+          {new Intl.NumberFormat("de-DE").format(
+            parseInt(amount_room.total) +
+              parseInt(electricity_bill.total) +
+              parseInt(water_bill.total) +
+              parseInt(service_bill.total)
+          )}
+          &nbsp;₫
+        </b>
       </div>
       <span
         className="tabulator-col-resize-handle"
@@ -291,13 +444,16 @@ const InvoiceObject = ({
           alignItems: "center",
           justifyContent: "flex-start",
           minHeight: "66px",
+          backgroundColor: "#EBEEEB",
         }}
       >
         <span
-          className="badge "
-          style={{ backgroundColor: "#ED6004", whiteSpace: "break-spaces" }}
+          className={
+            status === "done" ? "badge bg-success" : "badge bg-warning"
+          }
+          style={{ whiteSpace: "break-spaces" }}
         >
-          chưa thu
+          {status === "done" ? "Đã thu" : "Chưa thu"}
         </span>
       </div>
       <span
@@ -316,9 +472,14 @@ const InvoiceObject = ({
           justifyContent: "center",
           minHeight: "50px",
           borderRightWidth: "0px",
+          backgroundColor: "#EBEEEB",
         }}
       >
-        <OptionForActiveRoom room_id={id} />
+        <OptionforInvoice
+          room_id={id}
+          id_invoice={id_invoice}
+          status={status}
+        />
       </div>
       <span
         className="tabulator-col-resize-handle"

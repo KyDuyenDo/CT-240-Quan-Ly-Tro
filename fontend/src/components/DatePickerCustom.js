@@ -56,8 +56,7 @@ const DatePickerCustom = (props) => {
           value: formatDateToString(dateSelected),
         })
       );
-    }
-    else if(props.style_cell === "contracts"){
+    } else if (props.style_cell === "contracts") {
       if (isChangeContract === false) {
         dispatch(startEditingContract());
       }
@@ -75,7 +74,7 @@ const DatePickerCustom = (props) => {
     setFocusing(true);
   };
   const handleBlur = () => {
-    if(props.style_cell === "rooms"){
+    if (props.style_cell === "rooms") {
       if (isChangeRoom === true) {
         dispatch(
           updateAttrRoomById({
@@ -85,11 +84,12 @@ const DatePickerCustom = (props) => {
           })
         );
       }
-    }else if(props.style_cell === "contracts"){
+    } else if (props.style_cell === "contracts") {
       if (isChangeContract === true) {
         dispatch(
           updateAttrContractById({
             id: props.room_id,
+            id_contract: props.id_contract,
             attr: props.field,
             value: formatDateToString(date),
           })

@@ -21,7 +21,7 @@ export const ROOM = [
   {
     value: "is_expire",
     info: "expire",
-    color: "disable",
+    color: "bg-secondary",
     text: "Hợp đồng đã quá hạn",
   },
   {
@@ -69,7 +69,13 @@ export const CONTRACT = [
   {
     value: "is_expire",
     info: "is_expire",
-    color: "disable",
+    color: "bg-secondary",
     text: "Đã quá hạn",
   },
+];
+export const CUSTOMER = [
+  { value: "is_registry_1", color: "bg-success", text:"Đã đăng ký tạm trú" },
+  { value: "is_registry_0", color: "bg-warning", text:"Chưa đăng ký tạm trú" },
+  { value: "is_verify_1", color: "bg-success", text:"Khách đã nộp giấy tờ" },
+  { value: "is_verify_0", color: "bg-danger", text:"Khách chưa nộp giấy tờ" },
 ];

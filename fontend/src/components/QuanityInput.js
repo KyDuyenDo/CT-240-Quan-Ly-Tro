@@ -5,7 +5,7 @@ import { updateAttrRoomById, startEditing } from "../redux/slices/roomSlice";
 const QuanityInput = ({ value, style, styleBtn, type, room_id, field }) => {
   const dispatch = useDispatch();
   const isChange = useSelector((state) => state.rooms.isChange)
-  let len = type === "day" ? 31 : 12;
+  let len = type === ("day_" + room_id) ? 31 : 12;
   const [selectedValue, setSelectedValue] = useState(value);
   const [btnState, setBtnState] = useState(false);
   const handleRadioChange = (event) => {
@@ -34,7 +34,7 @@ const QuanityInput = ({ value, style, styleBtn, type, room_id, field }) => {
         onClick={handleDropdownToggle}
         onBlur={handleBlur}
         id={type}
-        value={type === "day" ? "Ngày " + value : value + " tháng"}
+        value={type === ("day_" + room_id) ? "Ngày " + value : value + " tháng"}
       />
       <div className="dropdown-menu custom_menu">
         {Array.from({ length: len }, (_, index) => (
@@ -48,7 +48,7 @@ const QuanityInput = ({ value, style, styleBtn, type, room_id, field }) => {
               onChange={handleRadioChange}
             />
             <span>
-              {type === "day" ? "Ngày " + (index + 1) : index + 1 + " tháng"}
+              {type === ("day_" + room_id) ? "Ngày " + (index + 1) : index + 1 + " tháng"}
             </span>
           </label>
         ))}

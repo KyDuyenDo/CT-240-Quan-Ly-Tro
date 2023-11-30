@@ -1,0 +1,17 @@
+.custom-select {
+    background-color: transparent;
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-size: inherit;
+}
+
+.custom-select:focus {
+    outline: none;
+    border-color: initial;
+    box-shadow: none;
+}
+.option_custom{
+    margin: auto;
+}

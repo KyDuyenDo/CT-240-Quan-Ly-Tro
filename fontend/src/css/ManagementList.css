@@ -58,3 +58,6 @@ a.item-menu.active, a.item-menu:hover {
     color: #1d6922;
     text-decoration: underline;
 }
+.header-table.header-item {
+    z-index: 0;
+}

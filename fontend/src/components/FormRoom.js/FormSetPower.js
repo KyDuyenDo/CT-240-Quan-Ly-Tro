@@ -2,11 +2,39 @@ import React, { useState } from "react";
 import "../../css/Service.css";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { useDispatch, useSelector } from "react-redux";
+import { addIndex } from "../../redux/slices/indexSlice";
+import { successfully, unsuccessful } from "../../redux/slices/notifySlice";
+
 const FormSetPower = ({ room_id }) => {
   const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setwater(0);
+    setelectricity(0);
+  };
+  const handleSave = () => {
+    let today = new Date();
+    let formattedDate =
+      ("0" + today.getDate()).slice(-2) +
+      "/" +
+      ("0" + (today.getMonth() + 1)).slice(-2) +
+      "/" +
+      today.getFullYear();
+    const newpower = {
+      id: room_id,
+      index_electricity: electricity,
+      index_water: water,
+      create_date: formattedDate.toString(),
+    };
+    dispatch(addIndex({ index: newpower }));
+    setShow(false);
+    dispatch(successfully({ message: "Thêm phòng thành công!" }));
+  };
+  const dispatch = useDispatch();
   const handleShow = () => setShow(true);
+  const [water, setwater] = useState(0);
+  const [electricity, setelectricity] = useState(0);
   return (
     <>
       <div className="" variant="primary" onClick={handleShow}>
@@ -70,12 +98,6 @@ const FormSetPower = ({ room_id }) => {
             <div className="list-price-item-render price-items-checkout-layout">
               <div className="item">
                 <div className="item-check-name">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    value="1"
-                    // checked=""
-                  />
                   <label>
                     <b>Tiền điện</b>{" "}
                     <p>
@@ -90,7 +112,8 @@ const FormSetPower = ({ room_id }) => {
                       min="0"
                       type="number"
                       placeholder="Nhập số cũ"
-                      value="0"
+                      value={electricity}
+                      onChange={(event) => setelectricity(event.target.value)}
                     />
                     <label className="input-group-text">
                       Chỉ số
@@ -102,12 +125,6 @@ const FormSetPower = ({ room_id }) => {
               </div>
               <div className="item">
                 <div className="item-check-name">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    value="1"
-                    // checked=""
-                  />
                   <label>
                     <b>Tiền nước</b>{" "}
                     <p>
@@ -122,7 +139,8 @@ const FormSetPower = ({ room_id }) => {
                       min="0"
                       type="number"
                       placeholder="Nhập số cũ"
-                      value="0"
+                      value={water}
+                      onChange={(event) => setwater(event.target.value)}
                     />
                     <label className="input-group-text">
                       Chỉ số
@@ -139,7 +157,7 @@ const FormSetPower = ({ room_id }) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleSave}>
             Save Changes
           </Button>
         </Modal.Footer>

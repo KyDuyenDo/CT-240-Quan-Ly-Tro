@@ -1,7 +1,10 @@
 import React from "react";
 import "../css/ManagementList.css";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 const ManagementList = () => {
+  let url = useLocation();
+  let urlSplit = url.pathname.split("/")
+  let active = urlSplit[urlSplit.length -1];
   return (
     <>
       <div
@@ -79,7 +82,7 @@ const ManagementList = () => {
               position: "relative",
             }}
           >
-            <Link to="/" className="item-menu active">
+            <Link to="/quan-ly" className={"item-menu " + (active === "quan-ly"? "active" : "")}>
               <div className="icon text-center">
                 <img
                   width="55px"
@@ -93,7 +96,7 @@ const ManagementList = () => {
                 </span>
               </div>
             </Link>
-            <Link to="/quan-ly/lap-phieu-thu" className="item-menu">
+            <Link to="/quan-ly/lap-phieu-thu" className={"item-menu " + (active === "lap-phieu-thu"? "active" : "")}>
               <div className="icon text-center">
                 <img
                   width="55px"
@@ -107,7 +110,7 @@ const ManagementList = () => {
                 </span>
               </div>
             </Link>
-            <Link to="/quan-ly/tat-ca-hop-dong" className="item-menu">
+            <Link to="/quan-ly/tat-ca-hop-dong" className={"item-menu " + (active === "tat-ca-hop-dong"? "active" : "")}>
               <div className="icon text-center">
                 <img
                   width="55px"
@@ -121,7 +124,7 @@ const ManagementList = () => {
                 </span>
               </div>
             </Link>
-            <Link to="/quan-ly/quan-ly-dich-vu" className="item-menu">
+            <Link to="/quan-ly/quan-ly-dich-vu" className={"item-menu " + (active === "quan-ly-dich-vu"? "active" : "")}>
               <div className="icon text-center">
                 <img
                   width="55px"
@@ -136,7 +139,7 @@ const ManagementList = () => {
                 </span>
               </div>
             </Link>
-            <Link to="/quan-ly/tat-ca-khach-thue" className="item-menu">
+            <Link to="/quan-ly/tat-ca-khach-thue" className={"item-menu " + (active === "tat-ca-khach-thue"? "active" : "")}>
               <div className="icon text-center">
                 <img
                   width="55px"
@@ -150,7 +153,7 @@ const ManagementList = () => {
                 </span>
               </div>
             </Link>
-            <Link to="/quan-ly/thu-chi-tong-ket" className="item-menu">
+            <Link to="/quan-ly/thu-chi-tong-ket" className={"item-menu " + (active === "thu-chi-tong-ket"? "active" : "")}>
               <div className="icon text-center">
                 <img
                   width="55px"
@@ -164,7 +167,7 @@ const ManagementList = () => {
                 </span>
               </div>
             </Link>
-            <Link to="/quan-ly/cai-dat-nha-tro" className="item-menu">
+            <Link to="/quan-ly/cai-dat-nha-tro" className={"item-menu " + (active === "cai-dat-nha-tro"? "active" : "")}>
               <div className="icon text-center">
                 <img
                   width="55px"
