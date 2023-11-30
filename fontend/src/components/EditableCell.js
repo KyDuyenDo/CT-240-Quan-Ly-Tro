@@ -9,10 +9,15 @@ import {
   updateAttrContractById,
   startEditingContract,
 } from "../redux/slices/contractSlice";
+import {
+  updateAttrCustomerById,
+  startEditingCustomer,
+} from "../redux/slices/customerSlice";
 function EditableCell({
   room_id,
   id_invoice,
   id_contract,
+  id_customer,
   value,
   style,
   field,
@@ -24,6 +29,7 @@ function EditableCell({
   const isChangeRoom = useSelector((state) => state.rooms.isChange);
   const isChangeInvoice = useSelector((state) => state.invoices.isChange);
   const isChangeContract = useSelector((state) => state.contracts.isChange);
+  const isChangeCustomer = useSelector((state) => state.customers.isChange);
   const [editing, setEditing] = useState(false);
   const [localValue, setLocalValue] = useState(value);
   const inputReference = useRef(null);
@@ -33,7 +39,7 @@ function EditableCell({
     }
   }, [editing]);
   const handleClick = () => {
-    // setLocalValue(value)
+    setLocalValue(value)
     setEditing(true);
   };
   const handleInputChange = (event) => {
@@ -44,6 +50,8 @@ function EditableCell({
       dispatch(startEditingInvoice());
     } else if (isChangeContract === false && style_cell === "contracts") {
       dispatch(startEditingContract());
+    } else if (isChangeCustomer === false && style_cell === "customer") {
+      dispatch(startEditingCustomer());
     }
   };
 
@@ -67,11 +75,22 @@ function EditableCell({
         );
       }
     } else if (isChangeContract === true && style_cell === "contracts") {
-      if (localValue != value) {
+      if (localValue !== value) {
         dispatch(
           updateAttrContractById({
             id: room_id,
             id_contract: id_contract,
+            attr: field,
+            value: localValue,
+          })
+        );
+      }
+    }
+    else if (isChangeCustomer === true && style_cell === "customer") {
+      if (localValue !== value) {
+        dispatch(
+          updateAttrCustomerById({
+            id: id_customer,
             attr: field,
             value: localValue,
           })

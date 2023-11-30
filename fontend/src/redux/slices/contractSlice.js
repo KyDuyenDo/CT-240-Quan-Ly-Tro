@@ -34,7 +34,7 @@ const contractSlice = createSlice({
       state.isChange = false;
     },
     addContract: (state, action) => {
-      state.data.push(action.payload.room)
+      state.data.push(action.payload.contract)
     }
   },
 });

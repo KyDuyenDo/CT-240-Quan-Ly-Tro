@@ -3,7 +3,6 @@ import EditableCell from "./EditableCell";
 import QuanityInput from "./QuanityInput";
 import Datepicker from "./Datepicker";
 import OptionForActiveRoom from "./OptionForActiveRoom";
-import OptionForEmptyRoom from "./OptionForEmptyRoom";
 const RoomObject = ({
   id,
   status,
@@ -19,22 +18,22 @@ const RoomObject = ({
   maximun_member,
   handleCompleteChange, // trả về dữ liệu đã thay đổi ở trạng thái tạm
 }) => {
-  const statusOfRoom = (status) =>{
-    const status_room = status[status.length -1];
-    if(status_room === "is_empty"){
-      return ["Đang trống", "bg-danger"]
-    }else if(status_room ==="is_active"){
-      return ["Đang ở", "bg-success"]
-    }else if(status_room === "is_expire"){
-      return ["Hợp đồng đã quá hạn", "bg-secondary"]
-    }else if(status_room ==="is_terminate_contract"){
-      return ["Hợp đồng đang báo kết thúc", "bg-warning"]
-    }else if(status_room ==="is_will_terminate_contract"){
-      return ["Hợp đồng sắp hết hạn", "bg-warning"]
-    }else if(status_room === "is_deposit_temp"){
-      return ["Cọc giữ chỗ","bg-warning"]
+  const statusOfRoom = (status) => {
+    const status_room = status[status.length - 1];
+    if (status_room === "is_empty") {
+      return ["Đang trống", "bg-danger"];
+    } else if (status_room === "is_active") {
+      return ["Đang ở", "bg-success"];
+    } else if (status_room === "is_expire") {
+      return ["Hợp đồng đã quá hạn", "bg-secondary"];
+    } else if (status_room === "is_terminate_contract") {
+      return ["Hợp đồng đang báo kết thúc", "bg-warning"];
+    } else if (status_room === "is_will_terminate_contract") {
+      return ["Hợp đồng sắp hết hạn", "bg-warning"];
+    } else if (status_room === "is_deposit_temp") {
+      return ["Cọc giữ chỗ", "bg-warning"];
     }
-  }
+  };
   return (
     <div
       className="tabulator-row tabulator-row-even enable-background"
@@ -333,7 +332,7 @@ const RoomObject = ({
           borderRight: "1px solid rgba(34,36,38,.1)",
         }}
       >
-        {status.includes("is_empty") ? (
+        {date_terminate === "" ? (
           <span>Không xác định</span>
         ) : (
           <Datepicker
@@ -363,7 +362,7 @@ const RoomObject = ({
         }}
       >
         <span
-          className={"badge " + (statusOfRoom(status)[1])}
+          className={"badge " + statusOfRoom(status)[1]}
           style={{ backgroundColor: "#dc3545", whiteSpace: "break-spaces" }}
         >
           {statusOfRoom(status)[0]}
@@ -411,9 +410,7 @@ const RoomObject = ({
           borderRightWidth: "0px",
         }}
       >
-        {status.includes("is_empty")
-              ? <OptionForEmptyRoom room_id={id} />
-              :  <OptionForActiveRoom room_id={id} />}
+        <OptionForActiveRoom room_id={id} status={status} />
       </div>
       <span
         className="tabulator-col-resize-handle"

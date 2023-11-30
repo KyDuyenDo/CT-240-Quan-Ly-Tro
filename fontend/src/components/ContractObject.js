@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import EditableCell from "./EditableCell";
 import Datepicker from "./Datepicker";
-import OptionForActiveRoom from "./OptionForActiveRoom";
+import { useDispatch, useSelector } from "react-redux";
 import { CONTRACT } from "../shared/filters";
+import {
+  startEditingContract,
+  updateAttrContractById,
+} from "../redux/slices/contractSlice";
 const ContractObject = ({
   id,
   id_contract,
@@ -16,6 +20,10 @@ const ContractObject = ({
   date_terminate,
   status,
 }) => {
+  const customers = useSelector((state) => state.customers.data);
+  // khách hàng đại diện hợp đồng
+  const customer = customers.find((obj) => obj.id === customer_id); 
+  const dispatch = useDispatch();
   return (
     <div
       className="tabulator-row tabulator-row-even enable-background"
@@ -72,16 +80,57 @@ const ContractObject = ({
         className="tabulator-col-resize-handle"
         style={{ minHeight: "50px" }}
       ></span>
-      <EditableCell // đại diện hợp đồng
+      {/* <EditableCell // đại diện hợp đồng
         style_cell="contracts"
-        value={customer_id}
+        value={customer.name}
         room_id={id}
         id_contract={id_contract}
         style={{ width: "108px", minHeight: "50px", fontWeight: "" }}
         field="customer_id"
         type="text"
         unit=""
-      />
+      /> */}
+      <div
+        className="tabulator-editable bg_hover"
+        role="gridcell"
+        tabulator-field=""
+        tabIndex="0"
+        style={{
+          width: "108px",
+          textAlign: "left",
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "flex-start",
+          minHeight: "50px",
+          borderRight: "1px solid rgba(34,36,38,.1)",
+        }}
+      >
+        <select
+          className="form-select custom-select is_registry"
+          aria-label="Default select example"
+          value={customer.id}
+          onChange={(event) => {
+            dispatch(startEditingContract());
+            dispatch(
+              updateAttrContractById({
+                id: id,
+                id_contract: id_contract,
+                attr: "customer_id",
+                value: event.target.value,
+              })
+            );
+            console.log(event.target.value)
+          }}
+        >
+          {customers.map((customer) => {
+            return (
+              <option key={customer.id} value={customer.id}>
+                {customer.name}
+              </option>
+            );
+          })}
+        </select>
+      </div>
       <span
         className="tabulator-col-resize-handle"
         style={{ minHeight: "50px" }}
@@ -233,14 +282,18 @@ const ContractObject = ({
           borderRight: "1px solid rgba(34,36,38,.1)",
         }}
       >
-        <Datepicker
-          style_cell="contracts"
-          room_id={id}
-          id_contract={id_contract}
-          field="date_terminate"
-          type={"date_terminate_" + id + "_" + id_contract}
-          value={date_terminate}
-        />
+        {date_terminate === "" ? (
+          <span>&nbsp;Không thời hạn</span>
+        ) : (
+          <Datepicker
+            style_cell="contracts"
+            room_id={id}
+            id_contract={id_contract}
+            field="date_terminate"
+            type={"date_terminate_" + id + "_" + id_contract}
+            value={date_terminate}
+          />
+        )}
       </div>
       <span
         className="tabulator-col-resize-handle"
@@ -260,10 +313,12 @@ const ContractObject = ({
         }}
       >
         <span
-          className={"badge " + CONTRACT.find((object) => object.info === status).color}
+          className={
+            "badge " + CONTRACT.find((object) => object.info === status).color
+          }
           style={{ backgroundColor: "#dc3545", whiteSpace: "break-spaces" }}
         >
-          {(CONTRACT.find((obj) => obj.value === status)).text}
+          {CONTRACT.find((obj) => obj.value === status).text}
         </span>
       </div>
       <span
@@ -283,9 +338,7 @@ const ContractObject = ({
           minHeight: "50px",
           borderRightWidth: "0px",
         }}
-      >
-        <OptionForActiveRoom room_id={id} id_contract={id_contract} />
-      </div>
+      ></div>
       <span
         className="tabulator-col-resize-handle"
         style={{ minHeight: "50px" }}

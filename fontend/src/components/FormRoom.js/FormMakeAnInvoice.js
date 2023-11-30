@@ -3,8 +3,12 @@ import "../../css/FormAddRoom.css";
 import "../../css/FormAddRoom.css";
 import "../../css/form.css";
 import Modal from "react-bootstrap/Modal";
+import { successfully, unsuccessful } from "../../redux/slices/notifySlice";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { addInvoice } from "../../redux/slices/invoiceSlice";
+
 import * as yup from "yup";
 const schema = yup.object().shape({
   date: yup
@@ -24,38 +28,58 @@ const schema = yup.object().shape({
   month_amount: yup.string().default("1"),
   day_amount: yup.string().default("0"),
   deposit_contract_amount: yup.string(),
-  contract_deposit_contract_amount: yup.string(),
-  addition_bill: yup.string(),
-  addition_value: yup.string(),
-  addition_reason: yup.string()
 });
 const FormMakeAnInvoice = ({ room_id }) => {
   const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
     getValues,
-    watch
+    watch,
   } = useForm({ resolver: yupResolver(schema) });
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    resetForm();
+  };
   const handleShow = () => setShow(true);
-  const watch_month_amount = watch("month_amount")
-  const watch_day_amount = watch("day_amount")
+  const watch_month_amount = watch("month_amount");
+  const watch_day_amount = watch("day_amount");
+  const watch_deposit_contract_amount = watch("deposit_contract_amount");
   const resetForm = () => {
     reset({
       date: "",
       deadline_bill_date: "",
-      month_amount: "",
-      day_amount: "",
-      deposit_contract_amount: "",
-      contract_deposit_contract_amount:"",
-      addition_bill:"",
-      addition_value:"",
-      addition_reason:""
+      month_amount: "1",
+      day_amount: "0",
+      deposit_contract_amount: "0",
     });
   };
+  const index = useSelector((state) => state.index.data);
+  const services = useSelector((state) => state.services.data);
+  const price_water = Object.values(services).find((obj) => obj.unit === "Khối")
+  const price_electricity = Object.values(services).find((obj) => obj.unit === "Kwh")
+  const indexOfRoomSearch = (index_room) => {
+    var part_max = index_room[0].create_date.split("/");
+    let max = new Date(part_max[2], part_max[1] - 1, part_max[0]);
+    let index_return = 0;
+    for (let i = 1; i < index_room.length; i++) {
+      var part = index_room[i].create_date.split("/");
+      let date = new Date(part[2], part[1] - 1, part[0]);
+      if (date > max) {
+        max = date;
+        index_return = i;
+      }
+    }
+    return index_room[index_return];
+  };
+  let index_room = Object.values(index).filter((obj) => obj.id === room_id);
+  const index_room_need = indexOfRoomSearch(index_room);
+  let diff = Object.values(index).filter((obj) => obj.id === room_id);
+  diff = diff.filter((obj) => obj.create_date !== index_room_need.create_date);
+  let older = indexOfRoomSearch(diff);
   return (
     <>
       <div className="" variant="primary" onClick={handleShow}>
@@ -117,11 +141,46 @@ const FormMakeAnInvoice = ({ room_id }) => {
           <form
             id="addinvoice-form"
             onSubmit={handleSubmit((data) => {
-              // dispatch(addRoom({ room: newRoom }));
-              // setShow(false);
+              const newInvoice = {
+                id: room_id,
+                id_invoice: Math.floor(Math.random() * 100) + 10,
+                username: "", // tên người lập hoá đơn
+                status: "new",
+                id_count: [index_room_need.create_date, older.create_date],
+                deposit_contract_amount: watch_deposit_contract_amount === undefined? 0: watch_deposit_contract_amount,
+                created_date: data.date,
+                paid_date: data.deadline_bill_date,
+                amount_room: {
+                  number_of_months: data.month_amount,
+                  odd_number_of_days: data.day_amount,
+                  total: `${
+                    3000000 * parseInt(data.month_amount) +
+                    (3000000 / 28) * parseInt(data.day_amount)
+                  }`,
+                },
+                electricity_bill: {
+                  // lay tu co sơ du lieu
+                  old_unit: older.index_electricity,
+                  new_unit: index_room_need.index_electricity,
+                  total: `${(parseInt(index_room_need.index_electricity) - parseInt(older.index_electricity))*parseInt(price_electricity.price)}`,
+                },
+                water_bill: {
+                  // lay tu co so du lieu
+                  old_unit: older.index_water,
+                  new_unit: index_room_need.index_water,
+                  total: `${(parseInt(index_room_need.index_water) - parseInt(older.index_water))*parseInt(price_water.price)}`,
+                },
+                service_bill: {
+                  // thanh toan theo thang
+                  total: "0",
+                  month: "0",
+                },
+              };
+              console.log(newInvoice)
+              dispatch(addInvoice({ invoice: newInvoice }));
+              setShow(false);
+              dispatch(successfully({ message: "Thêm phòng thành công!" }));
               resetForm();
-              // dispatch(successfully({ message: "Thêm phòng thành công!" }));
-              console.log(data);
             })}
           >
             <div className="row g-2">
@@ -230,6 +289,11 @@ const FormMakeAnInvoice = ({ room_id }) => {
                 <div className="invalid-feedback">
                   Vui lòng nhập hạn đóng tiền hóa đơn
                 </div>
+                {errors.deadline_bill_date && (
+                  <small className="text-danger m-1 p-0">
+                    {errors.deadline_bill_date.message}
+                  </small>
+                )}
               </div>
               <div
                 className="col-12 room-amount-layout"
@@ -245,7 +309,7 @@ const FormMakeAnInvoice = ({ room_id }) => {
                       <input
                         data-format="numeric"
                         type="number"
-                        min="0"
+                        min="1"
                         className="form-control"
                         name="month_amount"
                         id="month_amount"
@@ -288,8 +352,20 @@ const FormMakeAnInvoice = ({ room_id }) => {
                         <div>
                           <span>Tính tiền phòng</span>
                         </div>
-                        <b className="bill-month-amount-text">{watch_month_amount === undefined? 1: watch_month_amount} tháng</b>,{" "}
-                        <b className="bill-day-amount-text">{watch_day_amount === undefined? 0: watch_day_amount} ngày</b>&nbsp;x{" "}
+                        <b className="bill-month-amount-text">
+                          {watch_month_amount === undefined
+                            ? 1
+                            : watch_month_amount}{" "}
+                          tháng
+                        </b>
+                        ,{" "}
+                        <b className="bill-day-amount-text">
+                          {watch_day_amount === undefined
+                            ? 0
+                            : watch_day_amount}{" "}
+                          ngày
+                        </b>
+                        &nbsp;x{" "}
                         <b className="bill-room-amount">3.000.000&nbsp;₫</b>
                       </div>
                       <div className="col-6 text-end">
@@ -297,7 +373,13 @@ const FormMakeAnInvoice = ({ room_id }) => {
                           <span>Thành tiền</span>
                         </div>
                         <b className="total-price bill-total-room">
-                          {watch_month_amount === undefined ? new Intl.NumberFormat("de-DE").format(3000000):new Intl.NumberFormat("de-DE").format(parseInt(watch_month_amount)*3000000 + (3000000/30)*parseInt(watch_day_amount))}&nbsp;₫
+                          {watch_month_amount === undefined
+                            ? new Intl.NumberFormat("de-DE").format(3000000)
+                            : new Intl.NumberFormat("de-DE").format(
+                                parseInt(watch_month_amount) * 3000000 +
+                                  (3000000 / 30) * parseInt(watch_day_amount)
+                              )}
+                          &nbsp;₫
                         </b>
                       </div>
                     </div>
@@ -323,6 +405,7 @@ const FormMakeAnInvoice = ({ room_id }) => {
                       className="form-control"
                       name="deposit_contract_amount"
                       id="deposit_contract_amount"
+                      defaultValue="0"
                       placeholder="Số tiền cọc thu hoặc trả lại"
                       {...register("deposit_contract_amount")}
                     />
@@ -347,7 +430,7 @@ const FormMakeAnInvoice = ({ room_id }) => {
                       <label htmlFor="bill_check_price_item_10499">
                         <b>Tiền điện</b>{" "}
                         <p>
-                          Giá: <b>1.700&nbsp;₫</b> / KWh
+                          Giá: <b>{new Intl.NumberFormat("de-DE").format(price_electricity.price)}&nbsp;₫</b> / KWh
                         </p>{" "}
                       </label>
                     </div>
@@ -361,12 +444,14 @@ const FormMakeAnInvoice = ({ room_id }) => {
                           placeholder="Nhập số cũ"
                           value="0"
                           name="price_items[10499][value][0]"
-                        ></div>
+                        >
+                          {index_room_need.index_electricity}
+                        </div>
                         <label
                           className="input-group-text"
                           htmlFor="bill_price_item_10499_0"
                         >
-                          Tổng
+                          Chỉ số hiện tại
                         </label>
                       </div>
                     </div>
@@ -376,7 +461,7 @@ const FormMakeAnInvoice = ({ room_id }) => {
                       <label htmlFor="bill_check_price_item_10500">
                         <b>Tiền nước</b>{" "}
                         <p>
-                          Giá: <b>18.000&nbsp;₫</b> / Khối
+                          Giá: <b>{new Intl.NumberFormat("de-DE").format(price_water.price)}&nbsp;₫</b> / Khối
                         </p>{" "}
                       </label>
                     </div>
@@ -390,12 +475,14 @@ const FormMakeAnInvoice = ({ room_id }) => {
                           placeholder="Nhập số cũ"
                           value="0"
                           name="price_items[10500][value][0]"
-                        ></div>
+                        >
+                          {index_room_need.index_water}
+                        </div>
                         <label
                           className="input-group-text"
                           htmlFor="bill_price_item_10500_0"
                         >
-                          Tổng
+                          Chỉ số hiện tại
                         </label>
                       </div>
                     </div>
@@ -417,114 +504,13 @@ const FormMakeAnInvoice = ({ room_id }) => {
                         <span>Thành tiền</span>
                       </div>
                       <b className="total-price bill-total-price-items">
-                        2.000&nbsp;₫
-                      </b>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-12">
-                <div className="title-item-small">
-                  <b>Cộng thêm / Giảm trừ:</b>
-                  <i className="des">
-                    Thường dành cho các trường hợp đặc biệt. Ví dụ cộng thêm
-                    ngày tết, giảm trừ covid...
-                  </i>
-                </div>
-              </div>
-              <div className="col-12">
-                <div className="d-none">
-                  <input
-                    data-format="numeric"
-                    className="form-check-input"
-                    type="radio"
-                    name="addition_a_bill"
-                    id="addition_bill"
-                    value="0"
-                    {...register("addition_bill")}
-                    checked={true}
-                  />
-                  <label className="form-check-label">Cộng thêm</label>
-                </div>
-                <div className="form-check form-check-inline">
-                  <input
-                    data-format="numeric"
-                    className="form-check-input"
-                    type="radio"
-                    name="addition_a_bill"
-                    id="addition_bill"
-                    value="1"
-                    {...register("addition_bill")}
-                  />
-                  <label className="form-check-label" htmlFor="addition_a_bill">
-                    Cộng thêm
-                  </label>
-                </div>
-                <div className="form-check form-check-inline">
-                  <input
-                    data-format="numeric"
-                    className="form-check-input"
-                    type="radio"
-                    name="addition_b_bill"
-                    id="addition_bill"
-                    value="-1"
-                    {...register("addition_bill")}
-                  />
-                  <label className="form-check-label" htmlFor="addition_b_bill">
-                    Giảm trừ
-                  </label>
-                </div>
-              </div>
-              <div className="col-12 mt-2">
-                <div className="form-floating">
-                  <input
-                    data-format="numeric"
-                    type="text"
-                    min="0"
-                    className="form-control"
-                    name="addition_value"
-                    id="addition_value"
-                    placeholder="Số tiền cộng thêm hoặc giảm trừ"
-                    {...register("addition_value")}
-                  />
-                  <label htmlFor="addition_value">Số tiền (đ)</label>
-                </div>
-              </div>
-              <div className="col-12 mt-2">
-                <div className="form-floating">
-                  <textarea
-                    type="text"
-                    rows="10"
-                    style={{ minHeight: "70px" }}
-                    className="form-control"
-                    name="addition_reason"
-                    id="addition_reason"
-                    placeholder="Nhập lý do"
-                    {...register("addition_reason")}
-                  ></textarea>
-                  <label htmlFor="addition_reason">Lý do</label>
-                </div>
-              </div>
-              <div className="col-12">
-                <div className="label-feature">
-                  <div className="row g-0">
-                    <div className="col-6">
-                      <div>
-                        <span className="bill-addition-text">Cộng thêm</span>
-                      </div>
-                      <div>
-                        Lý do:{" "}
-                        <i className="bill-addition-reason-text">
-                          Chưa có lý do
-                        </i>
-                      </div>
-                    </div>
-                    <div className="col-6 text-end">
-                      <div>
-                        <span>Thành tiền</span>
-                      </div>
-                      <b className="total-price bill-total-addition">
-                        0&nbsp;₫
+                        {new Intl.NumberFormat("de-DE").format(
+                          parseInt(index_room_need.index_electricity) * 1700 +
+                            parseInt(index_room_need.index_water) * 18000 -
+                            (parseInt(older.index_electricity) * 1700 +
+                              parseInt(older.index_water) * 18000)
+                        )}
+                        &nbsp;₫
                       </b>
                     </div>
                   </div>
@@ -542,7 +528,14 @@ const FormMakeAnInvoice = ({ room_id }) => {
               className="show-total total-price bill-total"
               style={{ color: "#3c9e47" }}
             >
-              6.002.000&nbsp;₫
+              {
+              new Intl.NumberFormat("de-DE").format(parseInt(watch_month_amount === undefined? 1: watch_month_amount) * 3000000 +
+                (3000000 / 30) * parseInt(watch_day_amount=== undefined? 0: watch_day_amount) +
+                (parseInt(index_room_need.index_electricity) * 1700 +
+                  parseInt(index_room_need.index_water) * 18000 -
+                  (parseInt(older.index_electricity) * 1700 +
+                    parseInt(older.index_water) * 18000)) + parseInt(watch_deposit_contract_amount === undefined ? 0 : watch_deposit_contract_amount))}
+              &nbsp;₫
             </b>
           </div>
           <button

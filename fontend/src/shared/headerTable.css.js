@@ -187,7 +187,7 @@ export const HEADERTABLECUSTOMER = [
       width: "50px",
     },
     classState: "",
-    field: "",
+    field: "1",
   },{
     text: "Tên khách hàng",
     style: {
@@ -195,7 +195,7 @@ export const HEADERTABLECUSTOMER = [
       width: "130px",
     },
     classState: "",
-    field: "",
+    field: "2",
   },{
     text: "Số điện thoại",
     style: {
@@ -203,7 +203,7 @@ export const HEADERTABLECUSTOMER = [
       width: "110px",
     },
     classState: "",
-    field: "",
+    field: "3",
   },{
     text: "Ngày sinh",
     style: {
@@ -211,7 +211,7 @@ export const HEADERTABLECUSTOMER = [
       width: "110px",
     },
     classState: "",
-    field: "",
+    field: "4",
   },{
     text: "Giới tính",
     style: {
@@ -219,7 +219,7 @@ export const HEADERTABLECUSTOMER = [
       width: "90px",
     },
     classState: "",
-    field: "",
+    field: "5",
   },{
     text: "Địa chỉ",
     style: {
@@ -227,7 +227,7 @@ export const HEADERTABLECUSTOMER = [
       width: "230px",
     },
     classState: "",
-    field: "",
+    field: "6",
   },{
     text: "nghề nghiệp",
     style: {
@@ -235,7 +235,7 @@ export const HEADERTABLECUSTOMER = [
       width: "130px",
     },
     classState: "",
-    field: "",
+    field: "7",
   },{
     text: "CCCD/CMMD",
     style: {
@@ -243,7 +243,7 @@ export const HEADERTABLECUSTOMER = [
       width: "100px",
     },
     classState: "",
-    field: "",
+    field: "8",
   },{
     text: "Loại người thuê",
     style: {
@@ -251,7 +251,7 @@ export const HEADERTABLECUSTOMER = [
       width: "100px",
     },
     classState: "",
-    field: "",
+    field: "9",
   },{
     text: "Trạng thái giấy tờ",
     style: {
@@ -259,7 +259,7 @@ export const HEADERTABLECUSTOMER = [
       width: "100px",
     },
     classState: "",
-    field: "",
+    field: "10",
   },{
     text: "Trạng thái cư trú",
     style: {
@@ -267,7 +267,7 @@ export const HEADERTABLECUSTOMER = [
       width: "100px",
     },
     classState: "",
-    field: "",
+    field: "11",
   },
   {
     text: "",
@@ -276,6 +276,6 @@ export const HEADERTABLECUSTOMER = [
       width: "50px",
     },
     classState: "",
-    field: "",
+    field: "12",
   }
 ]

@@ -1,8 +1,13 @@
 import React from "react";
 import EditableCell from "./EditableCell";
 import Datepicker from "./Datepicker";
-import "../css/customer.css"
-import OptionForActiveRoom from "./OptionForActiveRoom";
+import "../css/customer.css";
+import {
+  updateAttrCustomerById,
+  startEditingCustomer,
+} from "../redux/slices/customerSlice";
+import { useDispatch } from "react-redux";
+import OptionForCustomer from "./OptionForCustomer";
 const CustomerObject = ({
   id,
   name,
@@ -17,6 +22,7 @@ const CustomerObject = ({
   is_verify,
   is_registry,
 }) => {
+  const dispatch = useDispatch();
   return (
     <div
       className="tabulator-row tabulator-row-even enable-background"
@@ -37,7 +43,7 @@ const CustomerObject = ({
         }}
       >
         <div>
-          <div class="icon-first" style={{ backgroundColor: "#dc3545" }}>
+          <div className="icon-first" style={{ backgroundColor: "#dc3545" }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -48,7 +54,7 @@ const CustomerObject = ({
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              class="feather feather-user"
+              className="feather feather-user"
             >
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
@@ -68,7 +74,7 @@ const CustomerObject = ({
         style={{ width: "130px", minHeight: "50px", fontWeight: "" }}
         field="name"
         type="text"
-        unit=""
+        unit={` (Phòng ${room})`}
       />
       <span
         className="tabulator-col-resize-handle"
@@ -81,7 +87,7 @@ const CustomerObject = ({
         id_customer={id}
         style={{ width: "110px", minHeight: "50px", fontWeight: "" }}
         field="phone"
-        type="number"
+        type="text"
         unit=""
       />
       <span
@@ -91,7 +97,7 @@ const CustomerObject = ({
       <div
         className="tabulator-editable bg_hover"
         role="gridcell"
-        tabulator-field="date_contract"
+        tabulator-field="birthday"
         tabIndex="0"
         style={{
           width: "110px",
@@ -119,7 +125,7 @@ const CustomerObject = ({
       <div
         className="tabulator-editable bg_hover"
         role="gridcell"
-        tabulator-field="date_contract"
+        tabulator-field="gender"
         tabIndex="0"
         style={{
           width: "90px",
@@ -131,9 +137,23 @@ const CustomerObject = ({
           borderRight: "1px solid rgba(34,36,38,.1)",
         }}
       >
-        <select className="form-select custom-select" aria-label="Default select example">
-          <option selected>Nam</option>
-          <option value="1">Nữ</option>
+        <select
+          className="form-select custom-select gender"
+          aria-label="Default select example"
+          value={gender}
+          onChange={(event) => {
+            dispatch(startEditingCustomer());
+            dispatch(
+              updateAttrCustomerById({
+                id: id,
+                attr: "gender",
+                value: event.target.value,
+              })
+            );
+          }}
+        >
+          <option value="1">Nam</option>
+          <option value="0">Nữ</option>
         </select>
       </div>
       <span
@@ -175,7 +195,7 @@ const CustomerObject = ({
         id_customer={id}
         style={{ width: "100px", minHeight: "50px", fontWeight: "" }}
         field="identity_number"
-        type="number"
+        type="text"
         unit=""
       />
       <span
@@ -185,7 +205,7 @@ const CustomerObject = ({
       <div
         className="tabulator-editable bg_hover"
         role="gridcell"
-        tabulator-field="date_contract"
+        tabulator-field=""
         tabIndex="0"
         style={{
           width: "100px",
@@ -197,7 +217,24 @@ const CustomerObject = ({
           borderRight: "1px solid rgba(34,36,38,.1)",
         }}
       >
-        
+        <select
+          className="form-select custom-select is_admin"
+          aria-label="Default select example"
+          value={is_admin}
+          onChange={(event) => {
+            dispatch(startEditingCustomer());
+            dispatch(
+              updateAttrCustomerById({
+                id: id,
+                attr: "is_admin",
+                value: event.target.value,
+              })
+            );
+          }}
+        >
+          <option value="true">Thành viên</option>
+          <option value="false">Liên hệ</option>
+        </select>
       </div>
       <span
         className="tabulator-col-resize-handle"
@@ -206,7 +243,7 @@ const CustomerObject = ({
       <div
         className="tabulator-editable bg_hover"
         role="gridcell"
-        tabulator-field="date_contract"
+        tabulator-field=""
         tabIndex="0"
         style={{
           width: "100px",
@@ -218,7 +255,24 @@ const CustomerObject = ({
           borderRight: "1px solid rgba(34,36,38,.1)",
         }}
       >
-        
+        <select
+          className="form-select custom-select is_registry"
+          aria-label="Default select example"
+          value={is_registry}
+          onChange={(event) => {
+            dispatch(startEditingCustomer());
+            dispatch(
+              updateAttrCustomerById({
+                id: id,
+                attr: "is_registry",
+                value: event.target.value,
+              })
+            );
+          }}
+        >
+          <option value="true">Đầy đủ</option>
+          <option value="false">Chưa đủ</option>
+        </select>
       </div>
       <span
         className="tabulator-col-resize-handle"
@@ -227,7 +281,7 @@ const CustomerObject = ({
       <div
         className="tabulator-editable bg_hover"
         role="gridcell"
-        tabulator-field="date_contract"
+        tabulator-field=""
         tabIndex="0"
         style={{
           width: "100px",
@@ -239,12 +293,32 @@ const CustomerObject = ({
           borderRight: "1px solid rgba(34,36,38,.1)",
         }}
       >
-       
+        <select
+          className="form-select custom-select is_verify"
+          aria-label="Default select example"
+          value={is_verify}
+          onChange={(event) => {
+            dispatch(startEditingCustomer());
+            dispatch(
+              updateAttrCustomerById({
+                id: id,
+                attr: "is_verify",
+                value: event.target.value,
+              })
+            );
+          }}
+        >
+          <option value="false">Chưa có</option>
+          <option value="true">Đã có</option>
+        </select>
       </div>
       <span
         className="tabulator-col-resize-handle"
         style={{ minHeight: "50px" }}
       ></span>
+      <div className="option_custom">
+        <OptionForCustomer room_id={room} id_customer={id} />
+      </div>
     </div>
   );
 };

@@ -47,7 +47,6 @@ const ContractTable = () => {
                   Tất cả hợp đồng
                   <i className="des">Danh sách hợp đồng được tạo khi thêm phiên ở mới</i>
                 </h4>
-                <FormAddRoom />
               </div>
               <ListFilterCard
                 filters={CONTRACT}
@@ -116,7 +115,7 @@ const ContractTable = () => {
             {contracts.map((contract) => {
               return (
                 <ContractObject
-                  key={contract.id}
+                  key={contract.id_contract}
                   id={contract.id}
                   id_contract={contract.id_contract}
                   customer_id={contract.customer_id}

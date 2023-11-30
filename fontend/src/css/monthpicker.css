@@ -1,0 +1,17 @@
+.custom_month {
+    height: 39px !important;
+    border: 1px solid #dee2e6;
+    border-radius: 5px 0px 0px 5px;
+    padding: 10px;
+    padding-right: 0px;
+}
+.react-datepicker__month-container{
+    z-index: 10 !important;
+}
+.custom_month:hover {
+    box-shadow: blue !important;
+}
+
+.react-datepicker-ignore-onclickoutside {
+    outline: none !important;
+}

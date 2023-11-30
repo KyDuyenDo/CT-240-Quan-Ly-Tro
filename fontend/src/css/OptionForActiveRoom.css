@@ -9,3 +9,6 @@
     display: flex;
     align-items: center;
 }
+.custom_item_2:hover{
+    cursor: pointer;
+}

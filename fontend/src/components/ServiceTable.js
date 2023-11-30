@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/Service.css";
+import Monthpicker from "./Monthpicker";
 const ServiceTable = () => {
   return (
     <div
@@ -152,15 +153,8 @@ const ServiceTable = () => {
                 class="input-group"
                 style={{ width: "30%", marginTop: "20px" }}
               >
-                <div class="form-floating">
-                  <input
-                    type="text"
-                    class="form-control month-flat-picker flatpickr-input"
-                    name="month"
-                    id="month"
-                    placeholder="Nhập tháng"
-                  />
-                  <label for="month">Tháng lập phiếu</label>
+                <div>
+                  <Monthpicker />
                 </div>
                 <label class="input-group-text" for="month">
                   <svg
@@ -428,7 +422,10 @@ const ServiceTable = () => {
                       style={{ height: "77px" }}
                     ></span>
                   </div>
-                  <div class="tabulator-calcs-holder" style={{minWidth: "859px"}}>
+                  <div
+                    class="tabulator-calcs-holder"
+                    style={{ minWidth: "859px" }}
+                  >
                     <div
                       class="tabulator-row tabulator-calcs tabulator-calcs-top"
                       role="row"
@@ -437,7 +434,11 @@ const ServiceTable = () => {
                         class="tabulator-cell white-space-break edit_disable"
                         role="gridcell"
                         tabulator-field="name"
-                        style={{textAlign: "left", width: "169px", height: "40px"}}
+                        style={{
+                          textAlign: "left",
+                          width: "169px",
+                          height: "40px",
+                        }}
                       >
                         &nbsp;
                       </div>
@@ -445,7 +446,11 @@ const ServiceTable = () => {
                         class="tabulator-cell edit_disable"
                         role="gridcell"
                         tabulator-field="price_items.0.value_total"
-                        style={{textAlign: "center", width: "60px", height: "40px"}}
+                        style={{
+                          textAlign: "center",
+                          width: "60px",
+                          height: "40px",
+                        }}
                       >
                         &nbsp;
                       </div>
@@ -453,7 +458,11 @@ const ServiceTable = () => {
                         class="tabulator-cell positive edit_disable"
                         role="gridcell"
                         tabulator-field="price_items.0.item_total"
-                        style={{textAlign: "right", width: "169px", height: "40px"}}
+                        style={{
+                          textAlign: "right",
+                          width: "169px",
+                          height: "40px",
+                        }}
                       >
                         <b>0&nbsp;₫</b>
                       </div>
@@ -461,7 +470,11 @@ const ServiceTable = () => {
                         class="tabulator-cell edit_disable"
                         role="gridcell"
                         tabulator-field="price_items.1.value_total"
-                        style={{textAlign: "center", width: "60px", height: "40px"}}
+                        style={{
+                          textAlign: "center",
+                          width: "60px",
+                          height: "40px",
+                        }}
                       >
                         &nbsp;
                       </div>
@@ -469,7 +482,11 @@ const ServiceTable = () => {
                         class="tabulator-cell positive edit_disable"
                         role="gridcell"
                         tabulator-field="price_items.1.item_total"
-                        style={{textAlign: "right", width: "169px", height: "40px"}}
+                        style={{
+                          textAlign: "right",
+                          width: "169px",
+                          height: "40px",
+                        }}
                       >
                         <b>0&nbsp;₫</b>
                       </div>
@@ -477,7 +494,11 @@ const ServiceTable = () => {
                         class="tabulator-cell edit_disable"
                         role="gridcell"
                         tabulator-field="price_items.2.value_total"
-                        style={{textAlign: "center", width: "60px", height: "40px"}}
+                        style={{
+                          textAlign: "center",
+                          width: "60px",
+                          height: "40px",
+                        }}
                       >
                         &nbsp;
                       </div>
@@ -485,7 +506,11 @@ const ServiceTable = () => {
                         class="tabulator-cell positive edit_disable"
                         role="gridcell"
                         tabulator-field="price_items.2.item_total"
-                        style={{textAlign: "right", width: "171.656px", height: "40px"}}
+                        style={{
+                          textAlign: "right",
+                          width: "171.656px",
+                          height: "40px",
+                        }}
                       >
                         <b>0&nbsp;₫</b>
                       </div>

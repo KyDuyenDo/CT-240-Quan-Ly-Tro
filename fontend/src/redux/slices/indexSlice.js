@@ -14,10 +14,10 @@ const indexSlice = createSlice({
       state.data[index][action.payload.attr] = action.payload.value;
     },
     updateAllIndex: (state, action) => {
-      state.data = action.payload.services;
+      state.data = action.payload.index;
     },
     addIndex: (state, action) => {
-      state.data.push(action.payload.room)
+      state.data.push(action.payload.index)
     }
   },
 });

@@ -15,7 +15,7 @@ import Notify from "./FormRoom.js/Notify";
 const CustomerTable = () => {
   const customers = useSelector((state) => state.customers.data);
   const dispatch = useDispatch();
-  const isChange = useSelector((state) => state.rooms.isChange);
+  const isChange = useSelector((state) => state.customers.isChange);
   const [filterState, setFilterState] = useState("");
   const handleConfirmClick = () => {
     dispatch(confirmChangesCustomer());
@@ -48,7 +48,6 @@ const CustomerTable = () => {
                     Tất cả danh sách khách thuê trong Nhà trọ của bạn
                   </i>
                 </h4>
-                <FormAddRoom />
               </div>
               <ListFilterCard
                 filters={CUSTOMER}
@@ -114,20 +113,10 @@ const CustomerTable = () => {
             role="rowgroup"
             style={{ paddingTop: "0px", paddingBottom: "0px" }}
           >
-            <div
-              className="tabulator-row tabulator-group tabulator-group-level-0 tabulator-group-visible tabulator-row-odd"
-              role="rowgroup"
-            >
-              <div
-                className="tabulator-group-toggle"
-                style={{ marginLeft: "0px" }}
-              >
-                <div className="tabulator-arrow"></div>
-              </div>
-            </div>
             {customers.map((customer) => {
               return (
                 <CustomerObject
+                  key={customer.id}
                   id={customer.id}
                   name={customer.name}
                   room={customer.room}

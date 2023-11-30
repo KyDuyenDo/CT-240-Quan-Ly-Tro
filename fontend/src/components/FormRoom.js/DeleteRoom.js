@@ -1,18 +1,40 @@
+// xoá phòng, xoá hoá đơn, xoá khách thuê
 import React, { useState } from "react";
 import "../../css/DeleteRoom.css";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteRoomById } from "../../redux/slices/roomSlice";
 import { successfully, unsuccessful } from "../../redux/slices/notifySlice";
+import { deleteInvoiceById } from "../../redux/slices/invoiceSlice";
+import { deleteCustomerById } from "../../redux/slices/customerSlice";
 
-const DeleteRoom = () => {
+const DeleteRoom = ({type, id}) => {
   const [show, setShow] = useState(false);
+  const contract = useSelector((state) => state.contracts.data)
   const dispatch = useDispatch()
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleProcess = () => {
+    if(type === "room"){
+      const index = contract.filter((item) => item.id === id && item.customer_id !== "")
+      if(index.length !== 0){
+        dispatch(unsuccessful({message: "Phòng có người ở"}))
+      }else{
+        dispatch(deleteRoomById({id: id}))
+        dispatch(successfully({message: "xoá phòng thành công"}))
+      }
+    }else if(type === "invoice"){
+      dispatch((deleteInvoiceById({id: id})))
+    }else{
+      const index = contract.filter((item) => item.customer_id === id)
+      if(index.length !== 0){
+        dispatch(unsuccessful({message: "Khách thuê đại diện hợp đồng"}))
+      }else{
+        dispatch(deleteCustomerById({id: id}))
+      }
+    }
     setShow(false)
-    dispatch(unsuccessful({message:"Phòng có người ở"}))
   }
   return (
     <>
@@ -40,7 +62,7 @@ const DeleteRoom = () => {
             <line x1="10" y1="11" x2="10" y2="17"></line>
             <line x1="14" y1="11" x2="14" y2="17"></line>
           </svg>
-          &nbsp;Xoá phòng
+          &nbsp;Xoá {type === "room"? "phòng": (type === "invoice"? "hoá đơn": "khách thuê")}
         </span>
       </div>
 
@@ -77,7 +99,7 @@ const DeleteRoom = () => {
                 fontWeight: "400",
               }}
             >
-              Bạn có chắc chắn muốn xóa phòng
+              Bạn có chắc chắn muốn xóa {type === "room"? "phòng": (type === "invoice"? "hoá đơn": "khách thuê")}
             </div>
             <div
               className="swal2-actions"

@@ -33,9 +33,9 @@ const FormAddRoom = () => {
     reset({
       name: "",
       deposit_contract_amount: "",
-      area: "",
+      area: "15",
       room_amount: "",
-      circle_day: "",
+      circle_day: "20",
     });
   };
   const getDateNow = () => {
@@ -129,7 +129,6 @@ const FormAddRoom = () => {
               setShow(false);
               resetForm();
               dispatch(successfully({ message: "Thêm phòng thành công!" }));
-              console.log(newRoom);
             })}
             id="addroom-form"
           >

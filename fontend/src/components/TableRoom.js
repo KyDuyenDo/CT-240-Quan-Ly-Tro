@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ListFilterCard from "../components/ListFilterCard";
 import HeaderTable from "../components/HeaderTable";
@@ -14,7 +14,7 @@ const TableRoom = () => {
   const rooms = useSelector((state) => state.rooms.data);
   const dispatch = useDispatch();
   const isChange = useSelector((state) => state.rooms.isChange);
-  const [filterState, setFilterState] = useState("")
+  const [filterState, setFilterState] = useState("");
   const handleConfirmClick = () => {
     dispatch(confirmChanges());
   };
@@ -47,10 +47,10 @@ const TableRoom = () => {
                 <FormAddRoom />
               </div>
               <ListFilterCard
-                    filters={ROOM}
-                    filterState={filterState}
-                    setFilterState={setFilterState}
-                  />
+                filters={ROOM}
+                filterState={filterState}
+                setFilterState={setFilterState}
+              />
             </div>
           </div>
         </div>
@@ -110,17 +110,6 @@ const TableRoom = () => {
             role="rowgroup"
             style={{ paddingTop: "0px", paddingBottom: "0px" }}
           >
-            <div
-              className="tabulator-row tabulator-group tabulator-group-level-0 tabulator-group-visible tabulator-row-odd"
-              role="rowgroup"
-            >
-              <div
-                className="tabulator-group-toggle"
-                style={{ marginLeft: "0px" }}
-              >
-                <div className="tabulator-arrow"></div>
-              </div>
-            </div>
             {rooms.map((room) => {
               return (
                 <RoomObject
@@ -143,7 +132,7 @@ const TableRoom = () => {
           </div>
         </div>
       </div>
-      <Notify/>
+      <Notify />
     </div>
   );
 };

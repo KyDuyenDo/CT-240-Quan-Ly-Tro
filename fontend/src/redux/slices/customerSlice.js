@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {CUSTOMER} from "../../shared/customer"
+import { CUSTOMER } from "../../shared/customer";
 const customerSlice = createSlice({
   name: "customers",
   initialState: {
@@ -22,6 +22,7 @@ const customerSlice = createSlice({
       // Lưu trạng thái ban đầu
       state.temporaryData = [...state.data]; // copy
       state.isChange = true;
+      console.log(state.isChange);
     },
     confirmChangesCustomer: (state) => {
       // Cập nhật dữ liệu
@@ -34,10 +35,22 @@ const customerSlice = createSlice({
       state.isChange = false;
     },
     addCustomer: (state, action) => {
-      state.data.push(action.payload.customer)
-    }
+      state.data.push(action.payload.customer);
+    },
+    deleteCustomerById: (state, action) => {
+      const newdata = state.data.filter((obj) => obj.id !== action.payload.id);
+      state.data = [...newdata];
+    },
   },
 });
 
-export const { updateAttrCustomerById, updateAllCustomer, startEditingCustomer, confirmChangesCustomer, cancelChangesCustomer, addCustomer } = customerSlice.actions;
+export const {
+  updateAttrCustomerById,
+  updateAllCustomer,
+  startEditingCustomer,
+  confirmChangesCustomer,
+  cancelChangesCustomer,
+  addCustomer,
+  deleteCustomerById
+} = customerSlice.actions;
 export default customerSlice.reducer;
