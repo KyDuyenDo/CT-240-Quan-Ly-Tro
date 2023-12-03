@@ -7,7 +7,6 @@ import backend.hostel.demo.dto.BillDto;
 import backend.hostel.demo.entity.Bill;
 import backend.hostel.demo.mapper.BillMapper;
 import backend.hostel.demo.repository.BillRepo;
-import backend.hostel.demo.repository.BillStatusRepo;
 import backend.hostel.demo.service.BillService;
 
 @Component
@@ -16,9 +15,6 @@ public class BillImpl implements BillService {
 	@Autowired
 	private BillRepo billRepo;
 	
-	@Autowired
-	private BillStatusRepo billStatusRepo;
-
 	@Override
 	public Iterable<BillDto> getBills() {
 		return BillMapper.toDtoList(billRepo.findAll());
@@ -41,7 +37,7 @@ public class BillImpl implements BillService {
 
 	@Override
 	public Iterable<BillDto> getBillByStatus(String statusId) {
-		return BillMapper.toDtoList(billStatusRepo.findAllByStatus(statusId));
+		return null;
 	}
 
 	@Override

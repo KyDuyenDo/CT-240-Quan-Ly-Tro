@@ -22,4 +22,6 @@ public interface TenantService {
 	
 	TenantDto deleteTenant(String tenantId);
 	
+	TenantDto moveTenant(String tenantId, String roomId);
+	
 }

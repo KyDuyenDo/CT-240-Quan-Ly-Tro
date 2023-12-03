@@ -7,7 +7,6 @@ import backend.hostel.demo.dto.ContractDto;
 import backend.hostel.demo.entity.Contract;
 import backend.hostel.demo.mapper.ContractMapper;
 import backend.hostel.demo.repository.ContractRepo;
-import backend.hostel.demo.repository.StatusContractRepo;
 import backend.hostel.demo.service.ContractService;
 
 @Component
@@ -16,8 +15,7 @@ public class ContractImpl implements ContractService {
 	@Autowired
 	private ContractRepo contractRepo;
 	
-	@Autowired
-	private StatusContractRepo statusContractRepo;
+
 
 	@Override
 	public Iterable<ContractDto> getContracts() {
@@ -36,7 +34,7 @@ public class ContractImpl implements ContractService {
 
 	@Override
 	public Iterable<ContractDto> getContractsByStatus(String statusId) {
-		return ContractMapper.toDtoList(statusContractRepo.findAllByStatus(statusId));
+		return null;
 	}
 
 	@Override
