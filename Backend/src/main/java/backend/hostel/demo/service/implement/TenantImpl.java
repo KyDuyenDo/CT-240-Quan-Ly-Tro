@@ -7,7 +7,6 @@ import backend.hostel.demo.dto.TenantDto;
 import backend.hostel.demo.entity.Tenant;
 import backend.hostel.demo.mapper.TenantMapper;
 import backend.hostel.demo.repository.TenantRepo;
-import backend.hostel.demo.repository.TenantStatusRepo;
 import backend.hostel.demo.service.TenantService;
 
 @Component
@@ -16,8 +15,6 @@ public class TenantImpl implements TenantService {
 	@Autowired
 	private TenantRepo tenantRepo;
 	
-	@Autowired
-	private TenantStatusRepo tenantStatusRepo;
 	
 
 	@Override
@@ -37,7 +34,7 @@ public class TenantImpl implements TenantService {
 
 	@Override
 	public Iterable<TenantDto> getTenantByStatus(String statusId) {
-		return TenantMapper.toDtoList(tenantStatusRepo.findTenantByStatus(statusId));
+		return null;
 	}
 
 	@Override
@@ -70,6 +67,13 @@ public class TenantImpl implements TenantService {
 	public TenantDto deleteTenant(String tenantId) {
 		tenantRepo.deleteById(tenantId);
 		return TenantMapper.toDto(tenantRepo.findById(tenantId).get());
+	}
+	
+
+	@Override
+	public TenantDto moveTenant(String tenantId, String roomId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

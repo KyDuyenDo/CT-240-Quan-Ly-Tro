@@ -7,18 +7,13 @@ import backend.hostel.demo.dto.RoomDto;
 import backend.hostel.demo.entity.Room;
 import backend.hostel.demo.mapper.RoomMapper;
 import backend.hostel.demo.repository.RoomRepo;
-import backend.hostel.demo.repository.RoomStatusRepo;
 import backend.hostel.demo.service.RoomService;
 
 @Component
 public class RoomImpl implements RoomService {
 	@Autowired
 	private RoomRepo roomRepo;
-	@Autowired
-	private RoomStatusRepo roomStatusRepo ;
 	
-	
-
 	@Override
 	public Iterable<RoomDto> getRooms() {
 		return RoomMapper.toDtoList(roomRepo.findAll());
@@ -43,7 +38,7 @@ public class RoomImpl implements RoomService {
 
 	@Override
 	public Iterable<RoomDto> getRoomsByStatus(String statusId) {
-		return RoomMapper.toDtoList(roomStatusRepo.findRoomsByStatus(statusId));
+		return null;
 	}
 
 	@Override

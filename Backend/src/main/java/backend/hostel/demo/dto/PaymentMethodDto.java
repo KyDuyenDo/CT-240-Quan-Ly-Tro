@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReceiptDto {
+public class PaymentMethodDto {
 private String receiptId;
 	
 	private String methodId;

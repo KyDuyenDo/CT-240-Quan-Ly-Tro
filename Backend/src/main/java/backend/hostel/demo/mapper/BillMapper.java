@@ -2,7 +2,6 @@ package backend.hostel.demo.mapper;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import backend.hostel.demo.dto.BillDto;
 import backend.hostel.demo.entity.Bill;
 
